@@ -1,0 +1,14 @@
+.central {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  width: 100%;
+  top: 30%;
+  bottom: 30%;
+  background-color: #184E77;
+  opacity: 50%;
+  color: white;
+}
+

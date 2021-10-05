@@ -3,8 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\about",
     "\\src\\app\\components",
+    "\\src\\app\\components\\centerblock",
     "\\src\\app\\components\\footer",
     "\\src\\app\\components\\header"
   ],
