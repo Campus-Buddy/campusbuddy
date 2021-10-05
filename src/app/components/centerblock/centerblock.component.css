@@ -5,10 +5,23 @@
   align-items: center;
   left: 0;
   width: 100%;
-  top: 30%;
-  bottom: 30%;
+  top: 25%;
+  bottom: 25%;
   background-color: #184E77;
   opacity: 50%;
   color: white;
+  overflow: hidden;
 }
+
+img {
+  width: 150%;
+  height: auto;
+  position: relative;
+  z-index: -1;
+}
+body {
+    overflow: hidden;
+    margin: 0 -8px 0 -8px;
+}
+
 
