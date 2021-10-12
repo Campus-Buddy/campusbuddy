@@ -1,3 +1,4 @@
+@import './../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 .central {
   position: fixed;
   display: flex;
@@ -16,8 +17,6 @@
 img {
   width: 150%;
   height: auto;
-  position: relative;
-  z-index: -1;
 }
 body {
     overflow: hidden;
