@@ -1,3 +1,7 @@
+@import './../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+.navbar {
+  background-color: #184E77 !important;
+}
 .header {
   overflow: hidden;
   background-color: #184E77;
@@ -33,7 +37,9 @@
 }
 
 .header-links {
-  float: right;
+  background-color: #184E77;
+  position: absolute;
+  right: 0;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
