@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +9,8 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CenterblockComponent } from './components/centerblock/centerblock.component';
+import { LoginComponent } from './login/login.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { CenterblockComponent } from './components/centerblock/centerblock.compo
     ContactusComponent,
     HeaderComponent,
     FooterComponent,
-    CenterblockComponent
+    CenterblockComponent,
+    LoginComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
