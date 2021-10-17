@@ -7,3 +7,8 @@ mat-card {
 mat-form-field {
   display: block;
 }
+
+.form_card{
+    width: 30em;
+    font-weight: 600;
+}

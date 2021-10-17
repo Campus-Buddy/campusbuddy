@@ -1,10 +1,10 @@
 <app-header></app-header>
 
 <app-centerblock>
-    <mat-card>
+    <mat-card class="form_card">
       <mat-card-content>
         <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-          <h2>Login</h2>
+          <h2>LOGIN</h2>
           <mat-error *ngIf="warning"> {{warning}}</mat-error><br />
           <mat-form-field class="full-width-input">
             <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="user.email" required autofocus>
@@ -18,8 +18,9 @@
             <mat-icon>login</mat-icon>
             <span ng-message when="false">&nbsp;&nbsp;&nbsp;Login</span>
           </button>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <p>Don't have an account? Sign up!</p>
           <button mat-raised-button color="primary" [routerLink]="['/landing-page']">
             <mat-icon>account_box</mat-icon>
             <span>&nbsp;&nbsp;&nbsp;Register</span>
