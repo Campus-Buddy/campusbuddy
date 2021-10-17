@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     password:""
   }
   public warning: string = "";
-  public loading: boolean = false;
 
   constructor(private auth:AuthService, private router:Router) { }
 
@@ -30,23 +29,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(f: NgForm): void {
     if (this.user.email != "" && this.user.password != "") {
-      this.loading = true;
       this.auth.login(this.user).subscribe(
         (success) => {
           this.warning = "";
-          this.loading = false;
 
           localStorage.setItem('access_token', success.token);
           this.router.navigate(['/home']);
         },
         (err) => {
           this.warning = err.error.message;
-          this.loading = false;
         }
       );
-    }
-    else {
-      this.loading = false;
     }
   }
 

@@ -39,14 +39,17 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}/login`, user);
+    console.log(this.http.get<any>(`${environment.userAPIBase}campusbuddy?table=user`));
+    return this.http.post<any>(`${environment.userAPIBase}campusbuddy?table=user`, user);
   }
 
   logout() {
     localStorage.removeItem('access_token');
   }
 
+  /*
   register(registerUser: RegisterUser): Observable<any> {
     return this.http.post<any>(`${environment.userAPIBase}/register`, registerUser);
   }
+  */
 }
