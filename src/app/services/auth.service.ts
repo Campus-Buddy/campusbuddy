@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post<any>('environment.userAPIBase/login', user);
+    return this.http.post<any>(`${environment.userAPIBase}/login`, user);
   }
 
   logout() {
@@ -47,6 +47,6 @@ export class AuthService {
   }
 
   register(registerUser: RegisterUser): Observable<any> {
-    return this.http.post<any>('environment.userAPIBase/login', registerUser);
+    return this.http.post<any>(`${environment.userAPIBase}/register`, registerUser);
   }
 }
