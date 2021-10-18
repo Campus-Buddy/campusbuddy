@@ -4,17 +4,17 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-const helper = new JwtHelperService();
-
 import { User } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
+
+const helper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   //environment.userAPIBase
   public getToken(): string {  
@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    console.log(this.http.get<any>(`${environment.userAPIBase}campusbuddy?table=user`));
+    console.log(this.http.post<any>(`${environment.userAPIBase}campusbuddy?table=user`, user));
     return this.http.post<any>(`${environment.userAPIBase}campusbuddy?table=user`, user);
   }
 
