@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  APIBase: "https://campus-buddy-db.herokuapp.com/campusbuddy"
+
 };
 
 /*

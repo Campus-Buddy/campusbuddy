@@ -9,3 +9,7 @@ app-footer {
     bottom: 0;
     width: 100%;
 }
+
+app-router {
+    padding-top: 10rem;
+}
