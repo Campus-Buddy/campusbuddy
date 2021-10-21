@@ -39,8 +39,8 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    console.log(this.http.post<any>(`${environment.userAPIBase}campusbuddy?table=user`, user));
-    return this.http.post<any>(`${environment.userAPIBase}campusbuddy?table=user`, user);
+    console.log(this.http.post<any>(`${environment.userAPIBase}/user`, user));
+    return this.http.post<any>(`${environment.userAPIBase}/user`, user);
   }
 
   logout() {
