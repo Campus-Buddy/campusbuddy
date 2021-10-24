@@ -25,6 +25,11 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CenterblockComponent } from './components/centerblock/centerblock.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+
+//angular imports
+
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     CenterblockComponent,
+    UserRegistrationComponent,
     LoginComponent,
     LandingPageComponent
   ],
@@ -58,6 +64,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatCardModule,
     MatChipsModule,
+    // FlexLayoutModule,
+    HttpClientModule,
+    FormsModule,
     MatSnackBarModule
   ],
   providers: [
