@@ -17,7 +17,6 @@ export class BulletinboardComponent implements OnInit {
   private sub: Subscription = new Subscription;
 
   users2 = userData;
-  // users2 = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -25,12 +24,14 @@ export class BulletinboardComponent implements OnInit {
     
 
     this.sub = this.getUsers().subscribe(data => {
-      this.users = data;
+      console.log("data returned: ", data)
+      this.users = data.rows;
     });
   }
 
   public getUsers() : Observable<any> {
-    return this.http.get<any>(`${environment.APIBase}?table=user`, {})
+    // return this.http.get<any>(`${environment.APIBase}?table=user`, {})
+    return this.http.get<any>(`https://campus-buddy-db.herokuapp.com/api/posts`)
   }
 
   ngOnDestroy() {
