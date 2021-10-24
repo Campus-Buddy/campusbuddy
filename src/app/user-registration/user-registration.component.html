@@ -4,11 +4,11 @@
             <h2>User Registeration</h2>
             <mat-error *ngIf="warning"> {{warning}}</mat-error><br />
             <mat-form-field class="full-width-input" [floatLabel]="'never'">
-                <input matInput [(ngModel)]="registerUser.email"  name="email" required autofocus placeholder="Email Id" >
+                <input matInput [(ngModel)]="registeredUser.email"  name="email" required autofocus placeholder="Email Id" >
                 <mat-error>Please provide a valid user name</mat-error>
             </mat-form-field><br />
             <mat-form-field class="full-width-input"  [floatLabel]="'never'">
-                <input matInput type="password" placeholder="Password" [(ngModel)]="registerUser.password" name="password" required>
+                <input matInput type="password" placeholder="Password" [(ngModel)]="registeredUser.password" name="password" required>
                 <mat-error>Please provide a valid password</mat-error>
             </mat-form-field><br />
             <mat-form-field class="full-width-input" [floatLabel]="'never'">
@@ -16,8 +16,8 @@
                 <mat-error>Please provide a valid password</mat-error>
             </mat-form-field><br />
             
-                <select [(ngModel)]="registerUser.institution_id" name="institution_id"  class="form-select" aria-label="Default select example">
-                    <option *ngFor="let institution of institutions" [value]="institution.id">{{institution.name}}</option>
+                <select [(ngModel)]="registeredUser.institution_id" name="institution_id"  class="form-select" aria-label="Default select example">
+                    <option *ngFor="let institution of institutions" [value]="institution.institution_id">{{institution.institution_name}}</option>
                   </select><br/>
               
             <div *ngIf="loading">
