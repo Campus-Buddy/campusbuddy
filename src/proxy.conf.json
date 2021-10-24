@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "https://campus-buddy-db.herokuapp.com/",
+    "secure": true,
+    "pathRewrite": {
+      "^/posts": ""
+    },
+    "changeOrigin": true
+  }
+}

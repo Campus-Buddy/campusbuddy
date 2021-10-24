@@ -1,13 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src",
-    "\\src\\app",
-    "\\src\\app\\components",
-    "\\src\\app\\components\\centerblock",
-    "\\src\\app\\components\\footer",
-    "\\src\\app\\components\\header"
+    ""
   ],
-  "SelectedNode": "\\src\\app\\app.component.html",
+  "SelectedNode": "\\server",
   "PreviewInSolutionExplorer": false
 }

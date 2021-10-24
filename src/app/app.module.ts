@@ -1,18 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AboutComponent } from './about/about.component';
-import { HomeComponent } from './home/home.component';
-import { ContactusComponent } from './contactus/contactus.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { CenterblockComponent } from './components/centerblock/centerblock.component';
-import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { FormsModule } from '@angular/forms';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-//angular imports
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -24,13 +17,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CenterblockComponent } from './components/centerblock/centerblock.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+
+//angular imports
+
+// import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './login/login.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
 
 @NgModule({
   declarations: [
@@ -41,11 +43,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     CenterblockComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    LoginComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatSidenavModule,
@@ -58,12 +64,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatCardModule,
     MatChipsModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     HttpClientModule,
     FormsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
