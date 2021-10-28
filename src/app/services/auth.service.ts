@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -39,8 +39,8 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    console.log(this.http.post<any>(`${environment.userAPIBase}/user`, user));
-    return this.http.post<any>(`${environment.userAPIBase}/user`, user);
+    console.log(this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user ));
+    return this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user);
   }
 
   logout() {
