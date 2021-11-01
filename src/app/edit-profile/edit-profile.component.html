@@ -1,0 +1,56 @@
+<body>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="central ">
+     
+    <section>
+  
+      <nav>
+  
+        
+        <ul>
+          <li><a (click)="onEditMode(true)" (click)="defualtImgOn(false)" title="Edit Mode"><img src= "../../assets/edit-logo.PNG"></a></li>
+          
+          <br>
+          <br>
+          <br>
+  
+          
+          <li><span *ngIf="defImg"><img src="../../assets/default_avatar.png" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
+          <li><span *ngIf="!editMode" width="50%" height="50%" style="margin: 0px 80px;">{{userProfile.userPic}}</span></li>
+          <li><span *ngIf="editMode"><input type="file" id="userPic" name="userPic" [(ngModel)]="userProfile.userPic"></span></li>
+          <br>
+          <div class="name-program-profile">
+          <li><span *ngIf="!editMode">{{userProfile.userName}}</span>, &nbsp;<span *ngIf="!editMode">{{userProfile.age}}</span></li>
+          <li><span *ngIf="editMode"><input type="text" id="userName" name="userName" [(ngModel)]="userProfile.userName" placeholder="User Name"> &nbsp; <input type="text" id="age" name="age" [(ngModel)]="userProfile.age" placeholder="User's Age"></span></li>
+          <br>
+          <li><span *ngIf="!editMode">{{userProfile.program}}</span></li>
+          <li><span *ngIf="editMode"><input type="text" id="program" name="program" [(ngModel)]="userProfile.program" placeholder="User's Program"></span></li>
+        </div>
+          <br>
+          <li><button class= "tag1" *ngIf="!editMode" >{{userProfile.tag1}}</button><button class= "tag2" *ngIf="!editMode">{{userProfile.tag2}}</button><button class= "tag3" *ngIf="!editMode" >{{userProfile.tag3}}</button></li>
+          <br>
+          <li><button class= "tag4" *ngIf="!editMode">{{userProfile.tag4}}</button><button class= "tag5" *ngIf="!editMode">{{userProfile.tag5}}</button><button class= "tag6" *ngIf="!editMode">{{userProfile.tag6}}</button></li>
+        </ul>
+      </nav>
+  
+      <article>
+        <ul>
+          <a (click)="onEditMode(false)" (click)="defualtImgOn(true)" title="View Mode"><img src= "../../assets/edit-logo.PNG"></a>
+  
+          <button class = "privacy-btn">Privacy Settings</button><button class = "accntSet-btn">Account Settings</button><button class = "back-btn" *ngIf="!editMode">Back</button><button class = "submit-btn" *ngIf="editMode" type="submit">Submit</button>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <div class="profile-bio">
+          <li><span *ngIf="!editMode">{{userProfile.userBio}}</span></li>
+          <li><span *ngIf="editMode"><input type="text" id="userBio" name="userBio" [(ngModel)]="userProfile.userBio"></span></li>
+        </div>
+      </article>
+    </section>
+    
+  </div>
+  </form>
+  </body>
+  
+  
