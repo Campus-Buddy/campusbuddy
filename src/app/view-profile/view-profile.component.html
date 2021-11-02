@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row" id="mainrow">
+    <div class="col-sm-4">
+      <div class="row">
+        
+      </div>
+      <div class="row text-center">
+    
+        <!--Grid column-->
+        <div class="col-md-7-mb-4">
+  
+  
+          <img class="rounded-circle z-depth-2" alt="100x100" [src]="profileDetails.image"
+            data-holder-rendered="true">
+            <div class='status-circle'>
+          </div>
+          <br>
+          <div class="row">
+            <br>
+            <b>{{profileDetails.profile_name}},&nbsp;{{profileDetails.age}}</b>
+            <div class="col">
+              <button type="button" class="btn btn-secondary">Hiking</button> &nbsp;
+              <button type="button" class="btn btn-secondary">Sports</button> &nbsp;
+              <button type="button" class="btn btn-secondary">Reading</button>
+            </div>
+           
+          </div>
+         
+          
+  
+        </div>
+        <!--Grid column-->
+  
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+          <div  class="rounded-pill">
+            <button type="button" class="btn btn-dark">Message</button> &nbsp; &nbsp;
+            <button type="button" class="btn btn-dark">Report</button> &nbsp;&nbsp;
+            <button type="button" class="btn btn-dark">Back</button> 
+          </div>
+        </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row">
+      <textarea class="form-control" id="bioTextArea" placeholder="Bio" rows="8">{{profileDetails.biography}}</textarea>
+    </div>
+   
+  </div>
+  
+</div>

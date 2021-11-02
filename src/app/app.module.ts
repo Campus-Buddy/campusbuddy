@@ -33,6 +33,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CenterblockComponent,
     UserRegistrationComponent,
     LoginComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,
