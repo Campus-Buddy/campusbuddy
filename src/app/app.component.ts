@@ -1,18 +1,43 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
+import { FormsModule } from '@angular/forms';
+import { NavigationStart, Router, Event } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'campus-buddy';
+  public title = 'campus-buddy';
+  private _token: any;
+  public username: any;
+  private sub : Subscription = new Subscription();
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private auth: AuthService, private router: Router, private modalService: NgbModal) {}
+  
 
   displayLogoutModal() {
     this.modalService.open(LogoutModalComponent)
+  }
+
+
+  ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this._token = this.auth.readToken();
+        // get the user information and store it
+        this.sub = this.auth.getProfile(this._token.userId).subscribe((data) => {
+          this.username = data.profile_name;
+        })
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -33,6 +33,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { TagDropdownComponent } from './tag-dropdown/tag-dropdown.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
@@ -49,7 +52,10 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     UserRegistrationComponent,
     LoginComponent,
     LandingPageComponent,
-    LogoutModalComponent
+    LogoutModalComponent,
+    FindABuddyComponent,
+    UserCardComponent,
+    TagDropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +86,7 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
       useValue: JWT_OPTIONS
     },
     JwtHelperService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

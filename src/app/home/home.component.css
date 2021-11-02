@@ -1,0 +1,41 @@
+.body {
+  /* margin: 5rem; */
+  background-color: #dff4cd;
+  height: 100%;
+}
+
+.link-box {
+  /* padding: 2rem; */
+  cursor: pointer;
+  height: auto;
+}
+
+.box-container {
+  /* height: 100%; */
+}
+
+.row {
+  --bs-gutter-x: 0;
+}
+
+.card {
+  margin: 1rem;
+  height: auto;
+}
+
+.profile-img {
+  border: 3px black solid;
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+}
+
+.bio-box {
+  width:350px;height:200px;
+  border: solid 1px #555;
+  background-color: #eed;
+  box-shadow:  0 0 10px 5px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px  5px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
+}

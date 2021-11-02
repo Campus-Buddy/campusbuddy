@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { User } from '../models/User';
+import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
+import { RegisteredUser } from '../registered-user';
 
 const helper = new JwtHelperService();
 
@@ -22,8 +23,8 @@ export class AuthService {
   }
 
   public readToken(): any {
-    const token = JSON.parse(localStorage.getItem('access_token')!);
-    return helper.decodeToken(token);
+    const token = localStorage.getItem('access_token');
+    return helper.decodeToken(token?.toString());
   }
 
   isAuthenticated(): boolean {
@@ -47,9 +48,31 @@ export class AuthService {
     localStorage.removeItem('access_token');
   }
 
-  /*
-  register(registerUser: RegisterUser): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}/register`, registerUser);
+  getAllProfiles(){
+    return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
   }
-  */
+
+  getProfile(id: any) : Observable<Profile> {
+    return this.http.get<Profile>(`${environment.userAPIBase}/api/users/${id}`);
+  }
+
+  getTags() : Observable<any> {
+    return this.http.get<any>(
+      `${environment.userAPIBase}/api/tags`
+    );
+  }
+
+
+  getInstitutions(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.userAPIBase}/api/institutions`
+    );
+  }
+
+  register(registerUser: RegisteredUser): Observable<any> {
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/v1/users`,
+      registerUser
+    );
+  }
 }

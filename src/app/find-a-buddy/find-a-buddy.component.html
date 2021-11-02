@@ -1,0 +1,10 @@
+<p>find-a-buddy works!</p>
+<!-- Add query by tags here -->
+<app-tag-dropdown></app-tag-dropdown>
+<hr />
+<div class="row row-cols-2">
+  <div class="col-sm-2" *ngFor="let user of users">
+    
+    <app-user-card [username]="user.profile_name" [age]="user.age"></app-user-card>
+  </div>
+</div>

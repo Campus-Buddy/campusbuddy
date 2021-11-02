@@ -6,3 +6,12 @@ export class User {
   "email": string;
   "password": string;
 }
+
+
+export class Profile {
+  "user_id": number; //generated upon registration
+  "profile_name": string; //generated upon registration
+  "profile_id": number; //generated upon registration
+  "age": number;
+  "tags": [];
+}
