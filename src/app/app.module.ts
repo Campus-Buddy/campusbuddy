@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -69,7 +69,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     // FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {

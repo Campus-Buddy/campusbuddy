@@ -16,8 +16,8 @@
   
           
           <li><span *ngIf="defImg"><img src="../../assets/default_avatar.png" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
-          <li><span *ngIf="!editMode" width="50%" height="50%" style="margin: 0px 80px;">{{userProfile.userPic}}</span></li>
-          <li><span *ngIf="editMode"><input type="file" id="userPic" name="userPic" [(ngModel)]="userProfile.userPic"></span></li>
+          <li><span *ngIf="!editMode && url" ><img [src]="url" width="50%" height="50%" style="margin: 0px 80px;">{{userProfile.userPic}}</span></li>
+          <li><span *ngIf="editMode"><input type="file" id="userPic" name="userPic" [(ngModel)]="userProfile.userPic" (change)="selectFile($event)"></span></li>
           <br>
           <div class="name-program-profile">
           <li><span *ngIf="!editMode">{{userProfile.userName}}</span>, &nbsp;<span *ngIf="!editMode">{{userProfile.age}}</span></li>
@@ -26,6 +26,16 @@
           <li><span *ngIf="!editMode">{{userProfile.program}}</span></li>
           <li><span *ngIf="editMode"><input type="text" id="program" name="program" [(ngModel)]="userProfile.program" placeholder="User's Program"></span></li>
         </div>
+          <br>
+          <ng-multiselect-dropdown *ngIf="editMode"
+  [placeholder]="'custom placeholder'"
+  [settings]="dropdownSettings"
+  [data]="tags"
+  [(ngModel)]="selectedTags"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
           <br>
           <li><button class= "tag1" *ngIf="!editMode" >{{userProfile.tag1}}</button><button class= "tag2" *ngIf="!editMode">{{userProfile.tag2}}</button><button class= "tag3" *ngIf="!editMode" >{{userProfile.tag3}}</button></li>
           <br>

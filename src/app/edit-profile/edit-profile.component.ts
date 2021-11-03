@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/user-profile';
 import { NgForm } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,9 +10,9 @@ import { NgForm } from '@angular/forms';
 })
 export class EditProfileComponent implements OnInit {
 
-  public userProfile: UserProfile ={
+  public userProfile: UserProfile={
     userName: '',
-    userPic: undefined,
+    userPic: undefined!,
     age: 0,
     program: '',
     tag1: '',
@@ -24,12 +25,57 @@ export class EditProfileComponent implements OnInit {
   }
    editMode: boolean = false;
    defImg: boolean = true;
-   tags: any[] = [{name:"Gym"}, {name:"Hiking"}, {name:"LoveFood"}, {name:"Dating"}, {name:"Dancing"}, {name:"Art"}, {name:"Gaming"}, {name:"International"}];
+   tags: any[] = [];
    public warning: string = "";
+   url: any;
+   selectedTags: any[];
+   dropdownSet = {};
+   dropdownSettings:IDropdownSettings;
+   userTags: any[6];
 
   constructor() { }
 
   ngOnInit(): void {
+
+    this.tags = [
+      { item_id: 1, item_text: 'Dancing' },
+      { item_id: 2, item_text: 'Dating' },
+      { item_id: 3, item_text: 'InCafe' },
+      { item_id: 4, item_text: 'International' },
+      { item_id: 5, item_text: 'Hiking' },
+      { item_id: 6, item_text: 'Traveling' },
+      { item_id: 7, item_text: 'InGym' },
+      { item_id: 8, item_text: 'Gaming' }];
+
+      this.selectedTags = [];
+      this.selectedTags[0] = this.userProfile.tag1;
+      this.selectedTags[1] = this.userProfile.tag2;
+      this.selectedTags[2] = this.userProfile.tag3;
+      this.selectedTags[3] = this.userProfile.tag4;
+      this.selectedTags[4] = this.userProfile.tag5;
+      this.selectedTags[5] = this.userProfile.tag6;
+
+      
+      
+
+       this.dropdownSettings ={
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'item_text',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 3,
+        allowSearchFilter: true
+        
+      }
+  }
+
+
+  public onItemSelect(item: any) {
+    console.log(item);
+  }
+  public onSelectAll(items: any) {
+    console.log(items);
   }
 
   public onEditMode(result : boolean){
@@ -37,12 +83,42 @@ export class EditProfileComponent implements OnInit {
   }
 
   public defualtImgOn(result : boolean){
-    this.defImg = result;
+
+    if(!this.userProfile.userPic){
+      this.defImg = result;
+    }
+    else{
+      this.defImg =false;
+    }
   }
+ 
 
   onSubmit(f: NgForm): void{
     if(this.userProfile.userName !="" && this.userProfile.age >=17 && this.userProfile.program !=""){
       console.log("form submitted");
     }
+  }
+
+  selectFile(event: any){
+    
+    if(!event.target.files[0] || event.target.files[0].length == 0){
+      this.warning = 'You must select an image';
+      return;
+    }
+    let mimeType = event.target.files[0].type;
+
+    if(mimeType.match(/image\/*/) == null){
+      this.warning = "Only images are supported";
+      return;
+    }
+
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (_event) =>{
+      this.warning ="";
+      this.url = reader.result;
+    }
+
   }
 }

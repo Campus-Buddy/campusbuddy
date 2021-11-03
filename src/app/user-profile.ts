@@ -1,6 +1,6 @@
 export class UserProfile {
     "userName": string;
-    "userPic": any;
+    "userPic": File;
     "age": number;
     "program": string;
     "tag1": string;
