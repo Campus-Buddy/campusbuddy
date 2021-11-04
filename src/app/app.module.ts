@@ -35,6 +35,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CenterblockComponent,
     UserRegistrationComponent,
     LoginComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LogoutModalComponent
   ],
   imports: [
     BrowserModule,
