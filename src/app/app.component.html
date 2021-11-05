@@ -40,7 +40,7 @@
       yPosition="above"
       [overlapTrigger]="false"
     >
-      <a mat-menu-item>
+      <a mat-menu-item (click)="displayLogoutModal()">
         <mat-icon>exit_to_app</mat-icon>
         <!-- Tie this into the ngIf there's a token -->
         <span>Log out</span>

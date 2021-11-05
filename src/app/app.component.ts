@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'campus-buddy';
+
+  constructor(private modalService: NgbModal) {}
+
+  displayLogoutModal() {
+    this.modalService.open(LogoutModalComponent)
+  }
 }
