@@ -23,4 +23,7 @@ export class AuthService {
       registerUser
     );
   }
+  getUserInfo(): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
+  }
 }

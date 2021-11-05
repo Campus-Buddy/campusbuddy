@@ -10,14 +10,14 @@
         <div class="col-md-7-mb-4">
   
   
-          <img class="rounded-circle z-depth-2" alt="100x100" [src]="profileDetails.image"
+          <img class="rounded-circle z-depth-2" alt="100x100" width="150" height="150" src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2lkZSUyMHByb2ZpbGV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
             data-holder-rendered="true">
             <div class='status-circle'>
           </div>
           <br>
           <div class="row">
             <br>
-            <b>{{profileDetails.profile_name}},&nbsp;{{profileDetails.age}}</b>
+            <b>{{profileList.profile_name}},&nbsp;{{profileList.age}}</b>
             <div class="col">
               <button type="button" class="btn btn-secondary">Hiking</button> &nbsp;
               <button type="button" class="btn btn-secondary">Sports</button> &nbsp;
@@ -49,7 +49,7 @@
       <br>
     </div>
     <div class="row">
-      <textarea class="form-control" id="bioTextArea" placeholder="Bio" rows="8">{{profileDetails.biography}}</textarea>
+      <textarea class="form-control" id="bioTextArea" placeholder="Bio" rows="8">{{profileList.biography}}</textarea>
     </div>
    
   </div>
