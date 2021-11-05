@@ -1,8 +1,25 @@
 .router {
-    height: calc(84vh);
-    width: 100%;
- }
+  width: 100%;
+  background-color: #184e77;
+}
 
-body {
-    overflow-x: hidden;
+.logo {
+  width: 12rem;
+}
+
+.mat-toolbar.mat-primary {
+  background: #184e77;
+  color: #fff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #184e77;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }

@@ -5,9 +5,56 @@
   Created for: PRJ666
 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<app-header></app-header>
+<div class="navbar-container header">
+  <mat-toolbar class="navbar" color="primary">
+    <a class="navbar-brand" matTooltip="Home" routerLink="/">
+      <img class="logo" src="../assets/logo2.png" />
+    </a>
 
-<div class="router">
-  <router-outlet></router-outlet>
+    <span class="navbar-spacer"></span>
+    <div>
+      <button mat-button routerLink="/about">
+        <span fxShow fxHide.xs> About </span>
+      </button>
+
+      <button mat-button routerLink="/contactus">
+        <span fxShow fxHide.xs> Contact Us </span>
+      </button>
+
+      <button mat-button routerLink="/login">
+        <span fxShow fxHide.xs> Login </span>
+      </button>
+
+      <button mat-button routerLink="/register">
+        <span fxShow fxHide.xs>Register </span>
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>
+        <span fxShow fxHide.xs> Username </span>
+      </button>
+    </div>
+    <mat-menu
+      #userMenu="matMenu"
+      xPosition="before"
+      yPosition="above"
+      [overlapTrigger]="false"
+    >
+      <a mat-menu-item (click)="displayLogoutModal()">
+        <mat-icon>exit_to_app</mat-icon>
+        <!-- Tie this into the ngIf there's a token -->
+        <span>Log out</span>
+      </a>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav-content class="sidenav-content">
+      <!-- Main content -->
+      <router-outlet></router-outlet>
+      <!-- <div class="bottom-spacer"></div> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
-<app-footer></app-footer>
+<!-- Footer -->
+<mat-toolbar class="navbar footer" color="primary"></mat-toolbar>

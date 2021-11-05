@@ -1,32 +1,50 @@
-
-
-<app-centerblock>
-    <mat-card class="form_card">
-      <mat-card-content>
-        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-          <h2>LOGIN</h2>
-          <mat-error *ngIf="warning"> {{warning}}</mat-error><br />
-          <mat-form-field class="full-width-input">
-            <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="user.email" required autofocus>
-            <mat-error>Please provide a valid registered email</mat-error>
-          </mat-form-field><br />
-          <mat-form-field class="full-width-input">
-            <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password" name="password" required>
-            <mat-error>Please provide a valid password</mat-error>
-          </mat-form-field><br />
-          <button mat-raised-buttoncolor="accent" type="submit">
-            <mat-icon>login</mat-icon>
-            <span ng-message when="false">&nbsp;&nbsp;&nbsp;Login</span>
-          </button>
-          <br />
-          <br />
-          <p>Don't have an account? Sign up!</p>
-          <button mat-raised-button color="primary" [routerLink]="['/landing-page']">
-            <mat-icon>account_box</mat-icon>
-            <span>&nbsp;&nbsp;&nbsp;Register</span>
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-</app-centerblock>
-
+<mat-card class="form_card">
+  <mat-card-content>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <h2>LOGIN</h2>
+      <mat-error *ngIf="warning"> {{ warning }}</mat-error
+      ><br />
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          placeholder="Email"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          autofocus
+        />
+        <mat-error
+          >Please provide a valid registered email</mat-error
+        > </mat-form-field
+      ><br />
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          id="password"
+          [(ngModel)]="user.password"
+          name="password"
+          required
+        />
+        <mat-error>Please provide a valid password</mat-error> </mat-form-field
+      ><br />
+      <button mat-raised-buttoncolor="accent" type="submit">
+        <mat-icon>login</mat-icon>
+        <span ng-message when="false">&nbsp;&nbsp;&nbsp;Login</span>
+      </button>
+      <br />
+      <br />
+      <p>Don't have an account? Sign up!</p>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/landing-page']"
+      >
+        <mat-icon>account_box</mat-icon>
+        <span>&nbsp;&nbsp;&nbsp;Register</span>
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -29,11 +29,14 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 
 //angular imports
 
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     UserRegistrationComponent,
     LoginComponent,
     LandingPageComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    LogoutModalComponent
+
   ],
   imports: [
     BrowserModule,
@@ -66,10 +71,11 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     MatInputModule,
     MatCardModule,
     MatChipsModule,
-    // FlexLayoutModule,
+    FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgbModule
   ],
   providers: [
     {
