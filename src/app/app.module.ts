@@ -29,7 +29,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 
 //angular imports
 
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,7 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatCardModule,
     MatChipsModule,
-    // FlexLayoutModule,
+    FlexLayoutModule,
     HttpClientModule,
     FormsModule,
     MatSnackBarModule
