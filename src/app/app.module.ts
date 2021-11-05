@@ -33,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
@@ -49,7 +50,9 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     UserRegistrationComponent,
     LoginComponent,
     LandingPageComponent,
+    ViewProfileComponent,
     LogoutModalComponent
+
   ],
   imports: [
     BrowserModule,
