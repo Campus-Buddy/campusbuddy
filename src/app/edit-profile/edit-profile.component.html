@@ -16,7 +16,7 @@
   
           
           <li><span *ngIf="defImg"><img src="../../assets/default_avatar.png" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
-          <li><span *ngIf="!editMode && url" ><img [src]="url" width="50%" height="50%" style="margin: 0px 80px;">{{userProfile.userPic}}</span></li>
+          <li><span *ngIf="!editMode && url" ><img [src]="url" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
           <li><span *ngIf="editMode"><input type="file" id="userPic" name="userPic" [(ngModel)]="userProfile.userPic" (change)="selectFile($event)"></span></li>
           <br>
           <div class="name-program-profile">
@@ -37,9 +37,9 @@
 >
 </ng-multiselect-dropdown>
           <br>
-          <li><button class= "tag1" *ngIf="!editMode" >{{userProfile.tag1}}</button><button class= "tag2" *ngIf="!editMode">{{userProfile.tag2}}</button><button class= "tag3" *ngIf="!editMode" >{{userProfile.tag3}}</button></li>
+          <li><button class= "tag1" *ngIf="!editMode" >{{userTags[0]}}</button><button class= "tag2" *ngIf="!editMode">{{userTags[1]}}</button><button class= "tag3" *ngIf="!editMode" >{{userTags[2]}}</button></li>
           <br>
-          <li><button class= "tag4" *ngIf="!editMode">{{userProfile.tag4}}</button><button class= "tag5" *ngIf="!editMode">{{userProfile.tag5}}</button><button class= "tag6" *ngIf="!editMode">{{userProfile.tag6}}</button></li>
+          <li><button class= "tag4" *ngIf="!editMode">{{userTags[3]}}</button><button class= "tag5" *ngIf="!editMode">{{userTags[4]}}</button><button class= "tag6" *ngIf="!editMode">{{userTags[5]}}</button></li>
         </ul>
       </nav>
   

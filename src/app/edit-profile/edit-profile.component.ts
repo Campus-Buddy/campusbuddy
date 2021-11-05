@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/user-profile';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { any } from 'sequelize/types/lib/operators';
 
 @Component({
   selector: 'app-edit-profile',
@@ -32,6 +33,7 @@ export class EditProfileComponent implements OnInit {
    dropdownSet = {};
    dropdownSettings:IDropdownSettings;
    userTags: any[6];
+   i: any;
 
   constructor() { }
 
@@ -48,12 +50,6 @@ export class EditProfileComponent implements OnInit {
       { item_id: 8, item_text: 'Gaming' }];
 
       this.selectedTags = [];
-      this.selectedTags[0] = this.userProfile.tag1;
-      this.selectedTags[1] = this.userProfile.tag2;
-      this.selectedTags[2] = this.userProfile.tag3;
-      this.selectedTags[3] = this.userProfile.tag4;
-      this.selectedTags[4] = this.userProfile.tag5;
-      this.selectedTags[5] = this.userProfile.tag6;
 
       
       
@@ -70,9 +66,16 @@ export class EditProfileComponent implements OnInit {
       }
   }
 
+  
 
   public onItemSelect(item: any) {
     console.log(item);
+
+    for(this.i =0;this.i<item.length; this.i++){
+      this.userTags = item;
+    }
+
+    
   }
   public onSelectAll(items: any) {
     console.log(items);
