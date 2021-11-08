@@ -37,6 +37,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     LoginComponent,
     LandingPageComponent,
     ViewProfileComponent,
-    LogoutModalComponent
+    LogoutModalComponent,
+    ChatComponent
 
   ],
   imports: [
