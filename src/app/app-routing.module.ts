@@ -9,6 +9,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
 import { GuardAuthService } from './services/guard-auth.service';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
@@ -21,8 +22,8 @@ const routes: Routes = [
   { path: 'register', component: UserRegistrationComponent },
   { path: 'findbuddy', component: FindABuddyComponent, canActivate: [GuardAuthService], pathMatch: 'full'}, // show all path
   { path: 'findbuddy/:id', component: FindABuddyComponent, canActivate: [GuardAuthService]}, // show by tag path
-  { path: 'profile', component: ViewProfileComponent }
-
+  { path: 'profile', component: ViewProfileComponent },
+  { path: 'chat', component: ChatComponent }
 ];
 
 @NgModule({

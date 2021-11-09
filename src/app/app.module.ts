@@ -40,6 +40,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatService } from './services/chat.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     UserCardComponent,
     ViewProfileComponent,
     LogoutModalComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -89,8 +92,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
       provide: JWT_OPTIONS,
       useValue: JWT_OPTIONS
     },
-    JwtHelperService],
-  bootstrap: [AppComponent],
-  
+    JwtHelperService,
+    ChatService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
