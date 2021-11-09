@@ -38,6 +38,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatService } from './services/chat.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,6 @@ import { ChatComponent } from './chat/chat.component';
     ViewProfileComponent,
     LogoutModalComponent,
     ChatComponent
-
   ],
   imports: [
     BrowserModule,
@@ -84,7 +84,8 @@ import { ChatComponent } from './chat/chat.component';
       provide: JWT_OPTIONS,
       useValue: JWT_OPTIONS
     },
-    JwtHelperService],
+    JwtHelperService,
+    ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

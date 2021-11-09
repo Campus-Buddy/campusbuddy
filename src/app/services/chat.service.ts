@@ -7,7 +7,7 @@ import { Subject } from "rxjs";
 })
 export class ChatService {
 
-  private socket: SocketIOClient.Socket; // The client instance of socket.io
+  private socket; //: SocketIOClient.Socket; // The client instance of socket.io
   public getMessages: any;
   private url = 'http://localhost:8080';
 
@@ -15,12 +15,11 @@ export class ChatService {
         this.getMessages = new Subject();
 
         //this.socket = io(this.url); // we can also use io.connect() to connect to the current host
-        this.socket = io(this.url);
+        this.socket = io.connect(this.url);
 
         this.socket.on('chat message', (msg) => {
           this.getMessages.next(msg); // send the new message
         });
-
       }
 
       sendMessage(msg) {

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component'
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'contactus', component: ContactusComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UserRegistrationComponent },
-  { path: 'profile', component: ViewProfileComponent }
+  { path: 'profile', component: ViewProfileComponent },
+  { path: 'chat', component: ChatComponent }
 ];
 
 @NgModule({
