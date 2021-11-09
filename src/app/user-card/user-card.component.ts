@@ -11,7 +11,7 @@ export class UserCardComponent implements OnInit {
   @Input() username = '';
   @Input() age = '';
   @Input() program = '';
-  @Input() id = '';
+  @Input() id = '1';
   @Input() height = 30;
   // should be only pass id and then grab using a get request?
 

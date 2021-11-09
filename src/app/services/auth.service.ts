@@ -11,14 +11,13 @@ import { RegisteredUser } from '../registered-user';
 const helper = new JwtHelperService();
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
   //environment.userAPIBase
-  public getToken(): string {  
+  public getToken(): string {
     return localStorage.getItem('access_token')!; // making sure that the return is a STR and not null
   }
 
@@ -40,34 +39,44 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    console.log(this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user ));
-    return this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user);
+    console.log(
+      this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user)
+    );
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/v1/users/login`,
+      user
+    );
   }
 
   logout() {
     localStorage.removeItem('access_token');
   }
 
-  getAllProfiles(){
+  getAllProfiles() {
     return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
   }
 
-  getProfile(id: any) : Observable<any> {
-    const headers = new HttpHeaders() .set('x-access-token', this.getToken().toString())
-    return this.http.get<Profile>(`${environment.userAPIBase}/api/profiles/${id}`, {'headers': headers});
-  }
-
-  getTags() : Observable<any> {
-    return this.http.get<any>(
-      `${environment.userAPIBase}/api/tags`
+  getProfile(id: any): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<Profile>(
+      `${environment.userAPIBase}/api/profiles/${id}`,
+      { headers: headers }
     );
   }
 
+  getTags(): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/tags`);
+  }
+
+  getTagById(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/tags/${id}`);
+  }
 
   getInstitutions(): Observable<any> {
-    return this.http.get<any>(
-      `${environment.userAPIBase}/api/institutions`
-    );
+    return this.http.get<any>(`${environment.userAPIBase}/api/institutions`);
   }
 
   register(registerUser: RegisteredUser): Observable<any> {

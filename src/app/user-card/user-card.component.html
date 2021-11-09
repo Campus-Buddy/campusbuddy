@@ -9,6 +9,7 @@
     <h5 class="card-title">{{username}}, {{age}}</h5>
     <p class="card-text"></p>
   </div>
-  <button mat-stroked-button>Profile</button>
+  <button mat-stroked-button  [routerLink]="['/profile', id]"
+  routerLinkActive="active">Profile</button>
   <button mat-stroked-button>Message</button>
 </div>
