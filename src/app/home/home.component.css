@@ -39,3 +39,11 @@
   -webkit-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
   -o-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
 }
+
+.card-body {
+  min-height: 200px;
+}
+
+.card-title {
+  text-align: center;
+}

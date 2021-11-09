@@ -19,7 +19,7 @@ export class AuthService {
 
   //environment.userAPIBase
   public getToken(): string {  
-    return JSON.parse(localStorage.getItem('access_token')!); // making sure that the return is a STR and not null
+    return localStorage.getItem('access_token')!; // making sure that the return is a STR and not null
   }
 
   public readToken(): any {
@@ -52,8 +52,9 @@ export class AuthService {
     return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
   }
 
-  getProfile(id: any) : Observable<Profile> {
-    return this.http.get<Profile>(`${environment.userAPIBase}/api/users/${id}`);
+  getProfile(id: any) : Observable<any> {
+    const headers = new HttpHeaders() .set('x-access-token', this.getToken().toString())
+    return this.http.get<Profile>(`${environment.userAPIBase}/api/profiles/${id}`, {'headers': headers});
   }
 
   getTags() : Observable<any> {

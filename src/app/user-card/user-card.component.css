@@ -1,11 +1,12 @@
 .card {
-    margin: 1rem;
-    height: auto;
-  }
-  
-  .profile-img {
-    border: 3px black solid;
-    border-radius: 50%;
-    height: 15rem;
-    width: 15rem;
-  }
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+
+.profile-img {
+  border: 3px black solid;
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+}
