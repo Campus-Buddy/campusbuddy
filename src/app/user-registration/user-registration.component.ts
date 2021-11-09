@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
 
@@ -17,14 +17,6 @@ export class UserRegistrationComponent implements OnInit {
   private subRegister: Subscription = new Subscription();
 
   public registeredUser: RegisteredUser;
-
-  // private r =  {
-  //        "role_id": 2,
-  //        "institution_id": 1,
-  //        "profile_id": 1,
-  //        "password": "123123123",
-  //        "email": "j.nalbandian@live.ca"
-  //    }
 
   public warning;
   public success = false;
@@ -41,17 +33,15 @@ export class UserRegistrationComponent implements OnInit {
       password: '',
       role_id: 2,
       profile_id: 1,
-      institution_id: 0
+      institution_id: 0,
     };
 
     // Initialize subscription for institutions
     this.sub = this.auth.getInstitutions().subscribe((data) => {
-      console.log("DATA INSTITUTE: ", data.rows)
+      console.log('DATA INSTITUTE: ', data.rows);
       this.institutions = data.rows;
     });
   }
-
-  
 
   onSubmit(f: NgForm): void {
     if (
@@ -68,11 +58,12 @@ export class UserRegistrationComponent implements OnInit {
           this.loading = false;
         },
         (err) => {
-          console.log(err)
+          console.log(err);
           this.success = false;
           this.warning = err.error.message;
           this.loading = false;
-        });
+        }
+      );
       // this.RegisterUser(this.registeredUser); do we need?
       console.log(this.registeredUser);
     } else {
@@ -81,7 +72,6 @@ export class UserRegistrationComponent implements OnInit {
       this.loading = false;
     }
   }
-
 
   ngOnDestroy() {
     this.sub?.unsubscribe();

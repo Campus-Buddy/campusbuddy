@@ -50,19 +50,6 @@ export class FindABuddyComponent implements OnInit {
     });
   }
 
-  getByTag(id: number) {
-    console.log('users:', this.users);
-    console.log(
-      'tag is id',
-      this.users.filter((user) => {
-        user.tags?.includes(id);
-      })
-    );
-    this.users = this.users.map((user) => {
-      user.tags?.includes(id);
-    });
-  }
-
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub2.unsubscribe();

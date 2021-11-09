@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'register', component: UserRegistrationComponent },
   { path: 'findbuddy', component: FindABuddyComponent, canActivate: [GuardAuthService], pathMatch: 'full'}, // show all path
   { path: 'findbuddy/:id', component: FindABuddyComponent, canActivate: [GuardAuthService]}, // show by tag path
-  { path: 'profile', component: ViewProfileComponent },
+  { path: 'profile', component: ViewProfileComponent, canActivate: [GuardAuthService], pathMatch: 'full' },
+  { path: 'profile/:id', component: ViewProfileComponent, canActivate: [GuardAuthService] },
   { path: 'chat', component: ChatComponent }
 ];
 
