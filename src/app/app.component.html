@@ -5,8 +5,110 @@
   Created for: PRJ666
 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 8px;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 1400px;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link),
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+  }
+</style>
+
 <div class="navbar-container header">
-  <mat-toolbar class="navbar" color="primary">
+  <mat-toolbar class="navbar header2" color="primary">
     <a class="navbar-brand" matTooltip="Home" routerLink="/">
       <img class="logo" src="../assets/logo2.png" />
     </a>
@@ -21,17 +123,17 @@
         <span fxShow fxHide.xs> Contact Us </span>
       </button>
 
-      <button mat-button routerLink="/login">
+      <button *ngIf="!_token" mat-button routerLink="/login">
         <span fxShow fxHide.xs> Login </span>
       </button>
 
-      <button mat-button routerLink="/register">
+      <button *ngIf="!_token" mat-button routerLink="/register">
         <span fxShow fxHide.xs>Register </span>
       </button>
 
-      <button mat-button [matMenuTriggerFor]="userMenu">
+      <button mat-button *ngIf="_token" [matMenuTriggerFor]="userMenu">
         <mat-icon>person</mat-icon>
-        <span fxShow fxHide.xs> Username </span>
+        <span fxShow fxHide.xs> {{ username }} </span>
       </button>
     </div>
     <mat-menu
@@ -47,14 +149,5 @@
       </a>
     </mat-menu>
   </mat-toolbar>
-
-  <mat-sidenav-container>
-    <mat-sidenav-content class="sidenav-content">
-      <!-- Main content -->
-      <router-outlet></router-outlet>
-      <!-- <div class="bottom-spacer"></div> -->
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <div class="content"><router-outlet></router-outlet></div>
 </div>
-<!-- Footer -->
-<mat-toolbar class="navbar footer" color="primary"></mat-toolbar>

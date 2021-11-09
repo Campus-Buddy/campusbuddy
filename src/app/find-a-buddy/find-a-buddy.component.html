@@ -1,0 +1,36 @@
+<div class="content">
+  <!-- Add query by tags here -->
+  <section>
+    
+    <div class="example-button-row">
+      <button
+        id="0"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/findbuddy']"
+        routerLinkActive="active"
+      > All
+      </button>
+      <button
+        *ngFor="let tag of tagList"
+        id="tag.tag_id"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/findbuddy', tag.tag_id]"
+        routerLinkActive="active"
+      >
+        {{ tag.title }}
+      </button>
+    </div>
+  </section>
+
+  <hr />
+  <div class="row row-cols-2">
+    <div class="col-sm-2 card-box" *ngFor="let user of users">
+      <app-user-card
+        [username]="user.profile_name"
+        [age]="user.age"
+      ></app-user-card>
+    </div>
+  </div>
+</div>
