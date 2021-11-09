@@ -8,6 +8,8 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component'
 import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
 import { GuardAuthService } from './services/guard-auth.service';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'findbuddy', component: FindABuddyComponent, canActivate: [GuardAuthService], pathMatch: 'full'}, // show all path
-  { path: 'findbuddy/:id', component: FindABuddyComponent, canActivate: [GuardAuthService]} // show by tag path
+  { path: 'findbuddy/:id', component: FindABuddyComponent, canActivate: [GuardAuthService]}, // show by tag path
+  { path: 'profile', component: ViewProfileComponent }
+
 ];
 
 @NgModule({

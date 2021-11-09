@@ -35,7 +35,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
 import { UserCardComponent } from './user-card/user-card.component';
-
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
@@ -55,6 +55,9 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     LogoutModalComponent,
     FindABuddyComponent,
     UserCardComponent,
+    ViewProfileComponent,
+    LogoutModalComponent
+
   ],
   imports: [
     BrowserModule,
