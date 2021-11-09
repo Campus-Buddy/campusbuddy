@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -37,8 +37,9 @@ import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -56,8 +57,8 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     FindABuddyComponent,
     UserCardComponent,
     ViewProfileComponent,
-    LogoutModalComponent
-
+    LogoutModalComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,8 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     HttpClientModule,
     FormsModule,
     MatSnackBarModule,
-    NgbModule
+    // NgbModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {

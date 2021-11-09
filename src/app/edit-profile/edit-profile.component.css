@@ -1,0 +1,82 @@
+
+
+
+
+body {
+    overflow: auto;
+    max-height: auto;
+    background-color: rgba(226, 219, 219, 0.849);;
+}
+
+
+
+.central {
+  position: fixed;
+  display: flex;
+  
+  
+  left: 0;
+  height: 80%;
+  width: 100%;
+  top: 7%;
+  bottom: 25%;
+  background-color: #c3c2c4;
+  opacity: 50%;
+  color: black;
+  overflow: auto;
+  
+}
+
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1c2;
+  padding: 10px;
+}
+button{
+  border: black;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+  
+}
+.tag1, .tag2, .tag3, .tag4, .tag5, .tag6{
+  margin-left:40px;
+  align-items: center;
+  background-color: #b3ffe8;
+  color: black;
+  height: 30px;
+  width: 70px;
+}
+.name-program-profile{
+  margin-left:100px;
+  align-items: center;
+}
+.privacy-btn, .accntSet-btn, .back-btn{
+  float: right;
+  margin-left: 10px;
+  background-color: #b3ffe8;
+  color: black;
+}
