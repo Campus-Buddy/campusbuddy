@@ -1,0 +1,102 @@
+<div *ngIf="id == null; else elseBlock">
+    
+
+    <div class="container"><div class=" text-center mt-5 ">
+        <h1>Create New Post!</h1>
+    </div>
+    <div class="row ">
+        <div class="col-lg-15 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="create-form"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                             <label for="form_name"><b>Select Category:</b>  </label>
+                                              <select class="form-control" id="Category" name="Category" [(ngModel)]="newPost.category_id" >
+                                            <option *ngFor = "let category of categoryList" [value]="category.id">{{category.text}}</option>
+                                    </select> 
+                                </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> 
+                                            <label for="form_lastname"><b>Title: </b> </label> 
+                                            <input id="form_title" type="text" name="title" class="form-control"  [(ngModel)]="newPost.title" placeholder="Enter Post Heading" required="required"> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_picture"><b>Picture: </b></label> 
+                                            <input type="file" id="form_picture"  [(ngModel)]="newPost.picture" name="postPic" accept="image/png, image/gif, image/jpeg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_details"><b>Details: </b></label> <textarea id="form_details" name="details" class="form-control"  [(ngModel)]="newPost.details" placeholder="Write about your post" rows="4" required="required" data-error="Please write the post details"></textarea> </div>
+                                    </div>
+                                    <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Create Post!"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" *ngIf="success">New Post Created</div></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <div class="container"><div class=" text-center mt-5 ">
+        <h1>Edit Post!</h1>
+    </div>
+    <div class="row ">
+        <div class="col-lg-18 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="edit-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                             <label for="form_name"><b>Select Category:</b>  </label>
+                                              <select class="form-control" id="Category" name="category_name">                                                  
+                                            <option *ngFor = "let category of categoryList" [value]="category.id" selected="this.currentPost.category_name">{{category.text}}</option>
+                                    </select> 
+                                </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> 
+                                            <label for="form_lastname"><b>Title: </b> </label> 
+                                            <input id="form_title" type="text" name="title" class="form-control" [value]="this.currentPost.title" required="required" data-error="Title is required."> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_picture"><b>Picture: </b></label> 
+                                            <input type="file" id="form_picture" name="postPic" accept="image/png, image/gif, image/jpeg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_details"><b>Details: </b></label> <textarea id="form_details" name="details" class="form-control" value="{{this.currentPost.details}}" rows="4" required="required" data-error="Please write the post details"></textarea> </div>
+                                    </div>
+                                    <div class="col-md-12"> 
+                                        <div class="row"></div><br><input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Update Changes!"> </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    </div>
+</ng-template>
