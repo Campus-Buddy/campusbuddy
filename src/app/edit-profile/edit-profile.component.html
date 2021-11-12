@@ -1,16 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <button mat-raised-button color="accent" routerLink="/home">Cancel</button>
+      <button mat-raised-button color="accent" routerLink="/home">
+        Cancel
+      </button>
     </div>
     <div class="col-md-6 saveButton">
-      <button mat-raised-button color="primary" (click)="saveNewValues()">Save</button>
+      <button mat-raised-button color="primary" (click)="saveNewValues()">
+        Save
+      </button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="imageContainer">
-        <img [src]="userProfile.img" alt="Snow" class="image" />
+        <img [src]="userProfile.img" class="image" />
         <div class="middle">
           <!-- Click event right here for the button to upload new images -->
           <div class="text" (click)="fileUpload.click()">Upload image</div>
@@ -35,14 +39,18 @@
   <div class="row">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="userProfile.profile_name"/>
+      <input matInput [(ngModel)]="userProfile.profile_name" />
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Write about yourself</mat-label>
-      <textarea matInput placeholder="This is my biography" [(ngModel)]="userProfile.biography"></textarea>
+      <textarea
+        matInput
+        placeholder="This is my biography"
+        [(ngModel)]="userProfile.biography"
+      ></textarea>
     </mat-form-field>
   </div>
 

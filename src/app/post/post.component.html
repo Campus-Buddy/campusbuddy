@@ -1,0 +1,91 @@
+<div>
+  <div class="container">
+    <div class="text-center">
+      <h1 *ngIf="id == null; else elseBlock">Create New Post!</h1>
+      <ng-template #elseBlock>
+        <h1>Edit Post!</h1>
+      </ng-template>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="imageContainer">
+          <img [src]="currentPost.picture" class="image" />
+          <div class="middle">
+            <!-- Click event right here for the button to upload new images -->
+            <div class="text" (click)="fileUpload.click()">Upload image</div>
+          </div>
+          <div class="centered"></div>
+        </div>
+
+        <!-- Input for files - display is none but on click for avatar back end will trigger click here -->
+        <input
+          #fileUpload
+          type="file"
+          id="avatarupload"
+          name="postPic"
+          accept="image/png, image/gif, image/jpeg"
+          style="display: none"
+          (change)="selectFile($event)"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <label><b>Title: </b> </label>
+      <input
+        id="form_title"
+        type="text"
+        name="title"
+        class="form-control"
+        [(ngModel)]="currentPost.title"
+        placeholder="Enter Post Heading"
+        required="required"
+      />
+    </div>
+
+    <div class="col-md-12">
+      <label><b>Select Category:</b> </label>
+      <select
+        class="form-control"
+        id="Category"
+        name="Category"
+        [(ngModel)]="currentPost.category_id"
+      >
+        <option
+          *ngFor="let category of categoryList"
+          [value]="category.category_id"
+        >
+          {{ category.title }}
+        </option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <label for="form_details"><b>Details: </b></label>
+        <textarea
+          id="form_details"
+          name="details"
+          class="form-control"
+          [(ngModel)]="currentPost.details"
+          placeholder="Write about your post"
+          rows="4"
+          required="required"
+          data-error="Please write the post details"
+          maxlength="100000"
+        ></textarea>
+      </div>
+
+      <div class="warning-text" *ngFor="let warning of warnings">{{warning}}</div>
+      <div class="col-md-12 submit-div">
+        <input
+          type="submit"
+          class="btn btn-success btn-send pt-2 btn-block"
+          [value]="id == null ? 'Create Post!' : 'Update Post!'"
+          (click)="submitData()"
+        />
+      </div>
+    </div>
+  </div>
+</div>

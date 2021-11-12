@@ -1,0 +1,18 @@
+export class Post {
+  post_id: number;
+  category_name: string;
+  title: string;
+  details: string;
+  picture: string;
+  user_id: number;
+  category_id: number;
+}
+
+export class newPost {
+  category_name: string;
+  title: string;
+  details: string;
+  picture: string;
+  user_id: number;
+  category_id: number;
+}

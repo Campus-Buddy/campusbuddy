@@ -47,6 +47,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './services/chat.service';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
     ChatComponent,
     AllConvosComponent,
     PostCardComponent,
-    AllPostsComponent
+    AllPostsComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,6 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
     MatCardModule,
     MatChipsModule,
     FlexLayoutModule,
-    HttpClientModule,
     FormsModule,
     MatSnackBarModule,
     MatSelectModule,
