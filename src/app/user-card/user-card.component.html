@@ -4,12 +4,41 @@
     src="../../assets/landingpage.jpg"
     class="card-img-top profile-img"
     alt="..."
+    style="height: height"
   />
-  <div class="card-body">
-    <h5 class="card-title">{{username}}, {{age}}</h5>
-    <p class="card-text"></p>
+
+  <h5 class="card-title">
+    {{ username }}<span *ngIf="age">, {{ age }}</span>
+  </h5>
+  <p class="card-text"></p>
+
+  <div class="row" *ngIf="showTagList">
+    <div class="col" *ngIf="tagList.length !== 0; else noTags">
+      <button
+        *ngFor="let tag of tagList"
+        type="button"
+        class="btn btn-secondary"
+      >
+        {{ tag }}
+      </button>
+      &nbsp;
+    </div>
+    <ng-template #noTags>
+      <p>This user has no tags.</p>
+    </ng-template>
   </div>
-  <button mat-stroked-button  [routerLink]="['/profile', id]"
-  routerLinkActive="active">Profile</button>
-  <button mat-stroked-button>Message</button>
+  <div class="row">
+    <button
+      *ngIf="buttons"
+      mat-stroked-button
+      [routerLink]="['/profile', id]"
+      routerLinkActive="active"
+      class="button-option"
+    >
+      Profile
+    </button>
+    <button *ngIf="buttons" mat-stroked-button class="button-option">
+      Message
+    </button>
+  </div>
 </div>
