@@ -118,4 +118,27 @@ export class AuthService {
   getPostCategory(id: any): Observable<any> {
     return this.http.get<any>(`${environment.userAPIBase}api/categories/${id}`, { headers: this.headers });
   }
+
+  createPost(post: any): Observable<any> {
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/posts`,
+      post
+    );
+  }
+  updatePost(id: any, post:any): Observable<any>{
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/posts/${id}`,post
+    );
+  }
+
+  getPost(id:any): Observable<any>{
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(
+      `${environment.userAPIBase}/api/posts/${id}`,
+      { headers: headers }
+    );
+  }
 }

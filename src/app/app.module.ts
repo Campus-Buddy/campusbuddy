@@ -72,6 +72,7 @@ import { PostComponent } from './post/post.component';
     PostCardComponent,
     AllPostsComponent,
     PostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
