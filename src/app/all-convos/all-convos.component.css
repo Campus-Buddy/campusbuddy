@@ -1,0 +1,16 @@
+.card {
+  border-block-color: #74B3E3;
+  border-style: outset;
+}
+.mat-chip-list-stacked {
+  background-color: #d7f1f2;
+}
+.mat-chip-list-stacked:hover {
+  background-color: #abe3e4;
+}
+.high_Card {
+  background-color: #73D0D3;
+}
+.high_Card:hover {
+  background-color: lightseagreen;
+}
