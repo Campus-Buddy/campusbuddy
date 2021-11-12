@@ -1,20 +1,41 @@
+body {
+    padding-bottom: 5%;
+}
+.full_card {
+  background-color: #b0c9dd;
+  width: 150%;
+  margin-left: -25%;
+  display: grid;
+  border-style: outset;
+  border-color: #184e77;
+}
 h1 {
   font-size: 170%;
-  background-color: #184e77;
-  opacity: 50%;
   color: white;
   padding: 0.3%;
   font-family: Courier New, Courier, monospace;
 }
-
-.input-div {
-  background-color: #DFF4CD;
-  padding: 0.5%;
+.input_div {
+  display: flex;
+  background-color: #73D0D3;
+  padding: 2%;
 }
-
+.input_bar div {
+    display: flex;
+}
+button {
+  background-color: #184e77;
+  display: inline-block;
+  margin: auto;
+}
+button:hover {
+  background-color: #2399ac;
+}
 .form-control {
-    width: 70%;
-    display: inline;
-    margin-right: 0.5%;
+  width: 80%;
+  margin: auto;
+  display: inline-block;
+  border-style: inset;
+  border-width: 0.1em;
 }
 
