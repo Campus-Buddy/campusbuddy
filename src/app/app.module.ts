@@ -48,6 +48,7 @@ import { ChatService } from './services/chat.service';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { PostComponent } from './post/post.component';
     PostCardComponent,
     AllPostsComponent,
     PostComponent,
-    PostComponent
+    PostComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'post/:id', component: PostComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'post', component: PostComponent},
-  { path: 'post/:id', component: PostComponent}
+  { path: 'post/:id', component: PostComponent},
+  {path: 'viewpost/:id', component: ViewPostComponent}
 ];
 
 @NgModule({

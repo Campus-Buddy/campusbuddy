@@ -126,7 +126,7 @@ export class AuthService {
     );
   }
   updatePost(id: any, post:any): Observable<any>{
-    return this.http.post<any>(
+    return this.http.put<any>(
       `${environment.userAPIBase}/api/posts/${id}`,post
     );
   }
