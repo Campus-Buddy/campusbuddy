@@ -5,4 +5,5 @@ export class Post {
         picture: File;
         user_id: number;
         category_id: number;
+        date_created: Date;
 }

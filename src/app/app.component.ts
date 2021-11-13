@@ -35,7 +35,7 @@ export class AppComponent {
         this._token = this.auth.readToken();
         // get the user information and store it
         this.sub = this.auth.getProfile(this._token.userId).subscribe((data) => {
-          console.log("data", data.toString())
+        //  console.log("data", data.toString())
           this.username = data.profile_name;
         })
       }

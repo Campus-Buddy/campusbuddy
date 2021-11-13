@@ -20,7 +20,8 @@ public newPost: Post={
   details: "",
   picture: undefined!,
   user_id: 0,
-  category_id: 0
+  category_id: 0,
+  date_created: undefined!
 }
 
   private sub;
@@ -105,7 +106,8 @@ public newPost: Post={
             this.success = false;
             this.warning = err.error.message;
           })
-        }else{
+        }
+        {
           this.editPost = this.auth.updatePost(this.id,this.newPost).subscribe(
             (success) =>{
               this.success = true;

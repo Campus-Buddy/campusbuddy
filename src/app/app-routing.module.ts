@@ -11,6 +11,7 @@ import { GuardAuthService } from './services/guard-auth.service';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { PostComponent } from './post/post.component';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'profile/:id', component: ViewProfileComponent, canActivate: [GuardAuthService] },
   { path: 'chat', component: ChatComponent },
   { path: 'post', component: PostComponent},
-  { path: 'post/:id', component: PostComponent}
+  { path: 'post/:id', component: PostComponent},
+  {path: 'viewpost/:id', component: ViewPostComponent}
 ];
 
 @NgModule({
