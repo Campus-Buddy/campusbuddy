@@ -1,7 +1,15 @@
 mat-card {
-  max-width: 1000px;
-  margin: 3em auto;
   text-align: center;
+  font-family: Courier New, Courier, monospace;
+  border-radius: 25px;
+  border-style: outset;
+  border-color: lightseagreen;
+}
+  mat-card h2 {
+    letter-spacing: 0.2em;
+  }
+p {
+  color: #37444d;
 }
 
 mat-form-field {
@@ -10,5 +18,9 @@ mat-form-field {
 
 .form_card{
     width: 30em;
+    padding: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     font-weight: 600;
 }
+

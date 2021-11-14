@@ -42,6 +42,7 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './services/chat.service';
+import { AllConvosComponent } from './all-convos/all-convos.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ChatService } from './services/chat.service';
     ViewProfileComponent,
     LogoutModalComponent,
     EditProfileComponent,
-    ChatComponent
+    ChatComponent,
+    AllConvosComponent
   ],
   imports: [
     BrowserModule,
