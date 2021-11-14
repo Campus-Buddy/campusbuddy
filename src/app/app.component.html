@@ -142,9 +142,12 @@
       yPosition="above"
       [overlapTrigger]="false"
     >
+      <a mat-menu-item routerLink="/home" >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
       <a mat-menu-item (click)="displayLogoutModal()">
         <mat-icon>exit_to_app</mat-icon>
-        <!-- Tie this into the ngIf there's a token -->
         <span>Log out</span>
       </a>
     </mat-menu>
