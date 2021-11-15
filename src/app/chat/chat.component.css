@@ -2,16 +2,16 @@ body {
     padding-bottom: 5%;
 }
 .full_card {
-  background-color: #b0c9dd;
+  background-color: white;
   width: 150%;
   margin-left: -25%;
   display: grid;
   border-style: outset;
-  border-color: #184e77;
+  border-color: #73D0D3;
 }
 h1 {
   font-size: 170%;
-  color: white;
+  color: lightseagreen;
   padding: 0.3%;
   font-family: Courier New, Courier, monospace;
 }
