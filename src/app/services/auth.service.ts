@@ -172,4 +172,11 @@ export class AuthService {
   createComment(comment: any): Observable<any> {
     return this.http.post<any>(`${environment.userAPIBase}api/comments`, comment);
   }
+
+  profile(profile: Profile): Observable<any> {
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/profiles`,
+      profile
+    );
+  }
 }
