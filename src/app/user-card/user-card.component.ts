@@ -12,7 +12,11 @@ export class UserCardComponent implements OnInit {
   @Input() age = '';
   @Input() program = '';
   @Input() id = '1';
-  @Input() height = 30;
+  @Input() height :number = 6;
+  @Input() buttons : boolean = true;
+  @Input() tagList: Array<any> = [];
+  @Input() showTagList: boolean = false;
+  @Input() image: '';
   // should be only pass id and then grab using a get request?
 
   constructor() { }
@@ -23,6 +27,10 @@ export class UserCardComponent implements OnInit {
    * We need to pass an id for this components to grab the information for that user to display
    * and then use this same id to pass to view profile if someone wants to view profile */ 
   ngOnInit(): void {
+    // Changes height of the profile image in the card
+    const images = window.document.getElementsByClassName('profile-img');
+    for (let image of images)
+    image.setAttribute("style", `height:${this.height}rem; width:${this.height}rem`)
   }
 
 }
