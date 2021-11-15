@@ -16,6 +16,7 @@ export class UserCardComponent implements OnInit {
   @Input() buttons : boolean = true;
   @Input() tagList: Array<any> = [];
   @Input() showTagList: boolean = false;
+  @Input() image: '';
   // should be only pass id and then grab using a get request?
 
   constructor() { }
