@@ -43,10 +43,11 @@ export class UserRegistrationComponent implements OnInit {
       institution_id: 0,
     };
     this.profile = {
-      user_id: 0, 
       profile_name: '', 
-      profile_id: 1,
       age: new Date().getFullYear(),
+      img: '',
+      biography: '',
+      user_id: 0, 
       tags: []
     };
 
@@ -72,7 +73,31 @@ export class UserRegistrationComponent implements OnInit {
           this.success = true;
           this.warning = null;
           this.loading = false;
+          localStorage.setItem('access-token', success.token);
           this._token = this.auth.readToken();
+
+          // Open subscription to create profile for user:
+          this.profile.user_id = this._token.userId;
+          console.log("reading the ID over HEREEEE -> " + this.profile.user_id);
+          this.profile.age = new Date().getFullYear() - this.profile.age;
+
+          this.subProfile = this.auth.profile(this.profile).subscribe(
+            (success) => {
+              console.log("We entered the success call of the auth profile");
+              this.success2 = true;
+              this.warning = null;
+              this.loading = false;
+
+              this.router.navigate(['/home']);
+            },
+            (err) => {
+              console.log("we did not succeed");
+              console.log(err);
+              this.success2 = false;
+              this.warning = err.error.message;
+              this.loading = false;
+            }
+          );
         },
         (err) => {
           console.log(err);
@@ -81,32 +106,6 @@ export class UserRegistrationComponent implements OnInit {
           this.loading = false;
         }
       );
-
-      if (this.success) {
-        // Open subscription to create profile for user:
-        this.profile.profile_id = this.registeredUser.profile_id;
-        this.profile.user_id = this._token.userId;
-        this.profile.age = new Date().getFullYear() - this.profile.age;
-
-        this.subProfile = this.auth.profile(this.profile).subscribe(
-          (success) => {
-            this.success2 = true;
-            this.warning = null;
-            this.loading = false;
-
-          },
-          (err) => {
-            console.log(err);
-            this.success2 = false;
-            this.warning = err.error.message;
-            this.loading = false;
-          }
-        );
-      }
-
-      // this.RegisterUser(this.registeredUser); do we need?
-      console.log(this.registeredUser);
-      console.log('profile id created: ' + this.profile.profile_name);
     } else {
       this.success = false;
       this.success2 = false;

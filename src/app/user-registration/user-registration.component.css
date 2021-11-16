@@ -10,7 +10,7 @@
 } */
 mat-card {
   font-family: Courier New, Courier, monospace;
-  margin: 8em auto;
+  margin: auto;
   text-align: center;
   border-radius: 25px;
   border-style: outset;
@@ -20,6 +20,8 @@ mat-card {
   
   mat-form-field {
     display: block;
+    padding-left: 1em;
+    padding-right: 1em;
   }
   
   .success{

@@ -8,9 +8,10 @@ export class User {
 }
 
 export class Profile {
-  'user_id': number; //generated upon registration
-  'profile_name': string; //generated upon registration
-  'profile_id': number; //generated upon registration
-  'age': number;
-  'tags': [];
+  "profile_name";
+  "age";
+  "img";
+  "biography";
+  "user_id": number;
+  "tags": [];
 }
