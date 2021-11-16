@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
@@ -86,6 +88,8 @@ import { AllConvosComponent } from './all-convos/all-convos.component';
     HttpClientModule,
     FormsModule,
     MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     // NgbModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
