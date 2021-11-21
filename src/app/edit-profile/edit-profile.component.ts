@@ -1,127 +1,92 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UserProfile } from 'src/app/user-profile';
-import { NgForm } from '@angular/forms';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { any } from 'sequelize/types/lib/operators';
+import { FormControl, NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
 })
 export class EditProfileComponent implements OnInit {
+  public userProfile: UserProfile;
 
-  public userProfile: UserProfile={
-    userName: '',
-    userPic: undefined!,
-    age: 0,
-    program: '',
-    tag1: '',
-    tag2: '',
-    tag3: '',
-    tag4: '',
-    tag5: '',
-    tag6: '',
-    userBio: ''
+  public warning: string = '';
+  url: any = '../../assets/landingpage.jpg'; // placeholder for images not existing
+
+  // success: boolean = true;
+  private sub: Subscription = new Subscription();
+  private sub2: Subscription = new Subscription();
+  private sub3: Subscription = new Subscription();
+  private sub4: Subscription = new Subscription();
+
+  public tags: Array<any> = []; // used to display the multidropdown list
+  public tagList: Array<any> = [];
+  public tagSelection: FormControl = new FormControl();
+  private _token;
+
+  @ViewChild('fileUpload') fileUpload: ElementRef;
+  constructor(private auth: AuthService, private _snackBar: MatSnackBar) {
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
-   editMode: boolean = false;
-   defImg: boolean = true;
-   tags: any[] = [];
-   public warning: string = "";
-   url: any;
-   selectedTags: any[];
-   dropdownSet = {};
-   dropdownSettings:IDropdownSettings;
-   userTags: any[6];
-   i: any;
-
-  constructor() { }
 
   ngOnInit(): void {
+    // Initialize subscription for tags
+    this.sub = this.auth.getTags().subscribe((data) => {
+      this.tagList = data.rows;
+    });
 
-    this.tags = [
-      { item_id: 1, item_text: 'Dancing' },
-      { item_id: 2, item_text: 'Dating' },
-      { item_id: 3, item_text: 'InCafe' },
-      { item_id: 4, item_text: 'International' },
-      { item_id: 5, item_text: 'Hiking' },
-      { item_id: 6, item_text: 'Traveling' },
-      { item_id: 7, item_text: 'InGym' },
-      { item_id: 8, item_text: 'Gaming' }];
-
-      this.selectedTags = [];
-
-      
-      
-
-       this.dropdownSettings ={
-        singleSelection: false,
-        idField: 'item_id',
-        textField: 'item_text',
-        selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 3,
-        allowSearchFilter: true
-        
+    // Subscribe to get current information from this user.
+    this._token = this.auth.readToken();
+    // Read the information for the profile:
+    this.sub2 = this.auth.getProfile(this._token.userId).subscribe((data) => {
+      console.log('user: ', data);
+      this.userProfile = data;
+      // For each tag of the user profile, get the name.
+      for (let tag of this.userProfile.tags) {
+        this.sub3 = this.auth.getTagById(tag).subscribe((tagfound) => {
+          this.tags.push(tagfound.title);
+        });
       }
+    });
   }
 
-  
-
-  public onItemSelect(item: any) {
-    console.log(item);
-
-    for(this.i =0;this.i<item.length; this.i++){
-      this.userTags = item;
-    }
-
-    
-  }
-  public onSelectAll(items: any) {
-    console.log(items);
+  // This function is called when you hit save - it makes out the API call to save.
+  saveNewValues(): void {
+    this.sub4 = this.auth.updateProfile(this.userProfile).subscribe(
+      (success) => {
+        this.openDialogue('Changes were saved!');
+      },
+      (err) => {
+        console.log(err);
+        this.openDialogue('There was an error.');
+      },
+    );
   }
 
-  public onEditMode(result : boolean){
-    this.editMode = result;
+  openDialogue(message: string) {
+    this._snackBar.open(message, 'x');
   }
 
-  public defualtImgOn(result : boolean){
-
-    if(!this.userProfile.userPic){
-      this.defImg = result;
-    }
-    else{
-      this.defImg =false;
-    }
-  }
- 
-
-  onSubmit(f: NgForm): void{
-    if(this.userProfile.userName !="" && this.userProfile.age >=17 && this.userProfile.program !=""){
-      console.log("form submitted");
-    }
-  }
-
-  selectFile(event: any){
-    
-    if(!event.target.files[0] || event.target.files[0].length == 0){
-      this.warning = 'You must select an image';
-      return;
-    }
-    let mimeType = event.target.files[0].type;
-
-    if(mimeType.match(/image\/*/) == null){
-      this.warning = "Only images are supported";
-      return;
-    }
-
+  // Grabs the file inputted and returns the binary data.
+  selectFile(event: any) {
     let reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
 
-    reader.onload = (_event) =>{
-      this.warning ="";
-      this.url = reader.result;
-    }
+    reader.onload = (_event) => {
+      this.warning = '';
+      this.userProfile.img =
+        reader.result?.toString() || '../../assets/default_avatar.png';
+    };
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+    this.sub3.unsubscribe();
+    this.sub4.unsubscribe();
   }
 }
