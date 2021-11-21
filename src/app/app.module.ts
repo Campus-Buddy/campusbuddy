@@ -26,6 +26,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CenterblockComponent } from './components/centerblock/centerblock.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 
 //angular imports
 
@@ -43,6 +44,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './services/chat.service';
 import { AllConvosComponent } from './all-convos/all-convos.component';
+import { AllPostsComponent } from './all-posts/all-posts.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { AllConvosComponent } from './all-convos/all-convos.component';
     LogoutModalComponent,
     EditProfileComponent,
     ChatComponent,
-    AllConvosComponent
+    AllConvosComponent,
+    PostCardComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,

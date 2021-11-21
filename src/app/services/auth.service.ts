@@ -56,6 +56,14 @@ export class AuthService {
     return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
   }
 
+  getAllPosts() {
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(`${environment.userAPIBase}/api/posts`,{ headers: headers });
+  }
+
   getProfile(id: any): Observable<any> {
     const headers = new HttpHeaders().set(
       'x-access-token',

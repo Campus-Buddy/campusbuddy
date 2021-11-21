@@ -1,0 +1,42 @@
+<div class="content">
+    <h2>Bulletin Board</h2>
+    <!-- Add query by tags here
+    <section>
+      
+      <div class="example-button-row">
+        <button
+          id="0"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/all-posts']"
+          routerLinkActive="active"
+        > All
+        </button>
+        <button
+          *ngFor="let tag of tagList"
+          id="tag.tag_id"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/all-posts', tag.tag_id]"
+          routerLinkActive="active"
+        >
+          {{ tag.title }}
+        </button>
+      </div>
+    </section> -->
+  
+    <hr />
+    <div class="row row-cols-2">
+      <div class="col-sm-2 card-box" *ngFor="let post of posts">
+        <app-post-card
+            [title]="post.title"
+            [details]="post.details"
+            [category_name]="post.category_name"
+            [date_created]="post.date_created"
+            [image]="post.picture"
+            [user_id]="post.user_id"
+        ></app-post-card>
+      </div>
+    </div>
+  </div>
+  

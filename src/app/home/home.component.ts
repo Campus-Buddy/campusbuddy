@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
       this.username = data.profile_name;
       this.age = data.age;
     });
-
   }
 
   ngOnDestroy() {
