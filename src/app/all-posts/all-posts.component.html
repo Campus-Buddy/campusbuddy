@@ -1,11 +1,9 @@
 <div class="content">
     <h2>Bulletin Board</h2>
-    <!-- Add query by tags here
     <section>
-      
       <div class="example-button-row">
         <button
-          id="0"
+          category=""
           mat-raised-button
           color="primary"
           [routerLink]="['/all-posts']"
@@ -13,17 +11,25 @@
         > All
         </button>
         <button
-          *ngFor="let tag of tagList"
-          id="tag.tag_id"
+          *ngFor="let category of categoryList"
+          category="category.title"
           mat-raised-button
           color="primary"
-          [routerLink]="['/all-posts', tag.tag_id]"
+          [routerLink]="['/all-posts', category.title]"
           routerLinkActive="active"
         >
-          {{ tag.title }}
+          {{ category.title }}
+        </button>
+        <button
+          category="mine"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/all-posts', 'mine']"
+          routerLinkActive="active"
+        > My Posts
         </button>
       </div>
-    </section> -->
+    </section>
   
     <hr />
     <div class="row row-cols-2">

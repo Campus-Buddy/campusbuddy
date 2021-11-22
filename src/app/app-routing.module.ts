@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'profile/:id', component: ViewProfileComponent, canActivate: [GuardAuthService] },
   { path: 'chat', component: ChatComponent, canActivate: [GuardAuthService] },
   { path: 'all-convos', component: AllConvosComponent },
-  { path: 'all-posts', component: AllPostsComponent, canActivate: [GuardAuthService] }
+  { path: 'all-posts', component: AllPostsComponent, canActivate: [GuardAuthService] },
+  { path: 'all-posts/:category', component: AllPostsComponent, canActivate: [GuardAuthService] }
 ];
 
 @NgModule({

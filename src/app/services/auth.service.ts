@@ -93,4 +93,8 @@ export class AuthService {
       registerUser
     );
   }
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
+  }
 }

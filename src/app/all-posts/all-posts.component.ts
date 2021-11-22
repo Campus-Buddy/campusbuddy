@@ -13,38 +13,43 @@ export class AllPostsComponent implements OnInit {
   private sub: Subscription = new Subscription();
   private sub2: Subscription = new Subscription();
   private sub3: Subscription = new Subscription();
-  public tagList: Array<any>;
-  private id: any;
+  public categoryList: Array<any>;
+  private category: any;
+  private _token: any;
+  usernames: Array<any> = [];
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
+    this._token = this.auth.readToken();
+
     this.sub = this.auth.getAllPosts().subscribe((data) => {
       this.posts = data.rows;
-      console.log(this.posts);
-      // let newPosts = <any>[];
-      // if (this.id) {
-      //   for (let post of this.posts) {
-      //     if (post.tags) {
-      //       for (let tag of post.tags) {
-      //         newPosts.push(post);
-      //       }
-      //     }
-      //   }
-      // }
-      //this.posts = newPosts;
+      let newPosts = <any>[];
+      if (this.category) {
+        for (let post of this.posts) {
+          if (post.category_name === this.category) {
+            newPosts.push(post);
+          }
+          if (this.category === 'mine') {
+            if(post.user_id == this._token.userId) {
+              newPosts.push(post);
+            }
+          }
+        }
+        this.posts = newPosts;
+      }
     });
 
     this.sub2 = this.route.params.subscribe((params) => {
-      this.id = params['id'];
+      this.category = params['category'];
     });
 
-    // GET POST CATEGORIES, not tags
-    // this.sub3 = this.auth.getTags().subscribe((data) => {
-    //   this.tagList = data.rows;
-    // });
+    this.sub3 = this.auth.getCategories().subscribe((data) => {
+      this.categoryList = data.rows;
+    });
   }
 
   ngOnDestroy() {
