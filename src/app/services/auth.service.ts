@@ -61,6 +61,14 @@ export class AuthService {
     return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
   }
 
+  getAllPosts() {
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(`${environment.userAPIBase}/api/posts`,{ headers: headers });
+  }
+
   getProfile(id: any): Observable<any> {
 
     return this.http.get<Profile>(
@@ -93,5 +101,9 @@ export class AuthService {
       `${environment.userAPIBase}/api/v1/users`,
       registerUser
     );
+  }
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
   }
 }
