@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post';
 import { AuthService } from '../services/auth.service';
+import { Comment } from '../comment';
 
 @Component({
   selector: 'app-view-post',
@@ -16,11 +18,27 @@ export class ViewPostComponent implements OnInit {
   public dayString;
   public userInfo;
   public userId;
+  public commentList: any = [ ];
+  public postComment: any = [ ];
+  public commentedUser;
+  public newComment: Comment = {
+    user_id: 0,
+    post_id: 0,
+    comment: ""
+  }
 
+  public warning;
+  public success = false;
+ 
   public id;
+  private _token: any;
   private sub;
   private getPost;
   private getUser;
+  private getComment;
+  private getCommentedUser;
+  private submitNewComment;
+  private commentUserId;
   
 
   constructor(
@@ -67,6 +85,10 @@ export class ViewPostComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this._token = this.auth.readToken();
+    this._token.userId = this.commentUserId;
+    console.log('user', this._token.userId);
+
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
@@ -80,12 +102,50 @@ export class ViewPostComponent implements OnInit {
       console.log(this.userId)
       this.getUser = this.auth.getProfile(this.userId).subscribe((data) =>{
         this.userInfo = data;
-        console.log(this.userInfo)       
+        console.log(this.postDetails)       
+      })
+
+      this.getComment = this.auth.getComment().subscribe(data =>{
+        this.commentList = data.rows;
+//        console.log(this.commentList);
+        this.commentList.forEach(element => {
+          if(element.post_id == this.postDetails.post_id){
+            this.postComment.push(element);
+         //   console.log(this.postComment)
+            this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
+              data.profile_name = this.commentedUser;
+              console.log(data)
+            })
+          }
+ //         console.log(this.postComment);
+        });
       })
     })
 
     
+
     
+    
+  }
+
+  onSubmit(f: NgForm): void {
+    
+
+    this.newComment.user_id = this.commentUserId;
+    this.newComment.post_id = this.postDetails.post_id;
+    console.log(this.newComment);
+
+    // this.submitNewComment = this.auth.newComment(this.newComment).subscribe(
+    //   (success) => {
+    //     this.success = true;
+    //     this.warning = null;
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //     this.success = false;
+    //     this.warning = err.error.message;
+    //   }
+    // );
   }
 
 }

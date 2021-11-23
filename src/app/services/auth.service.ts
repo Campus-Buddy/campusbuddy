@@ -108,4 +108,22 @@ export class AuthService {
       { headers: headers }
     );
   }
+
+  getComment(): Observable<any>{
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(
+      `${environment.userAPIBase}/api/comments`,
+      { headers: headers }
+    );
+  }
+
+  newComment(comment: any): Observable<any>{
+    return this.http.post<any>(
+      `${environment.userAPIBase}/api/comments`,
+      comment
+    );
+  }
 }
