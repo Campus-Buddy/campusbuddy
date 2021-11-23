@@ -3,7 +3,6 @@ import { UserProfile } from 'src/app/user-profile';
 import { FormControl, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -63,7 +62,7 @@ export class EditProfileComponent implements OnInit {
       (err) => {
         console.log(err);
         this.openDialogue('There was an error.');
-      },
+      }
     );
   }
 

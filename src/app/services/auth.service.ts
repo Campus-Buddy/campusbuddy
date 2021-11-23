@@ -66,11 +66,12 @@ export class AuthService {
       'x-access-token',
       this.getToken().toString()
     );
-    return this.http.get<any>(`${environment.userAPIBase}/api/posts`,{ headers: headers });
+    return this.http.get<any>(`${environment.userAPIBase}/api/posts`, {
+      headers: headers,
+    });
   }
 
   getProfile(id: any): Observable<any> {
-
     return this.http.get<Profile>(
       `${environment.userAPIBase}/api/profiles/${id}`,
       { headers: this.headers }
@@ -79,7 +80,8 @@ export class AuthService {
 
   updateProfile(newInformation: UserProfile): Observable<any> {
     return this.http.put<Profile>(
-      `${environment.userAPIBase}/api/profiles/${newInformation.user_id}`, newInformation,
+      `${environment.userAPIBase}/api/profiles/${newInformation.user_id}`,
+      newInformation,
       { headers: this.headers }
     );
   }
@@ -103,7 +105,33 @@ export class AuthService {
     );
   }
 
-  getCategories(): Observable<any> {
+
+  createPost(post: any): Observable<any> {
+    return this.http.post<any>(`${environment.userAPIBase}/api/posts`, post);
+  }
+
+  updatePost(post: any): Observable<any> {
+    return this.http.put<any>(
+      `${environment.userAPIBase}/api/posts/${post.post_id}`,
+      post
+    );
+  }
+
+  getPost(id: any): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(`${environment.userAPIBase}/api/posts/${id}`, {
+      headers: headers,
+    });
+  }
+
+  getPostCategories(): Observable<any> {
     return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
+  }
+
+  getPostCategory(id:any): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, {headers: this.headers});
   }
 }
