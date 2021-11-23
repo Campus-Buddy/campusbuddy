@@ -20,7 +20,7 @@ export class ViewPostComponent implements OnInit {
   public userId;
   public commentList: any = [ ];
   public postComment: any = [ ];
-  public commentedUser;
+  public commentedUser: any = [ ];
   public newComment: Comment = {
     user_id: 0,
     post_id: 0,
@@ -29,6 +29,7 @@ export class ViewPostComponent implements OnInit {
 
   public warning;
   public success = false;
+  public authorisation = false;
  
   public id;
   private _token: any;
@@ -83,11 +84,7 @@ export class ViewPostComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-
-    this._token = this.auth.readToken();
-    this._token.userId = this.commentUserId;
-    console.log('user', this._token.userId);
+  ngOnInit(): void {  
 
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
@@ -108,16 +105,16 @@ export class ViewPostComponent implements OnInit {
       this.getComment = this.auth.getComment().subscribe(data =>{
         this.commentList = data.rows;
 //        console.log(this.commentList);
+        var i =0;
         this.commentList.forEach(element => {
           if(element.post_id == this.postDetails.post_id){
             this.postComment.push(element);
          //   console.log(this.postComment)
-            this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
-              data.profile_name = this.commentedUser;
-              console.log(data)
-            })
           }
- //         console.log(this.postComment);
+          this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
+            this.commentedUser[element.user_id] = data.profile_name;
+          })
+          console.log(this.postComment);
         });
       })
     })
@@ -131,21 +128,24 @@ export class ViewPostComponent implements OnInit {
   onSubmit(f: NgForm): void {
     
 
-    this.newComment.user_id = this.commentUserId;
+    this._token = this.auth.readToken();
+    this.commentedUser = this._token.user_id;
+    console.log('user', this._token);
+    this.newComment.user_id = this._token.userId;
     this.newComment.post_id = this.postDetails.post_id;
     console.log(this.newComment);
 
-    // this.submitNewComment = this.auth.newComment(this.newComment).subscribe(
-    //   (success) => {
-    //     this.success = true;
-    //     this.warning = null;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.success = false;
-    //     this.warning = err.error.message;
-    //   }
-    // );
+     this.submitNewComment = this.auth.newComment(this.newComment).subscribe(
+       (success) => {
+         this.success = true;
+         this.warning = null;
+       },
+       (err) => {
+         console.log(err);
+         this.success = false;
+         this.warning = err.error.message;
+       }
+     );
   }
 
 }
