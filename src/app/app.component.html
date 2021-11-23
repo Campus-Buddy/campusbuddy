@@ -109,7 +109,11 @@
 
 <div class="navbar-container header">
   <mat-toolbar class="navbar header2" color="primary">
-    <a class="navbar-brand" matTooltip="Home" routerLink="/">
+    <a class="navbar-brand" matTooltip="Home" *ngIf="!_token" routerLink="/">
+      <img class="logo" src="../assets/logo2.png" />
+    </a>
+
+    <a class="navbar-brand" matTooltip="Home" *ngIf="_token" routerLink="/home">
       <img class="logo" src="../assets/logo2.png" />
     </a>
 
