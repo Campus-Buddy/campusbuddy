@@ -4,6 +4,11 @@
     text-align: center;
 }
 
+.myposts {
+    background-color:mediumseagreen;
+    color: white;
+}
+
 .card-box {
     min-width: 18rem
 }
