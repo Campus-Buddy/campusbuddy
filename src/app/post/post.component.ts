@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
   private sub2: Subscription = new Subscription(); //grab post id if there is params id
   private sub3: Subscription = new Subscription(); //grab categories for post
   private submitPageSub: Subscription = new Subscription(); // submit post or put request
+  private categoryName: Subscription = new Subscription(); // gets the category name before we push the data to API.
   public id; // stores id from params
   public categories: Array<any> = []; // stores categories from get request
   public warnings: Array<string> = [];
@@ -69,7 +70,13 @@ export class PostComponent implements OnInit {
       this.warnings.push('Please select a category.');
     }
     if (this.warnings.length === 0) {
-      this.id ? this.updatePost() : this.createNewPost();
+      this.categoryName = this.auth
+        .getPostCategory(this.currentPost.category_id)
+        .subscribe((category) => {
+          this.currentPost.category_name = category.title;
+          console.log('category name:', this.currentPost.category_name);
+          this.id ? this.updatePost() : this.createNewPost();
+        });
     }
   }
 
@@ -121,5 +128,6 @@ export class PostComponent implements OnInit {
     this.sub2.unsubscribe();
     this.sub3.unsubscribe();
     this.submitPageSub.unsubscribe();
+    this.categoryName.unsubscribe();
   }
 }
