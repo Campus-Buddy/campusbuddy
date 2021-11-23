@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 })
 export class PostCardComponent implements OnInit {
   @Input() id = '1';
-  @Input() height :number = 15;
   @Input() image: '';
   @Input() details: '';
   @Input() title: '';
@@ -23,9 +22,7 @@ export class PostCardComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    const images = window.document.getElementsByClassName('profile-img');
-    for (let image of images)
-    image.setAttribute("style", `height:${this.height}rem; width:${this.height}rem`)
+   
 
     this.sub = this.auth.getProfile(this.user_id).subscribe((data) => {
       this.username = data.profile_name;
