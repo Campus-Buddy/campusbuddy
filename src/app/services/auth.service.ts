@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
+import { UserProfile } from '../user-profile';
 
 const helper = new JwtHelperService();
 
@@ -16,6 +17,10 @@ const helper = new JwtHelperService();
 export class AuthService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
+  private headers = new HttpHeaders().set(
+    'x-access-token',
+    this.getToken()?.toString()
+  );
   //environment.userAPIBase
   public getToken(): string {
     return localStorage.getItem('access_token')!; // making sure that the return is a STR and not null
@@ -65,13 +70,17 @@ export class AuthService {
   }
 
   getProfile(id: any): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'x-access-token',
-      this.getToken().toString()
-    );
+
     return this.http.get<Profile>(
       `${environment.userAPIBase}/api/profiles/${id}`,
-      { headers: headers }
+      { headers: this.headers }
+    );
+  }
+
+  updateProfile(newInformation: UserProfile): Observable<any> {
+    return this.http.put<Profile>(
+      `${environment.userAPIBase}/api/profiles/${newInformation.user_id}`, newInformation,
+      { headers: this.headers }
     );
   }
 

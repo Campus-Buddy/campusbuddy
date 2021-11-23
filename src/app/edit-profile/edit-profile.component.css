@@ -1,82 +1,68 @@
-
-
-
-
-body {
-    overflow: auto;
-    max-height: auto;
-    background-color: rgba(226, 219, 219, 0.849);;
-}
-
-
-
-.central {
-  position: fixed;
-  display: flex;
-  
-  
-  left: 0;
-  height: 80%;
+:host{
   width: 100%;
-  top: 7%;
-  bottom: 25%;
-  background-color: #c3c2c4;
-  opacity: 50%;
-  color: black;
-  overflow: auto;
+  align-content: center;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 50%;
+  border: 2px grey solid;
+  padding: 3px;
+}
+
+textarea {
+  height: 150px;
+}
+
+.saveButton {
+  text-align: right;
+}
+/* CSS Styling for the button on hover of image container */
+/* STARTS HERE: */
+.imageContainer {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
   
 }
-
-section {
-  display: -webkit-flex;
-  display: flex;
-}
-
-/* Style the navigation menu */
-nav {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-/* Style the content */
-article {
-  -webkit-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
-  background-color: #f1f1f1c2;
-  padding: 10px;
-}
-button{
-  border: black;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 8px;
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
   
+  border-radius: 50%;
+  border: double 5px lightseagreen
 }
-.tag1, .tag2, .tag3, .tag4, .tag5, .tag6{
-  margin-left:40px;
-  align-items: center;
-  background-color: #b3ffe8;
-  color: black;
-  height: 30px;
-  width: 70px;
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 50%;
 }
-.name-program-profile{
-  margin-left:100px;
-  align-items: center;
+.imageContainer:hover .image {
+  opacity: 0.3;
 }
-.privacy-btn, .accntSet-btn, .back-btn{
-  float: right;
-  margin-left: 10px;
-  background-color: #b3ffe8;
-  color: black;
+.imageContainer:hover .middle {
+  opacity: 1;
 }
+
+.text {
+  background-color: #184e77;
+  color: white;
+  font-size: 12px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+/* ENDS HERE - For CSS of button on image container */

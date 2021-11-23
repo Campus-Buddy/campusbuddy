@@ -11,12 +11,12 @@ export class UserCardComponent implements OnInit {
   @Input() username = '';
   @Input() age = '';
   @Input() program = '';
-  @Input() id = '1';
+  @Input() id :number = 0;
   @Input() height :number = 6;
   @Input() buttons : boolean = true;
   @Input() tagList: Array<any> = [];
   @Input() showTagList: boolean = false;
-  @Input() image: '';
+  @Input() image: String;
   // should be only pass id and then grab using a get request?
 
   constructor() { }

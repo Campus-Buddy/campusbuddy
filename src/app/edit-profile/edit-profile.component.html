@@ -1,66 +1,66 @@
-<body>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div class="central ">
-     
-    <section>
-  
-      <nav>
-  
-        
-        <ul>
-          <li><a (click)="onEditMode(true)" (click)="defualtImgOn(false)" title="Edit Mode"><img src= "../../assets/edit-logo.PNG"></a></li>
-          
-          <br>
-          <br>
-          <br>
-  
-          
-          <li><span *ngIf="defImg"><img src="../../assets/default_avatar.png" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
-          <li><span *ngIf="!editMode && url" ><img [src]="url" width="50%" height="50%" style="margin: 0px 80px;"></span></li>
-          <li><span *ngIf="editMode"><input type="file" id="userPic" name="userPic" [(ngModel)]="userProfile.userPic" (change)="selectFile($event)"></span></li>
-          <br>
-          <div class="name-program-profile">
-          <li><span *ngIf="!editMode">{{userProfile.userName}}</span>, &nbsp;<span *ngIf="!editMode">{{userProfile.age}}</span></li>
-          <li><span *ngIf="editMode"><input type="text" id="userName" name="userName" [(ngModel)]="userProfile.userName" placeholder="User Name"> &nbsp; <input type="text" id="age" name="age" [(ngModel)]="userProfile.age" placeholder="User's Age"></span></li>
-          <br>
-          <li><span *ngIf="!editMode">{{userProfile.program}}</span></li>
-          <li><span *ngIf="editMode"><input type="text" id="program" name="program" [(ngModel)]="userProfile.program" placeholder="User's Program"></span></li>
-        </div>
-          <br>
-          <ng-multiselect-dropdown *ngIf="editMode"
-  [placeholder]="'custom placeholder'"
-  [settings]="dropdownSettings"
-  [data]="tags"
-  [(ngModel)]="selectedTags"
-  (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
-</ng-multiselect-dropdown>
-          <br>
-          <li><button class= "tag1" *ngIf="!editMode" >{{userTags[0]}}</button><button class= "tag2" *ngIf="!editMode">{{userTags[1]}}</button><button class= "tag3" *ngIf="!editMode" >{{userTags[2]}}</button></li>
-          <br>
-          <li><button class= "tag4" *ngIf="!editMode">{{userTags[3]}}</button><button class= "tag5" *ngIf="!editMode">{{userTags[4]}}</button><button class= "tag6" *ngIf="!editMode">{{userTags[5]}}</button></li>
-        </ul>
-      </nav>
-  
-      <article>
-        <ul>
-          <a (click)="onEditMode(false)" (click)="defualtImgOn(true)" title="View Mode"><img src= "../../assets/edit-logo.PNG"></a>
-  
-          <button class = "privacy-btn">Privacy Settings</button><button class = "accntSet-btn">Account Settings</button><button class = "back-btn" *ngIf="!editMode">Back</button><button class = "submit-btn" *ngIf="editMode" type="submit">Submit</button>
-        </ul>
-        <br>
-        <br>
-        <br>
-        <div class="profile-bio">
-          <li><span *ngIf="!editMode">{{userProfile.userBio}}</span></li>
-          <li><span *ngIf="editMode"><input type="text" id="userBio" name="userBio" [(ngModel)]="userProfile.userBio"></span></li>
-        </div>
-      </article>
-    </section>
-    
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <button mat-raised-button color="accent" routerLink="/home">Cancel</button>
+    </div>
+    <div class="col-md-6 saveButton">
+      <button mat-raised-button color="primary" (click)="saveNewValues()">Save</button>
+    </div>
   </div>
-  </form>
-  </body>
-  
-  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="imageContainer">
+        <img [src]="userProfile.img" alt="Snow" class="image" />
+        <div class="middle">
+          <!-- Click event right here for the button to upload new images -->
+          <div class="text" (click)="fileUpload.click()">Upload image</div>
+        </div>
+        <div class="centered"></div>
+      </div>
+
+      <!-- Input for files - display is none but on click for avatar back end will trigger click here -->
+      <input
+        #fileUpload
+        type="file"
+        id="avatarupload"
+        name="postPic"
+        accept="image/png, image/gif, image/jpeg"
+        style="display: none"
+        (change)="selectFile($event)"
+      />
+    </div>
+  </div>
+
+  <!-- HTML For Name Field -->
+  <div class="row">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="userProfile.profile_name"/>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Write about yourself</mat-label>
+      <textarea matInput placeholder="This is my biography" [(ngModel)]="userProfile.biography"></textarea>
+    </mat-form-field>
+  </div>
+
+  <!-- Tag Drop down -->
+  <div class="row">
+    <mat-select
+      [formControl]="tagSelection"
+      placeholder="Select Tags!"
+      multiple
+      [(ngModel)]="userProfile.tags"
+    >
+      <mat-option *ngFor="let tag of tagList" [value]="tag.tag_id">{{
+        tag.title
+      }}</mat-option>
+    </mat-select>
+  </div>
+
+  <!-- <button *ngFor="let tag of tags" type="button" class="btn btn-secondary">
+    {{ tag }}
+  </button> -->
+</div>
