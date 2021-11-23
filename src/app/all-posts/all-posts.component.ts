@@ -47,7 +47,7 @@ export class AllPostsComponent implements OnInit {
       this.category = params['category'];
     });
 
-    this.sub3 = this.auth.getCategories().subscribe((data) => {
+    this.sub3 = this.auth.getPostCategories().subscribe((data) => {
       this.categoryList = data.rows;
     });
   }

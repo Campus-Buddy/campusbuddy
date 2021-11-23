@@ -105,9 +105,6 @@ export class AuthService {
     );
   }
 
-  getCategories(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
-  }
 
   createPost(post: any): Observable<any> {
     return this.http.post<any>(`${environment.userAPIBase}/api/posts`, post);
@@ -132,5 +129,9 @@ export class AuthService {
 
   getPostCategories(): Observable<any> {
     return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
+  }
+
+  getPostCategory(id:any): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, {headers: this.headers});
   }
 }
