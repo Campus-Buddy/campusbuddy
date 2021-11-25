@@ -7,6 +7,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
+import { Comment } from '../models/comment';
+
 
 const helper = new JwtHelperService();
 
@@ -116,6 +118,39 @@ export class AuthService {
     );
     return this.http.get<any>(
       `${environment.userAPIBase}/api/comments`,
+      { headers: headers }
+    );
+  }
+
+  getCommentbyId(id: any): Observable<any>{
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.get<any>(
+      `${environment.userAPIBase}/api/comments/${id}`,
+      { headers: headers }
+    );
+  }
+  
+  updateComment(comment: Comment): Observable<any>{
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.put<any>(
+      `${environment.userAPIBase}/api/comments/${comment.comment_id}`, comment,
+      { headers: headers }
+    )
+  }
+
+  deleteComment(id:any): Observable<any>{
+    const headers = new HttpHeaders().set(
+      'x-access-token',
+      this.getToken().toString()
+    );
+    return this.http.delete<any>(
+      `${environment.userAPIBase}/api/comments/${id}`,
       { headers: headers }
     );
   }

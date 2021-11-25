@@ -1,4 +1,4 @@
-import { Comment } from './comment';
+import { Comment } from './models/comment';
 
 describe('Comment', () => {
   it('should create an instance', () => {
