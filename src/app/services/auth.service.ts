@@ -8,6 +8,7 @@ import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
 import { UserProfile } from '../user-profile';
+import { Comment } from '../models/comment';
 
 const helper = new JwtHelperService();
 
@@ -119,44 +120,29 @@ export class AuthService {
     return this.http.get<any>(`${environment.userAPIBase}api/categories/${id}`, { headers: this.headers });
   }
 
-  createPost(post: any): Observable<any> {
-    return this.http.post<any>(
-      `${environment.userAPIBase}/api/posts`,
-      post
-    );
-  }
-  updatePost(id: any, post:any): Observable<any>{
-    return this.http.put<any>(
-      `${environment.userAPIBase}/api/posts/${id}`,post
-    );
+  getComment(): Observable<any> {
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
+    return this.http.get<any>(`${environment.userAPIBase}/api/comments`, { headers: headers });
   }
 
-  getPost(id:any): Observable<any>{
-    const headers = new HttpHeaders().set(
-      'x-access-token',
-      this.getToken().toString()
-    );
-    return this.http.get<any>(
-      `${environment.userAPIBase}/api/posts/${id}`,
-      { headers: headers }
-    );
+  getCommentbyId(id: any): Observable<any> {
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
+    return this.http.get<any>(`${environment.userAPIBase}/api/comments/${id}`, { headers: headers });
   }
 
-  getComment(): Observable<any>{
-    const headers = new HttpHeaders().set(
-      'x-access-token',
-      this.getToken().toString()
-    );
-    return this.http.get<any>(
-      `${environment.userAPIBase}/api/comments`,
-      { headers: headers }
-    );
+  updateComment(comment: Comment): Observable<any> {
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
+    return this.http.put<any>(`${environment.userAPIBase}/api/comments/${comment.comment_id}`, comment, {
+      headers: headers,
+    });
   }
 
-  newComment(comment: any): Observable<any>{
-    return this.http.post<any>(
-      `${environment.userAPIBase}/api/comments`,
-      comment
-    );
+  deleteComment(id: any): Observable<any> {
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
+    return this.http.delete<any>(`${environment.userAPIBase}/api/comments/${id}`, { headers: headers });
+  }
+
+  newComment(comment: any): Observable<any> {
+    return this.http.post<any>(`${environment.userAPIBase}/api/comments`, comment);
   }
 }

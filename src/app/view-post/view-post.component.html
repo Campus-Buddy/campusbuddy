@@ -22,21 +22,38 @@
                         <div class="media-body">
                             <h5 class="mt-0 font400 clearfix">
                                         <a href="#" class="float-right">Reply</a>
-                                        {{this.commentedUser[comment.user_id]}}</h5> {{comment.comment}}
+                                     <b>   {{this.commentedUser[comment.user_id]}}</b></h5> {{comment.comment}}
                         </div>
-                        <div *ngIf="this.authorisation" class="col"><i class="fas fa-pen">{{this.authorisation}}<a href=""><u>edit</u></a></i></div>
+                        <div *ngIf="this.authorisation[comment.user_id]">
+                            <button class="mat-flat-button" (click)="enableEditor(comment.comment_id)">Edit</button>
+                            <button class="mat-flat-button" (click)="enableDelete(comment.comment_id)">Delete</button>
+                        </div>
                         
-                    </div>
+                    </div >
                     <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">Post a comment</h4>
-                    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-                        <div class="form-group">
-                            <input type="text" [(ngModel)]="this.newComment.comment" [ngModelOptions]="{standalone: true}" class="form-control" rows="5" placeholder="Comment"><br>
-                        </div>
-                        <div class="clearfix float-right">
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </form>
+                    <div *ngIf="!editClicked">
+                        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                            <h4 class="mb40 text-uppercase font500">Post a comment</h4>
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="this.newComment.comment" [ngModelOptions]="{standalone: true}" class="form-control" rows="5" placeholder="Comment"><br>
+                            </div>
+                            <div class="clearfix float-right">
+                                <button type="button" (click)="onSubmit('create')" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div *ngIf="editClicked">
+                        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                            <h4 class="mb40 text-uppercase font500">Edit comment</h4>
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="this.newComment.comment" [ngModelOptions]="{standalone: true}" class="form-control" rows="5" [(ngModel)]="editComment.comment"><br>
+                            </div>
+                            <div class="clearfix float-right">
+                                <button type="button" (click)="onSubmit('edit')" class="btn btn-primary btn-lg">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </article>
             <!-- post article-->

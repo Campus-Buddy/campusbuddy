@@ -3,7 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post';
 import { AuthService } from '../services/auth.service';
-import { Comment } from '../comment';
+import { Comment } from '../models/comment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-post',
@@ -24,12 +25,15 @@ export class ViewPostComponent implements OnInit {
   public newComment: Comment = {
     user_id: 0,
     post_id: 0,
-    comment: ""
+    comment: "",
+    comment_id: 0
   }
 
   public warning;
   public success = false;
-  public authorisation = false;
+  public authorisation: any = [ ];
+  public editClicked = false;
+  public editComment; // storing comment for editing
  
   public id;
   private _token: any;
@@ -40,12 +44,16 @@ export class ViewPostComponent implements OnInit {
   private getCommentedUser;
   private submitNewComment;
   private commentUserId;
+  private editableComment;
+  private deleteComment;
+  private getEdit;
   
 
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -109,14 +117,21 @@ export class ViewPostComponent implements OnInit {
         this.commentList.forEach(element => {
           if(element.post_id == this.postDetails.post_id){
             this.postComment.push(element);
+            this._token = this.auth.readToken();
+            if(element.user_id == this._token.userId){
+              this.authorisation[element.user_id] = true;
+         //     console.log(this.authorisation[element.user_id])
+            }
          //   console.log(this.postComment)
           }
           this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
             this.commentedUser[element.user_id] = data.profile_name;
           })
-          console.log(this.postComment);
+          //console.log(this.postComment);
         });
       })
+
+      
     })
 
     
@@ -125,15 +140,14 @@ export class ViewPostComponent implements OnInit {
     
   }
 
-  onSubmit(f: NgForm): void {
-    
-
-    this._token = this.auth.readToken();
+  onSubmit(f): void {
+    if(f == "create"){
+      this._token = this.auth.readToken();
     this.commentedUser = this._token.user_id;
     console.log('user', this._token);
     this.newComment.user_id = this._token.userId;
     this.newComment.post_id = this.postDetails.post_id;
-    console.log(this.newComment);
+   // console.log(this.newComment);
 
      this.submitNewComment = this.auth.newComment(this.newComment).subscribe(
        (success) => {
@@ -146,6 +160,38 @@ export class ViewPostComponent implements OnInit {
          this.warning = err.error.message;
        }
      );
+    }
+    if(f == "edit"){
+      console.log(this.editComment)
+      this.getEdit = this.auth.updateComment(this.editComment).subscribe(
+        (success) => {
+          this.openDialogue('Comment Updated!');
+        },
+        (err) => {
+          console.log(err);
+          this.openDialogue('There was an error.' + err);
+        }
+      );
+    }
+
+    
+  }
+
+  openDialogue(message: string) {
+    this._snackBar.open(message, 'x');
+  }
+
+  enableEditor(id: any){
+    this.editClicked = true;
+    
+    this.editableComment = this.auth.getCommentbyId(id).subscribe(data =>{
+      this.editComment = data;
+      console.log("clicked", this.editComment)
+    })
+  }
+
+  enableDelete(id: any){
+    this.deleteComment = this.auth.deleteComment(id).subscribe();
   }
 
 }
