@@ -1,24 +1,27 @@
 .card {
   align-items: center;
   height: inherit;
-  width: auto;
+  width: 100%;
   padding: 10px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 10px;
   margin: 10px;
 }
 
-.card-body{
+.card-body {
   height: fit-content;
 }
 
 .card-title {
   margin-top: 5px;
+  width: 100%;
 }
-.profile-img {
+.post-img {
   border: 3px black solid;
-  border-radius: 50%;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 275px;
+  width: 100%;
+  object-fit: cover;
 }
 .button-option {
   margin: 5px;
@@ -26,4 +29,5 @@
 
 .btn {
   margin: 5px;
+  border-radius: 50%;
 }

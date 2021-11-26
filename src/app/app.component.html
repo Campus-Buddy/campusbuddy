@@ -58,7 +58,7 @@
 
   .content {
     display: flex;
-    margin: 82px auto 32px;
+    margin: 40px auto 32px;
     padding: 0 16px;
     max-width: 1400px;
     flex-direction: column;
@@ -109,7 +109,11 @@
 
 <div class="navbar-container header">
   <mat-toolbar class="navbar header2" color="primary">
-    <a class="navbar-brand" matTooltip="Home" routerLink="/">
+    <a class="navbar-brand" matTooltip="Home" *ngIf="!_token" routerLink="/">
+      <img class="logo" src="../assets/logo2.png" />
+    </a>
+
+    <a class="navbar-brand" matTooltip="Home" *ngIf="_token" routerLink="/home">
       <img class="logo" src="../assets/logo2.png" />
     </a>
 
@@ -142,9 +146,12 @@
       yPosition="above"
       [overlapTrigger]="false"
     >
+      <a mat-menu-item routerLink="/home" >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
       <a mat-menu-item (click)="displayLogoutModal()">
         <mat-icon>exit_to_app</mat-icon>
-        <!-- Tie this into the ngIf there's a token -->
         <span>Log out</span>
       </a>
     </mat-menu>

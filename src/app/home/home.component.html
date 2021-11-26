@@ -1,62 +1,61 @@
 <div class="row">
   <div class="col-sm-3">
-   <app-user-card [username]="username"></app-user-card>
+    <app-user-card
+      [username]="userProfile.profile_name"
+      [age]="userProfile.age.toString()"
+      [id]="userProfile.user_id"
+      [image]="userProfile.img"
+      [buttons]="false"
+    ></app-user-card>
   </div>
   <div class="col-sm-9">
     <div class="row row-cols-2">
       <div class="col">
-        <div
-          class="card text-white bg-secondary border-dark mb-3 link-box"
-          routerLink="/findbuddy"
-        >
-          <div class="card-body">
+        <mat-card class="card text-white mb-3 link-box" routerLink="/findbuddy">
+          <mat-card-content class="card-body">
             <h5 class="card-title">Find Buddy</h5>
             <p class="card-text">
-              Looking to meet new buddies? View all buddies online and filter through by tags to meet individuals with similar interests!
+              Looking to meet new buddies? View all buddies online and filter
+              through by tags to meet individuals with similar interests!
             </p>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
       <div class="col">
-        <div
-          class="card text-white bg-secondary border-dark mb-3 link-box"
-          routerLink="/"
+        <mat-card
+          class="card text-white mb-3 link-box"
+          routerLink="/all-convos"
         >
-          <div class="card-body">
+          <mat-card-content class="card-body">
             <h5 class="card-title">All Convos</h5>
             <p class="card-text">
-              Join here to connect with other peers in a chat application. 
+              Join here to connect with other peers in a chat application.
             </p>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
       <div class="col">
-        <div
-          class="card text-white bg-secondary border-dark mb-3 link-box"
-          routerLink="/"
-        >
-          <div class="card-body">
+        <mat-card class="card text-white mb-3 link-box" routerLink="/all-posts">
+          <mat-card-content class="card-body">
             <h5 class="card-title">Bulletin Board</h5>
             <p class="card-text">
-              A place to create posts, and view other students' posts about anything you want!
+              A place to create posts, and view other students' posts about
+              anything you want!
             </p>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
       <div class="col">
-        <div
-          class="card text-white bg-secondary border-dark mb-3 link-box"
-          routerLink="/"
-        >
+        <mat-card class="card text-white mb-3 link-box" routerLink="/profile">
           <div class="card-body">
             <h5 class="card-title">Profile</h5>
             <p class="card-text">
-              View and edit your profile - customize it to connect with more people!
+              View and edit your profile - customize it to connect with more
+              people!
             </p>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
   </div>
 </div>
-

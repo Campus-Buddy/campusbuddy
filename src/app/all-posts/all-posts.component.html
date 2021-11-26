@@ -1,0 +1,57 @@
+<div class="upper_right">
+      <button
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/post']"
+        routerLinkActive="active"
+      > New Post
+      </button>
+      <button
+      category="mine"
+      mat-raised-button
+      class="myposts"
+      [routerLink]="['/all-posts', 'mine']"
+      routerLinkActive="active"
+    > My Posts
+    </button>
+</div>
+<div class="content">
+    <h2>Bulletin Board</h2>
+    <section>
+      <div class="example-button-row">
+        <button
+          category=""
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/all-posts']"
+          routerLinkActive="active"
+        > All
+        </button>
+        <button
+          *ngFor="let category of categoryList"
+          category="category.title"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/all-posts', category.title]"
+          routerLinkActive="active"
+        >
+          {{ category.title }}
+        </button>
+      </div>
+    </section>
+  
+    <hr />
+    <div class="row row-cols-2">
+      <div class="col-sm-5 card-box" *ngFor="let post of posts">
+        <app-post-card
+            [title]="post.title"
+            [details]="post.details"
+            [category_name]="post.category_name"
+            [date_created]="post.date_created"
+            [image]="post.picture"
+            [user_id]="post.user_id"
+        ></app-post-card>
+      </div>
+    </div>
+  </div>
+  

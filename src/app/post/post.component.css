@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
     font-family: 'Lato', sans-serif
 }
 
@@ -27,3 +28,92 @@ label {
     margin-left: 10px;
     margin-right: 10px
 }
+=======
+  font-family: "Lato", sans-serif;
+}
+
+:host {
+  width: 100%;
+  align-content: center;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 50%;
+  border: 2px grey solid;
+  padding: 3px;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+label {
+  color: rgb(51, 51, 51);
+}
+
+.btn-send {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  width: 80%;
+  margin-left: 3px;
+}
+
+.submit-div {
+  text-align: center;
+  margin: 10px;
+}
+
+.warning-text {
+  color: red;
+}
+
+/* CSS Styling for the button on hover of image container */
+/* STARTS HERE: */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin: auto;
+}
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+
+  border: double 5px lightseagreen;
+}
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 50%;
+}
+.imageContainer:hover .image {
+  opacity: 0.3;
+}
+.imageContainer:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #184e77;
+  color: white;
+  font-size: 12px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+/* ENDS HERE - For CSS of button on image container */
+>>>>>>> master

@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CenterblockComponent } from './components/centerblock/centerblock.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 
 //angular imports
 
@@ -42,8 +45,14 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './services/chat.service';
+<<<<<<< HEAD
 import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+=======
+import { AllConvosComponent } from './all-convos/all-convos.component';
+import { AllPostsComponent } from './all-posts/all-posts.component';
+import { PostComponent } from './post/post.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -64,8 +73,15 @@ import { ViewPostComponent } from './view-post/view-post.component';
     LogoutModalComponent,
     EditProfileComponent,
     ChatComponent,
+<<<<<<< HEAD
     PostComponent,
     ViewPostComponent
+=======
+    AllConvosComponent,
+    PostCardComponent,
+    AllPostsComponent,
+    PostComponent
+>>>>>>> master
   ],
   imports: [
     BrowserModule,
@@ -87,6 +103,8 @@ import { ViewPostComponent } from './view-post/view-post.component';
     FlexLayoutModule,
     FormsModule,
     MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     // NgbModule,
     NgMultiSelectDropDownModule.forRoot()
   ],

@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
           this.warning = "";
 
           localStorage.setItem('access_token', success.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+          });
         },
         (err) => {
           this.warning = err.error.message;
