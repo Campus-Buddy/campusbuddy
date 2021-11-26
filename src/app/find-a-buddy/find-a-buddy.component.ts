@@ -15,6 +15,7 @@ export class FindABuddyComponent implements OnInit {
   private sub3: Subscription = new Subscription();
   public tagList: Array<any>;
   private id: any;
+  private _token: any;
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -22,9 +23,12 @@ export class FindABuddyComponent implements OnInit {
 
   ngOnInit(): void {
     
-
+    this._token = this.auth.readToken();
     this.sub2 = this.auth.getAllProfiles().subscribe((data) => {
       this.users = data.rows;
+
+      const currentUserId = this.users.findIndex((user) => user.user_id == this._token.userId)
+      console.log("Current user: ", currentUserId)
       let newUsers = <any>[];
       if (this.id) {
         for (let user of this.users) {
@@ -34,6 +38,13 @@ export class FindABuddyComponent implements OnInit {
                 newUsers.push(user);
               }
             }
+          }
+          console.log("current user: ", user.user_id)
+          console.log("signed in user: ", this._token.userId)
+
+          if (user.user_id === this._token.userId){
+            console.log("the current user is:  ", JSON.stringify(user))
+            newUsers.splice(user);
           }
         }
         this.users = newUsers;
