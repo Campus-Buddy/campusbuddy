@@ -1,14 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <button mat-raised-button color="accent" routerLink="/home">
-        Cancel
-      </button>
+      <button mat-raised-button color="accent" routerLink="/home">Cancel</button>
     </div>
     <div class="col-md-6 saveButton">
-      <button mat-raised-button color="primary" (click)="saveNewValues()">
-        Save
-      </button>
+      <button mat-raised-button color="primary" (click)="saveNewValues()">Save</button>
     </div>
   </div>
   <div class="row">
@@ -46,25 +42,14 @@
   <div class="row">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Write about yourself</mat-label>
-      <textarea
-        matInput
-        placeholder="This is my biography"
-        [(ngModel)]="userProfile.biography"
-      ></textarea>
+      <textarea matInput placeholder="This is my biography" [(ngModel)]="userProfile.biography"></textarea>
     </mat-form-field>
   </div>
 
   <!-- Tag Drop down -->
   <div class="row">
-    <mat-select
-      [formControl]="tagSelection"
-      placeholder="Select Tags!"
-      multiple
-      [(ngModel)]="userProfile.tags"
-    >
-      <mat-option *ngFor="let tag of tagList" [value]="tag.tag_id">{{
-        tag.title
-      }}</mat-option>
+    <mat-select [formControl]="tagSelection" placeholder="Select Tags!" multiple [(ngModel)]="userProfile.tags">
+      <mat-option *ngFor="let tag of tagList" [value]="tag.tag_id">{{ tag.title }}</mat-option>
     </mat-select>
   </div>
 

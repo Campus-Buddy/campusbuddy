@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Subject, Subscription } from "rxjs";
+import { Subject, Subscription } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
-
   private socket; //: SocketIOClient.Socket; // The client instance of socket.io
   public getMessages: any;
   public usrename: any;
@@ -19,9 +18,9 @@ export class ChatService {
     this.socket = io.connect(this.url);
 
     this.socket.on('send-username', (username) => {
-      console.log("enter send username");
-          this.socket.emit(username); // send the new message
-        });
+      console.log('enter send username');
+      this.socket.emit(username); // send the new message
+    });
 
     this.socket.on('chat message', (msg) => {
       this.getMessages.next(msg); // send the new message
@@ -36,5 +35,4 @@ export class ChatService {
   sendMessage(msg) {
     this.socket.emit('chat message', msg);
   }
-
 }

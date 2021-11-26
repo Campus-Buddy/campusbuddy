@@ -1,17 +1,17 @@
 .content {
-    overflow-y:auto;
-    overflow-x: hidden;
-    text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
 }
 
 .card-box {
-    min-width: 18rem
+  min-width: 18rem;
 }
 
 .mat-raised-button {
-    margin: 5px;
+  margin: 5px;
 }
 
 .row {
-    justify-content: center;
+  justify-content: center;
 }

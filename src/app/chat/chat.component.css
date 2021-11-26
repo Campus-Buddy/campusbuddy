@@ -1,5 +1,5 @@
 body {
-    padding-bottom: 5%;
+  padding-bottom: 5%;
 }
 .full_card {
   background-color: white;
@@ -7,7 +7,7 @@ body {
   margin-left: -25%;
   display: grid;
   border-style: outset;
-  border-color: #73D0D3;
+  border-color: #73d0d3;
 }
 h1 {
   font-size: 170%;
@@ -17,11 +17,11 @@ h1 {
 }
 .input_div {
   display: flex;
-  background-color: #73D0D3;
+  background-color: #73d0d3;
   padding: 2%;
 }
 .input_bar div {
-    display: flex;
+  display: flex;
 }
 button {
   background-color: #184e77;
@@ -38,4 +38,3 @@ button:hover {
   border-style: inset;
   border-width: 0.1em;
 }
-

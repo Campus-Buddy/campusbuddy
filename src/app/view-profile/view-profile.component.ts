@@ -30,11 +30,7 @@ export class ViewProfileComponent implements OnInit {
   private id: any;
   public tagList: Array<any>;
 
-  constructor(
-    private auth: AuthService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -54,7 +50,6 @@ export class ViewProfileComponent implements OnInit {
         });
       }
     });
-
   }
 
   ngOnDestroy() {
