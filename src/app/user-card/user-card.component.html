@@ -1,7 +1,7 @@
 <!-- On click take the userId and open to profile -->
 <div class="card">
   <img
-    [src]="image || '../../assets/default_avatar.png' "
+    [src]="image || '../../assets/default_avatar.png'"
     class="card-img-top profile-img"
     alt="..."
     style="height: height"
@@ -14,11 +14,7 @@
 
   <div class="row" *ngIf="showTagList">
     <div class="col" *ngIf="tagList.length !== 0; else noTags">
-      <button
-        *ngFor="let tag of tagList"
-        type="button"
-        class="btn btn-secondary"
-      >
+      <button *ngFor="let tag of tagList" type="button" class="btn btn-secondary">
         {{ tag }}
       </button>
       &nbsp;
@@ -37,8 +33,6 @@
     >
       Profile
     </button>
-    <button *ngIf="buttons" mat-stroked-button class="button-option">
-      Message
-    </button>
+    <button *ngIf="buttons" mat-stroked-button class="button-option">Message</button>
   </div>
 </div>

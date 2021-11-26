@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-all-posts',
   templateUrl: './all-posts.component.html',
-  styleUrls: ['./all-posts.component.css']
+  styleUrls: ['./all-posts.component.css'],
 })
 export class AllPostsComponent implements OnInit {
   posts: Array<any> = [];
@@ -18,7 +18,7 @@ export class AllPostsComponent implements OnInit {
   private _token: any;
   usernames: Array<any> = [];
 
-  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -34,7 +34,7 @@ export class AllPostsComponent implements OnInit {
             newPosts.push(post);
           }
           if (this.category === 'mine') {
-            if(post.user_id == this._token.userId) {
+            if (post.user_id == this._token.userId) {
               newPosts.push(post);
             }
           }

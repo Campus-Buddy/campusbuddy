@@ -1,6 +1,6 @@
 <div class="card" [routerLink]="['/post', id]" routerLinkActive="active">
   <h5 class="card-title">
-    {{ title.length > 200 ? (title | slice: 0:20) + "..." : title }}
+    {{ title.length > 200 ? (title | slice: 0:20) + '...' : title }}
   </h5>
   <p>
     <span
@@ -9,11 +9,7 @@
     - {{ date_created | date }}
   </p>
   &nbsp;
-  <img
-    [src]="image || '../../assets/cover.png'"
-    class="card-img-top post-img"
-    alt="..."
-  />
+  <img [src]="image || '../../assets/cover.png'" class="card-img-top post-img" alt="..." />
 
   <div class="row">
     <div class="col">

@@ -21,8 +21,6 @@ export class FindABuddyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-
     this.sub2 = this.auth.getAllProfiles().subscribe((data) => {
       this.users = data.rows;
       let newUsers = <any>[];
@@ -43,7 +41,7 @@ export class FindABuddyComponent implements OnInit {
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    
+
     // Initialize subscription for tags
     this.sub3 = this.auth.getTags().subscribe((data) => {
       this.tagList = data.rows;

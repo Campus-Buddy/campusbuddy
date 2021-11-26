@@ -5,18 +5,8 @@
       <mat-error *ngIf="warning"> {{ warning }}</mat-error
       ><br />
       <mat-form-field class="full-width-input">
-        <input
-          matInput
-          placeholder="Email"
-          id="email"
-          name="email"
-          [(ngModel)]="user.email"
-          required
-          autofocus
-        />
-        <mat-error
-          >Please provide a valid registered email</mat-error
-        > </mat-form-field
+        <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="user.email" required autofocus />
+        <mat-error>Please provide a valid registered email</mat-error> </mat-form-field
       ><br />
       <mat-form-field class="full-width-input">
         <input
@@ -30,19 +20,14 @@
         />
         <mat-error>Please provide a valid password</mat-error> </mat-form-field
       ><br />
-      <button mat-raised-button
-              color="accent" type="submit">
+      <button mat-raised-button color="accent" type="submit">
         <mat-icon>login</mat-icon>
         <span ng-message when="false">&nbsp;&nbsp;&nbsp;Login</span>
       </button>
       <br />
       <br />
       <p>Don't have an account? Sign up!</p>
-      <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="['/register']"
-      >
+      <button mat-raised-button color="primary" [routerLink]="['/register']">
         <mat-icon>account_box</mat-icon>
         <span>&nbsp;&nbsp;&nbsp;Register</span>
       </button>
