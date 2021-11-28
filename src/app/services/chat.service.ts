@@ -9,7 +9,6 @@ export class ChatService {
 
   private socket; //: SocketIOClient.Socket; // The client instance of socket.io
   public getMessages: any;
-  public usrename: any;
 
   constructor() {
     this.getMessages = new Subject();
