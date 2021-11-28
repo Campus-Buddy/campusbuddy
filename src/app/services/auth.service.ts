@@ -17,10 +17,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
-  private headers = new HttpHeaders().set(
-    'x-access-token',
-    this.getToken()?.toString()
-  );
+  private headers = new HttpHeaders().set('x-access-token', this.getToken()?.toString());
   //environment.userAPIBase
   public getToken(): string {
     return localStorage.getItem('access_token')!; // making sure that the return is a STR and not null
@@ -44,13 +41,8 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    console.log(
-      this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user)
-    );
-    return this.http.post<any>(
-      `${environment.userAPIBase}/api/v1/users/login`,
-      user
-    );
+    console.log(this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user));
+    return this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user);
   }
 
   logout() {
@@ -62,28 +54,20 @@ export class AuthService {
   }
 
   getAllPosts() {
-    const headers = new HttpHeaders().set(
-      'x-access-token',
-      this.getToken().toString()
-    );
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
     return this.http.get<any>(`${environment.userAPIBase}/api/posts`, {
       headers: headers,
     });
   }
 
   getProfile(id: any): Observable<any> {
-    return this.http.get<Profile>(
-      `${environment.userAPIBase}/api/profiles/${id}`,
-      { headers: this.headers }
-    );
+    return this.http.get<Profile>(`${environment.userAPIBase}/api/profiles/${id}`, { headers: this.headers });
   }
 
   updateProfile(newInformation: UserProfile): Observable<any> {
-    return this.http.put<Profile>(
-      `${environment.userAPIBase}/api/profiles/${newInformation.user_id}`,
-      newInformation,
-      { headers: this.headers }
-    );
+    return this.http.put<Profile>(`${environment.userAPIBase}/api/profiles/${newInformation.user_id}`, newInformation, {
+      headers: this.headers,
+    });
   }
 
   getTags(): Observable<any> {
@@ -99,29 +83,19 @@ export class AuthService {
   }
 
   register(registerUser: RegisteredUser): Observable<any> {
-    return this.http.post<any>(
-      `${environment.userAPIBase}/api/v1/users`,
-      registerUser
-    );
+    return this.http.post<any>(`${environment.userAPIBase}/api/v1/users`, registerUser);
   }
-
 
   createPost(post: any): Observable<any> {
     return this.http.post<any>(`${environment.userAPIBase}/api/posts`, post);
   }
 
   updatePost(post: any): Observable<any> {
-    return this.http.put<any>(
-      `${environment.userAPIBase}/api/posts/${post.post_id}`,
-      post
-    );
+    return this.http.put<any>(`${environment.userAPIBase}/api/posts/${post.post_id}`, post);
   }
 
   getPost(id: any): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'x-access-token',
-      this.getToken().toString()
-    );
+    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
     return this.http.get<any>(`${environment.userAPIBase}/api/posts/${id}`, {
       headers: headers,
     });
@@ -131,7 +105,7 @@ export class AuthService {
     return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
   }
 
-  getPostCategory(id:any): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, {headers: this.headers});
+  getPostCategory(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, { headers: this.headers });
   }
 }

@@ -1,14 +1,14 @@
 .landing_button {
-    text-align: center;
-    border-radius: 10%;
-    margin: 10px 10px;
-    font-size: 20px;
-    font-weight: 500;
-    border: solid;
-    border-width: medium;
-    padding: 10px;
+  text-align: center;
+  border-radius: 10%;
+  margin: 10px 10px;
+  font-size: 20px;
+  font-weight: 500;
+  border: solid;
+  border-width: medium;
+  padding: 10px;
 }
 
 .landing_page {
-    text-align: center;
+  text-align: center;
 }

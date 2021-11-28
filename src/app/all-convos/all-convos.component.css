@@ -1,5 +1,5 @@
 .card {
-  border-block-color: #74B3E3;
+  border-block-color: #74b3e3;
   border-style: outset;
 }
 .mat-chip-list-stacked {
@@ -9,7 +9,7 @@
   background-color: #abe3e4;
 }
 .high_Card {
-  background-color: #73D0D3;
+  background-color: #73d0d3;
 }
 .high_Card:hover {
   background-color: lightseagreen;

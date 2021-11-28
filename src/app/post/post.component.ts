@@ -70,13 +70,11 @@ export class PostComponent implements OnInit {
       this.warnings.push('Please select a category.');
     }
     if (this.warnings.length === 0) {
-      this.categoryName = this.auth
-        .getPostCategory(this.currentPost.category_id)
-        .subscribe((category) => {
-          this.currentPost.category_name = category.title;
-          console.log('category name:', this.currentPost.category_name);
-          this.id ? this.updatePost() : this.createNewPost();
-        });
+      this.categoryName = this.auth.getPostCategory(this.currentPost.category_id).subscribe((category) => {
+        this.currentPost.category_name = category.title;
+        console.log('category name:', this.currentPost.category_name);
+        this.id ? this.updatePost() : this.createNewPost();
+      });
     }
   }
 
@@ -117,8 +115,7 @@ export class PostComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
-      this.currentPost.picture =
-        reader.result?.toString() || '../../assets/default_avatar.png';
+      this.currentPost.picture = reader.result?.toString() || '../../assets/default_avatar.png';
     };
   }
 

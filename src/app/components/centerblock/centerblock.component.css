@@ -21,10 +21,9 @@ img {
 body {
   overflow: hidden;
   width: 100%;
-  background-image: url("../../../assets/landingpage.jpg");
-  height: 87vh; 
+  background-image: url('../../../assets/landingpage.jpg');
+  height: 87vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
 }

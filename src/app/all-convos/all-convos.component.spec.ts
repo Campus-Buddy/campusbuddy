@@ -8,9 +8,8 @@ describe('AllConvosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllConvosComponent ]
-    })
-    .compileComponents();
+      declarations: [AllConvosComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

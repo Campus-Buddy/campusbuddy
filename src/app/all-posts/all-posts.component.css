@@ -1,22 +1,22 @@
 .content {
-    overflow-y:auto;
-    overflow-x: hidden;
-    text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
 }
 
 .myposts {
-    background-color:mediumseagreen;
-    color: white;
+  background-color: mediumseagreen;
+  color: white;
 }
 
 .card-box {
-    min-width: 18rem
+  min-width: 18rem;
 }
 
 .mat-raised-button {
-    margin: 5px;
+  margin: 5px;
 }
 
 .row {
-    justify-content: center;
+  justify-content: center;
 }
