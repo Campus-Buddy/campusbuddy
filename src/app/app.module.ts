@@ -45,14 +45,8 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from './services/chat.service';
-<<<<<<< HEAD
 import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
-=======
-import { AllConvosComponent } from './all-convos/all-convos.component';
-import { AllPostsComponent } from './all-posts/all-posts.component';
-import { PostComponent } from './post/post.component';
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -73,15 +67,9 @@ import { PostComponent } from './post/post.component';
     LogoutModalComponent,
     EditProfileComponent,
     ChatComponent,
-<<<<<<< HEAD
     PostComponent,
-    ViewPostComponent
-=======
-    AllConvosComponent,
     PostCardComponent,
-    AllPostsComponent,
-    PostComponent
->>>>>>> master
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
-<<<<<<< HEAD
 import { Comment } from '../models/comment';
-
-=======
 import { UserProfile } from '../user-profile';
->>>>>>> master
+
 
 const helper = new JwtHelperService();
 
@@ -110,7 +107,6 @@ export class AuthService {
     );
   }
 
-<<<<<<< HEAD
   createPost(post: any): Observable<any> {
     return this.http.post<any>(
       `${environment.userAPIBase}/api/posts`,
@@ -157,26 +153,10 @@ export class AuthService {
   }
   
   updateComment(comment: Comment): Observable<any>{
-=======
-
-  createPost(post: any): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}/api/posts`, post);
-  }
-
-  updatePost(post: any): Observable<any> {
-    return this.http.put<any>(
-      `${environment.userAPIBase}/api/posts/${post.post_id}`,
-      post
-    );
-  }
-
-  getPost(id: any): Observable<any> {
->>>>>>> master
     const headers = new HttpHeaders().set(
       'x-access-token',
       this.getToken().toString()
     );
-<<<<<<< HEAD
     return this.http.put<any>(
       `${environment.userAPIBase}/api/comments/${comment.comment_id}`, comment,
       { headers: headers }
@@ -199,18 +179,5 @@ export class AuthService {
       `${environment.userAPIBase}/api/comments`,
       comment
     );
-=======
-    return this.http.get<any>(`${environment.userAPIBase}/api/posts/${id}`, {
-      headers: headers,
-    });
-  }
-
-  getPostCategories(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
-  }
-
-  getPostCategory(id:any): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, {headers: this.headers});
->>>>>>> master
   }
 }
