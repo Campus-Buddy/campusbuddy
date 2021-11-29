@@ -32,7 +32,8 @@ export class ViewPostComponent implements OnInit {
 
   public warning;
   public success = false;
-  public authorisation: any = [ ];
+  public commentEditAuthorisation: any = [ ];
+  public postEditAuthorisation = false;
   public editClicked = false;
   public editComment; // storing comment for editing
  
@@ -106,6 +107,13 @@ export class ViewPostComponent implements OnInit {
       this.getDay(this.postDay);
       this.userId = this.postDetails.user_id;
       console.log(this.userId)
+
+      this._token = this.auth.readToken();
+      
+      if(this.postDetails.user_id == this._token.userId){
+        this.postEditAuthorisation = true;
+      }
+
       this.getUser = this.auth.getProfile(this.userId).subscribe((data) =>{
         this.userInfo = data;
         console.log(this.postDetails)       
@@ -120,8 +128,8 @@ export class ViewPostComponent implements OnInit {
             this.postComment.push(element);
             this._token = this.auth.readToken();
             if(element.user_id == this._token.userId){
-              this.authorisation[element.user_id] = true;
-         //     console.log(this.authorisation[element.user_id])
+              this.commentEditAuthorisation[element.user_id] = true;
+         //     console.log(this.commentEditAuthorisation[element.user_id])
             }
          //   console.log(this.postComment)
           }
@@ -146,7 +154,6 @@ export class ViewPostComponent implements OnInit {
     if(f == "create"){
       this._token = this.auth.readToken();
     this.commentedUser = this._token.user_id;
-    console.log('user', this._token);
     this.newComment.user_id = this._token.userId;
     this.newComment.post_id = this.postDetails.post_id;
    // console.log(this.newComment);

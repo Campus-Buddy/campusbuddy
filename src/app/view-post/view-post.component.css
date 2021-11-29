@@ -262,3 +262,10 @@ Template sidebar
 .media-body h5 a:hover {
     color: #4782d3;
 }
+
+#profile{
+    border-radius: 50%;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
