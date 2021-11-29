@@ -74,6 +74,8 @@ import { ViewPostComponent } from './view-post/view-post.component';
     AllPostsComponent,
     PostComponent,
     PostComponent,
+    PostComponent,
+    PostCardComponent,
     ViewPostComponent
   ],
   imports: [

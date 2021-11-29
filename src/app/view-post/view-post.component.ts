@@ -22,6 +22,7 @@ export class ViewPostComponent implements OnInit {
   public commentList: any = [ ];
   public postComment: any = [ ];
   public commentedUser: any = [ ];
+  public commentedUserImage: any = [ ];
   public newComment: Comment = {
     user_id: 0,
     post_id: 0,
@@ -126,6 +127,7 @@ export class ViewPostComponent implements OnInit {
           }
           this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
             this.commentedUser[element.user_id] = data.profile_name;
+            this.commentedUserImage[element.user_id] = data.img;
           })
           //console.log(this.postComment);
         });
@@ -153,11 +155,13 @@ export class ViewPostComponent implements OnInit {
        (success) => {
          this.success = true;
          this.warning = null;
+         location.reload();
        },
        (err) => {
          console.log(err);
          this.success = false;
          this.warning = err.error.message;
+         
        }
      );
     }
@@ -166,6 +170,7 @@ export class ViewPostComponent implements OnInit {
       this.getEdit = this.auth.updateComment(this.editComment).subscribe(
         (success) => {
           this.openDialogue('Comment Updated!');
+          location.reload();
         },
         (err) => {
           console.log(err);
