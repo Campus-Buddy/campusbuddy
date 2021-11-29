@@ -21,7 +21,6 @@ export class AuthService {
     'x-access-token',
     this.getToken()?.toString()
   );
-  //environment.userAPIBase
   public getToken(): string {
     return localStorage.getItem('access_token')!; // making sure that the return is a STR and not null
   }
@@ -45,10 +44,10 @@ export class AuthService {
 
   login(user: User): Observable<any> {
     console.log(
-      this.http.post<any>(`${environment.userAPIBase}/api/v1/users/login`, user)
+      this.http.post<any>(`${environment.userAPIBase}api/v1/users/login`, user)
     );
     return this.http.post<any>(
-      `${environment.userAPIBase}/api/v1/users/login`,
+      `${environment.userAPIBase}api/v1/users/login`,
       user
     );
   }
@@ -58,7 +57,7 @@ export class AuthService {
   }
 
   getAllProfiles() {
-    return this.http.get<any>(`${environment.userAPIBase}/api/profiles`);
+    return this.http.get<any>(`${environment.userAPIBase}api/profiles`);
   }
 
   getAllPosts() {
@@ -66,53 +65,53 @@ export class AuthService {
       'x-access-token',
       this.getToken().toString()
     );
-    return this.http.get<any>(`${environment.userAPIBase}/api/posts`, {
+    return this.http.get<any>(`${environment.userAPIBase}api/posts`, {
       headers: headers,
     });
   }
 
   getProfile(id: any): Observable<any> {
     return this.http.get<Profile>(
-      `${environment.userAPIBase}/api/profiles/${id}`,
+      `${environment.userAPIBase}api/profiles/${id}`,
       { headers: this.headers }
     );
   }
 
   updateProfile(newInformation: UserProfile): Observable<any> {
     return this.http.put<Profile>(
-      `${environment.userAPIBase}/api/profiles/${newInformation.user_id}`,
+      `${environment.userAPIBase}api/profiles/${newInformation.user_id}`,
       newInformation,
       { headers: this.headers }
     );
   }
 
   getTags(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/tags`);
+    return this.http.get<any>(`${environment.userAPIBase}api/tags`);
   }
 
   getTagById(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/tags/${id}`);
+    return this.http.get<any>(`${environment.userAPIBase}api/tags/${id}`);
   }
 
   getInstitutions(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/institutions`);
+    return this.http.get<any>(`${environment.userAPIBase}api/institutions`);
   }
 
   register(registerUser: RegisteredUser): Observable<any> {
     return this.http.post<any>(
-      `${environment.userAPIBase}/api/v1/users`,
+      `${environment.userAPIBase}api/v1/users`,
       registerUser
     );
   }
 
 
   createPost(post: any): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}/api/posts`, post);
+    return this.http.post<any>(`${environment.userAPIBase}api/posts`, post);
   }
 
   updatePost(post: any): Observable<any> {
     return this.http.put<any>(
-      `${environment.userAPIBase}/api/posts/${post.post_id}`,
+      `${environment.userAPIBase}api/posts/${post.post_id}`,
       post
     );
   }
@@ -122,16 +121,16 @@ export class AuthService {
       'x-access-token',
       this.getToken().toString()
     );
-    return this.http.get<any>(`${environment.userAPIBase}/api/posts/${id}`, {
+    return this.http.get<any>(`${environment.userAPIBase}api/posts/${id}`, {
       headers: headers,
     });
   }
 
   getPostCategories(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories`);
+    return this.http.get<any>(`${environment.userAPIBase}api/categories`);
   }
 
   getPostCategory(id:any): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}/api/categories/${id}`, {headers: this.headers});
+    return this.http.get<any>(`${environment.userAPIBase}api/categories/${id}`, {headers: this.headers});
   }
 }
