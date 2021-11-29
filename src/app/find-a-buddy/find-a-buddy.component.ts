@@ -28,7 +28,6 @@ export class FindABuddyComponent implements OnInit {
       this.users = data.rows;
 
       const currentUserId = this.users.findIndex((user) => user.user_id == this._token.userId)
-      console.log("Current user: ", currentUserId)
       let newUsers = <any>[];
       if (this.id) {
         for (let user of this.users) {
@@ -39,16 +38,21 @@ export class FindABuddyComponent implements OnInit {
               }
             }
           }
-          console.log("current user: ", user.user_id)
-          console.log("signed in user: ", this._token.userId)
-
           if (user.user_id === this._token.userId){
-            console.log("the current user is:  ", JSON.stringify(user))
             newUsers.splice(user);
           }
         }
-        this.users = newUsers;
       }
+      else {
+        for (let user of this.users) {
+          if (user.user_id === this._token.userId){
+          }
+          else {
+            newUsers.push(user);
+          }
+        }
+      }
+      this.users = newUsers;
     });
 
     this.sub = this.route.params.subscribe((params) => {
