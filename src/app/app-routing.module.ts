@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'post', component: PostComponent },
   { path: 'post/:id', component: PostComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'post', component: PostComponent},
-  { path: 'post/:id', component: PostComponent},
+  { path: 'post/create', component: PostComponent},
+  { path: 'post/edit/:id', component: PostComponent},
   {path: 'viewpost/:id', component: ViewPostComponent}
 ];
 
