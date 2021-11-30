@@ -16,7 +16,6 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 
-
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
@@ -33,12 +32,10 @@ const routes: Routes = [
   { path: 'all-convos', component: AllConvosComponent },
   { path: 'all-posts', component: AllPostsComponent, canActivate: [GuardAuthService] },
   { path: 'all-posts/:category', component: AllPostsComponent, canActivate: [GuardAuthService] },
-  { path: 'post', component: PostComponent },
-  { path: 'post/:id', component: PostComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'post/create', component: PostComponent},
-  { path: 'post/edit/:id', component: PostComponent},
-  {path: 'viewpost/:id', component: ViewPostComponent}
+  { path: 'post/create', component: PostComponent },
+  { path: 'post/edit/:id', component: PostComponent },
+  { path: 'post/:id', component: ViewPostComponent },
 ];
 
 @NgModule({
