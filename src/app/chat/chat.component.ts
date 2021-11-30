@@ -7,10 +7,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
-
   private getMessagesSub: any;
   messages: string[] = [];
   username: any;
@@ -19,7 +18,7 @@ export class ChatComponent implements OnInit {
   private sub: Subscription = new Subscription();
   private sub2: Subscription = new Subscription();
 
-  constructor(private chatService: ChatService, private auth: AuthService, private router: Router) { }
+  constructor(private chatService: ChatService, private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this._token = this.auth.readToken();
@@ -32,16 +31,14 @@ export class ChatComponent implements OnInit {
     this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
       this.messages.push(data);
     });
-
   }
 
   sendMessage() {
     this.chatService.sendMessage(this.currentMessage);
-    this.currentMessage = "";
+    this.currentMessage = '';
   }
 
   ngOnDestroy() {
     this.getMessagesSub.unsubscribe();
   }
-
 }

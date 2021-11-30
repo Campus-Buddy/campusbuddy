@@ -5,9 +5,9 @@ mat-card {
   border-style: outset;
   border-color: lightseagreen;
 }
-  mat-card h2 {
-    letter-spacing: 0.2em;
-  }
+mat-card h2 {
+  letter-spacing: 0.2em;
+}
 p {
   color: #37444d;
 }
@@ -16,11 +16,10 @@ mat-form-field {
   display: block;
 }
 
-.form_card{
-    width: 30em;
-    padding: 5%;
-    padding-left: 10%;
-    padding-right: 10%;
-    font-weight: 600;
+.form_card {
+  width: 30em;
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-weight: 600;
 }
-

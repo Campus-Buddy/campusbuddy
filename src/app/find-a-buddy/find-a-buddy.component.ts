@@ -26,6 +26,7 @@ export class FindABuddyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this._token = this.auth.readToken();
     this.sub2 = this.auth.getAllProfiles().subscribe((data) => {
       this.users = data.rows;

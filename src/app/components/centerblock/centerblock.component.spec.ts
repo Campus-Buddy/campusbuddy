@@ -8,9 +8,8 @@ describe('CenterblockComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CenterblockComponent ]
-    })
-    .compileComponents();
+      declarations: [CenterblockComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

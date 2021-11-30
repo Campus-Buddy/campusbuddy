@@ -2,17 +2,19 @@
 Thank you for sending the PR!
 PLEASE FILL OUT THE FOLLOWING TEMPLATE to help your the reviewer test exactly the scope of the PR will entail.
 -->
+
 Please check the type of change your PR introduces:
+
 - [ ] Bugfix
 - [ ] Feature
 - [ ] Code style update (formatting, renaming)
 - [ ] Refactoring (no functional changes, no api changes)
 - [ ] Build related changes
 - [ ] Documentation content changes
-- [ ] Other (please describe): 
-
+- [ ] Other (please describe):
 
 ## What is being updated:
+
 <!--
     Example:
     - Created '...'
@@ -31,7 +33,7 @@ Please check the type of change your PR introduces:
     - See error
 -->
 
-_Note: Please test this on Chrome and Firefox.
+\_Note: Please test this on Chrome and Firefox.
 
 ## Scope of the work
 

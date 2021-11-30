@@ -17,17 +17,9 @@
           <br />
           <div class="row">
             <br />
-            <b
-              >{{ currentProfile.profile_name }},&nbsp;{{
-                currentProfile.age
-              }}</b
-            >
+            <b>{{ currentProfile.profile_name }},&nbsp;{{ currentProfile.age }}</b>
             <div class="col">
-              <button
-                *ngFor="let tag of tagList"
-                type="button"
-                class="btn btn-secondary"
-              >
+              <button *ngFor="let tag of tagList" type="button" class="btn btn-secondary">
                 {{ tag }}
               </button>
               &nbsp;
@@ -42,8 +34,7 @@
         <div class="col"></div>
         <div class="col-6">
           <div class="rounded-pill">
-            <button type="button" class="btn btn-dark">Message</button> &nbsp;
-            &nbsp;
+            <button type="button" class="btn btn-dark">Message</button> &nbsp; &nbsp;
             <button type="button" class="btn btn-dark">Report</button>
             &nbsp;&nbsp;
           </div>
@@ -54,14 +45,9 @@
         <br />
       </div>
       <div class="row">
-        <textarea
-          class="form-control"
-          id="bioTextArea"
-          readonly
-          placeholder="Bio"
-          rows="8"
-          >{{ currentProfile.biography }}</textarea
-        >
+        <textarea class="form-control" id="bioTextArea" readonly placeholder="Bio" rows="8">{{
+          currentProfile.biography
+        }}</textarea>
       </div>
     </div>
   </div>

@@ -77,8 +77,7 @@ export class EditProfileComponent implements OnInit {
 
     reader.onload = (_event) => {
       this.warning = '';
-      this.userProfile.img =
-        reader.result?.toString() || '../../assets/default_avatar.png';
+      this.userProfile.img = reader.result?.toString() || '../../assets/default_avatar.png';
     };
   }
 
