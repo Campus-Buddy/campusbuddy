@@ -6,7 +6,6 @@
       <button
         id="0"
         mat-raised-button
-        color="primary"
         [routerLink]="['/findbuddy']"
         routerLinkActive="active"
       > All
@@ -15,7 +14,6 @@
         *ngFor="let tag of tagList"
         id="tag.tag_id"
         mat-raised-button
-        color="primary"
         [routerLink]="['/findbuddy', tag.tag_id]"
         routerLinkActive="active"
       >
