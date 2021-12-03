@@ -54,7 +54,6 @@ import { DeletePostComponent } from './components/delete-post/delete-post.compon
 import { Chat2Component } from './chat2/chat2.component';
 import { Chat3Component } from './chat3/chat3.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +77,6 @@ import { Chat3Component } from './chat3/chat3.component';
     PostCardComponent,
     AllPostsComponent,
     PostComponent,
-    viewAPost,
     PostCardComponent,
     ViewPostComponent,
     NotFoundComponent,

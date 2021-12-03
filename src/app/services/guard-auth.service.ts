@@ -10,7 +10,7 @@ export class GuardAuthService implements CanActivate {
 
   canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/loading-page']);
+      this.router.navigate(['/landing-page']);
       return false;
     }
     return true;

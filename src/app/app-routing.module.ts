@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
-  { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [GuardAuthService] },
   { path: 'about', component: AboutComponent },
   { path: 'contactus', component: ContactusComponent },
