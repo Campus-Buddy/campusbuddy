@@ -10,6 +10,8 @@ import { FindABuddyComponent } from './find-a-buddy/find-a-buddy.component';
 import { GuardAuthService } from './services/guard-auth.service';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ChatComponent } from './chat/chat.component';
+import { Chat2Component } from './chat2/chat2.component';
+import { Chat3Component } from './chat3/chat3.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
@@ -30,6 +32,8 @@ const routes: Routes = [
   { path: 'profile', component: EditProfileComponent, canActivate: [GuardAuthService], pathMatch: 'full' },
   { path: 'profile/:id', component: ViewProfileComponent, canActivate: [GuardAuthService] },
   { path: 'chat', component: ChatComponent, canActivate: [GuardAuthService] },
+  { path: 'chat2', component: Chat2Component, canActivate: [GuardAuthService] },
+  { path: 'chat3', component: Chat3Component, canActivate: [GuardAuthService] },
   { path: 'all-convos', component: AllConvosComponent },
   { path: 'all-posts', component: AllPostsComponent, canActivate: [GuardAuthService] },
   { path: 'all-posts/:category', component: AllPostsComponent, canActivate: [GuardAuthService] },

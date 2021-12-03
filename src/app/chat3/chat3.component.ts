@@ -5,11 +5,11 @@ import { ChatService } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
+  selector: 'app-chat3',
+  templateUrl: './chat3.component.html',
+  styleUrls: ['./chat3.component.css'],
 })
-export class ChatComponent implements OnInit {
+export class Chat3Component implements OnInit {
   private getMessagesSub: any;
   messages: string[] = [];
   username: any;
@@ -24,16 +24,16 @@ export class ChatComponent implements OnInit {
     this._token = this.auth.readToken();
     this.sub2 = this.auth.getProfile(this._token.userId).subscribe((data) => {
       this.username = data.profile_name;
-      this.chatService.sendUsername(this.username);
+      this.chatService.sendUsername3(this.username);
     });
 
-    this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
+    this.getMessagesSub = this.chatService.getMessages3.subscribe((data) => {
       this.messages.push(data);
     });
   }
 
-  sendMessage() {
-    this.chatService.sendMessage(this.currentMessage);
+  sendMessageThree() {
+    this.chatService.sendMessageThree(this.currentMessage);
     this.currentMessage = '';
   }
 

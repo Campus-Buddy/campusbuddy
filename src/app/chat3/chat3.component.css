@@ -1,12 +1,6 @@
 :host {
   width: 100%;
 }
-body {
-  position: relative;
-  background-color: #184e774b;
-  padding: 2%;
-  align-items: center;
-}
 .full {
   overflow: hidden;
   position: relative;
@@ -22,6 +16,14 @@ body {
   width: 100%;
   height: auto;
 }
+body {
+  position: relative;
+  background-color: #184e774b;
+  padding: 2%;
+  align-items: center;
+  /* background-image: url('https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg?cs=srgb&dl=pexels-pixabay-159775.jpg&fm=jpg');
+    background-size:cover; */
+}
 .full_card {
   margin: auto;
   margin-top: 2%;
@@ -35,7 +37,7 @@ h1 {
   font-size: 170%;
   color: #184e77;
   padding: 0.3%;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.1em;
 }
 .input_div {
   display: flex;

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <div class="full">
-    <img class="background_img" src="../../assets/landingpage.jpg" />
-    <body>
+    <img
+      class="background_img"
+      src="https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg?cs=srgb&dl=pexels-pixabay-159775.jpg&fm=jpg"
+    />
+    <body class="body">
       <mat-card class="full_card">
-        <h1><i>The General</i></h1>
+        <h1><i>The Study Room</i></h1>
         <mat-card>
           <div class="well" style="height: 300px; overflow-y: scroll; margin-top: 5px">
             <div *ngFor="let message of messages">{{ message }}</div>
           </div>
-          <form (ngSubmit)="sendMessage()">
+          <form (ngSubmit)="sendMessageTwo()">
             <div class="input_div">
               <input type="text" name="currentMessage" class="form-control" [(ngModel)]="currentMessage" />
               <button mat-raised-button type="submit" class="btn btn-primary">Send</button>

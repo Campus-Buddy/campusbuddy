@@ -51,6 +51,9 @@ import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
+import { Chat2Component } from './chat2/chat2.component';
+import { Chat3Component } from './chat3/chat3.component';
+
 
 @NgModule({
   declarations: [
@@ -75,12 +78,13 @@ import { DeletePostComponent } from './components/delete-post/delete-post.compon
     PostCardComponent,
     AllPostsComponent,
     PostComponent,
-    PostComponent,
-    PostComponent,
+    viewAPost,
     PostCardComponent,
     ViewPostComponent,
     NotFoundComponent,
     DeletePostComponent,
+    Chat2Component,
+    Chat3Component,
   ],
   imports: [
     BrowserModule,
