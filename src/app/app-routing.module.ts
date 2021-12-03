@@ -15,6 +15,7 @@ import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -36,6 +37,8 @@ const routes: Routes = [
   { path: 'post/create', component: PostComponent },
   { path: 'post/edit/:id', component: PostComponent },
   { path: 'post/:id', component: ViewPostComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

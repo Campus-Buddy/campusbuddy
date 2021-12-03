@@ -17,11 +17,7 @@ export class AppComponent {
   public username: any;
   private sub: Subscription = new Subscription();
 
-  constructor(private auth: AuthService, private router: Router, private modalService: NgbModal) {
-    // if(auth.getToken()){
-    //   router.navigate(['home']);
-    // }
-  }
+  constructor(private auth: AuthService, private router: Router, private modalService: NgbModal) {}
 
   displayLogoutModal() {
     this.modalService.open(LogoutModalComponent);
@@ -33,8 +29,6 @@ export class AppComponent {
         this._token = this.auth.readToken();
         // get the user information and store it
         this.sub = this.auth.getProfile(this._token.userId).subscribe((data) => {
-          console.log('data', data.toString());
-        //  console.log("data", data.toString())
           this.username = data.profile_name;
         });
       }

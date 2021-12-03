@@ -49,6 +49,8 @@ import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DeletePostComponent } from './components/delete-post/delete-post.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { ViewPostComponent } from './view-post/view-post.component';
     PostComponent,
     PostComponent,
     PostCardComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    NotFoundComponent,
+    DeletePostComponent,
   ],
   imports: [
     BrowserModule,

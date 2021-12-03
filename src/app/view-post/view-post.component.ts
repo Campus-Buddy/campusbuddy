@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Comment } from '../models/comment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeletePostComponent } from '../components/delete-post/delete-post.component';
 
 @Component({
   selector: 'app-view-post',
@@ -11,15 +14,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ViewPostComponent implements OnInit {
   public postDetails;
-  public postDate;
   public postDay;
-  public dayString;
   public userInfo;
   public userId;
   public commentList: Array<any> = [];
-  public postComment: any = [];
-  public commentedUser: any = [];
-  public commentedUserImage: any = [];
   public newComment: Comment = {
     user_id: 0,
     post_id: 0,
@@ -30,8 +28,7 @@ export class ViewPostComponent implements OnInit {
   public nComment;
   public warning;
   public success = false;
-  public commentEditAuthorisation: any = [];
-  public postEditAuthorisation = false;
+  public postEditAuthorisation: boolean = false;
   public editClicked = false;
   public editComment; // storing comment for editing
 
@@ -39,16 +36,14 @@ export class ViewPostComponent implements OnInit {
   private _token: any;
 
   // Subscriptions
-  private sub;
-  private getPost;
-  private getUser;
-  private getComment;
-  private getCommentedUser;
-  private submitNewComment;
-  private commentUserId;
-  private editableComment;
-  private deleteCommentSubscription;
-  private getEdit;
+  private sub: Subscription = new Subscription();
+  private getPost: Subscription = new Subscription();
+  private getUser: Subscription = new Subscription();
+  private getComment: Subscription = new Subscription();
+  private getCommentedUser: Subscription = new Subscription();
+  private submitNewComment: Subscription = new Subscription();
+  private deleteCommentSubscription: Subscription = new Subscription();
+  private getEdit: Subscription = new Subscription();
 
   readMode = true;
   @ViewChild('editCommentValue') editCommentValue: ElementRef;
@@ -57,7 +52,8 @@ export class ViewPostComponent implements OnInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private modalService: NgbModal
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -80,7 +76,7 @@ export class ViewPostComponent implements OnInit {
       this._token = this.auth.readToken();
 
       // Sets the authorization for if a user can edit a post.
-      // this.postEditAuthorisation = this.postDetails.user_id == this._token.userId;
+      this.postEditAuthorisation = this.postDetails.user_id == this._token.userId;
 
       // Get user details for each post
       this.getUser = this.auth.getProfile(this.userId).subscribe((data) => {
@@ -123,12 +119,12 @@ export class ViewPostComponent implements OnInit {
         this.commentList[commentIndex].editMode = false;
       },
       (err) => {
-        console.log(err);
         this.openDialogue('There was an error.' + err);
       }
     );
   }
 
+  // Adds new comment to the page and reloads
   onSubmit(): void {
     this.newComment.user_id = this._token.userId;
     this.newComment.post_id = this.id;
@@ -141,7 +137,6 @@ export class ViewPostComponent implements OnInit {
         location.reload();
       },
       (err) => {
-        console.log(err);
         this.success = false;
         this.warning = err.error.message;
       }
@@ -164,17 +159,32 @@ export class ViewPostComponent implements OnInit {
     // mark the one id as editmode to show input field
     const editComment = this.getCommentIndex(id);
     this.commentList[editComment].editMode = true;
-    this.editClicked = true;
   }
 
-  deletePost(id?: any) {}
+  confirmDeletePost() {
+    const mValue = this.modalService.open(DeletePostComponent);
+
+    mValue.dismissed.subscribe((data) => {
+      if (data) {
+        this.auth.deletePost(this.id).subscribe();
+        this.router.navigate(['/all-posts']);
+      }
+    });
+  }
 
   deleteComment(id: any) {
     this.deleteCommentSubscription = this.auth.deleteComment(id).subscribe();
     this.commentList.splice(this.getCommentIndex(id));
   }
 
-  enableDelete(id: any) {
-    this.deleteCommentSubscription = this.auth.deleteComment(id).subscribe();
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.getPost.unsubscribe();
+    this.getUser.unsubscribe();
+    this.getComment.unsubscribe();
+    this.getCommentedUser.unsubscribe();
+    this.submitNewComment.unsubscribe();
+    this.deleteCommentSubscription.unsubscribe();
+    this.getEdit.unsubscribe();
   }
 }

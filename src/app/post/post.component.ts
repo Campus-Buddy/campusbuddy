@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,11 +15,13 @@ export class PostComponent implements OnInit {
   private sub: Subscription = new Subscription(); //grab the params id
   private sub2: Subscription = new Subscription(); //grab post id if there is params id
   private sub3: Subscription = new Subscription(); //grab categories for post
+  private sub4: Subscription = new Subscription(); //grab categories for post
   private submitPageSub: Subscription = new Subscription(); // submit post or put request
   private categoryName: Subscription = new Subscription(); // gets the category name before we push the data to API.
   public id; // stores id from params
   public categories: Array<any> = []; // stores categories from get request
   public warnings: Array<string> = [];
+  private _token: any;
 
   constructor(
     private auth: AuthService,
@@ -37,10 +39,15 @@ export class PostComponent implements OnInit {
       this.id = params['id'];
     });
 
+    this._token = this.auth.readToken();
+
     if (this.id) {
       this.sub2 = this.auth.getPost(this.id).subscribe((data) => {
+        // CHECKS to see if user is authorized for this page, otherwise redirects to home.
+        if (data.user_id != this._token.userId) {
+          this.router.navigate(['/home']);
+        }
         this.currentPost = data;
-        console.log(this.currentPost);
       });
     } else {
       this.currentPost = {
@@ -72,7 +79,6 @@ export class PostComponent implements OnInit {
     if (this.warnings.length === 0) {
       this.categoryName = this.auth.getPostCategory(this.currentPost.category_id).subscribe((category) => {
         this.currentPost.category_name = category.title;
-        console.log('category name:', this.currentPost.category_name);
         this.id ? this.updatePost() : this.createNewPost();
       });
     }
@@ -85,7 +91,6 @@ export class PostComponent implements OnInit {
         this.openDialogue('Changes were saved!');
       },
       (err) => {
-        console.log(err);
         this.openDialogue('There was an error.');
       }
     );
@@ -98,7 +103,6 @@ export class PostComponent implements OnInit {
         this.openDialogue('Changes were saved!');
       },
       (err) => {
-        console.log(err);
         this.openDialogue('There was an error.');
       }
     );
