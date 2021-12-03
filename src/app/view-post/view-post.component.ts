@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from '../post';
 import { AuthService } from '../services/auth.service';
 import { Comment } from '../models/comment';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,36 +7,38 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-view-post',
   templateUrl: './view-post.component.html',
-  styleUrls: ['./view-post.component.css']
+  styleUrls: ['./view-post.component.css'],
 })
 export class ViewPostComponent implements OnInit {
-
   public postDetails;
   public postDate;
   public postDay;
   public dayString;
   public userInfo;
   public userId;
-  public commentList: any = [ ];
-  public postComment: any = [ ];
-  public commentedUser: any = [ ];
-  public commentedUserImage: any = [ ];
+  public commentList: Array<any> = [];
+  public postComment: any = [];
+  public commentedUser: any = [];
+  public commentedUserImage: any = [];
   public newComment: Comment = {
     user_id: 0,
     post_id: 0,
-    comment: "",
-    comment_id: 0
-  }
+    comment: '',
+    comment_id: 0,
+  };
 
+  public nComment;
   public warning;
   public success = false;
-  public commentEditAuthorisation: any = [ ];
+  public commentEditAuthorisation: any = [];
   public postEditAuthorisation = false;
   public editClicked = false;
   public editComment; // storing comment for editing
- 
+
   public id;
   private _token: any;
+
+  // Subscriptions
   private sub;
   private getPost;
   private getUser;
@@ -47,163 +47,134 @@ export class ViewPostComponent implements OnInit {
   private submitNewComment;
   private commentUserId;
   private editableComment;
-  private deleteComment;
+  private deleteCommentSubscription;
   private getEdit;
-  
+
+  readMode = true;
+  @ViewChild('editCommentValue') editCommentValue: ElementRef;
 
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private _snackBar: MatSnackBar
-  ) { 
+  ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  getDay(day: any){
-    switch(day){
-      case 1:{
-        this.dayString = "Monday";
-        break;
-      }
-      case 2:{
-        this.dayString = "Tuesday";
-        break;
-      }
-      case 3:{
-        this.dayString = "Wednesday";
-        break;
-      }
-      case 4:{
-        this.dayString = "Thursday";
-        break;
-      }
-      case 5:{
-        this.dayString = "Friday";
-        break;
-      }
-      case 6:{
-        this.dayString = "Saturday";
-        break;
-      }
-      case 7:{
-        this.dayString = "Sunday";
-        break;
-      }
-      
-    }
-  }
-
-  ngOnInit(): void {  
-
+  ngOnInit(): void {
+    // Listen to the route parametre for the post id
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
 
-    this.getPost = this.auth.getPost(this.id).subscribe(data =>{
-      this.postDetails = data;         
-      this.postDate = new Date(this.postDetails.date_created).toLocaleDateString("en-us");
-      this.postDay = new Date(this.postDetails.date_created).getDay();
-      this.getDay(this.postDay);
+    // Get the post details
+    this.getPost = this.auth.getPost(this.id).subscribe((data) => {
+      // Gets all post details
+      this.postDetails = data;
+
+      this.postDay = new Date(this.postDetails.date_created).toUTCString();
+
       this.userId = this.postDetails.user_id;
-      console.log(this.userId)
 
       this._token = this.auth.readToken();
-      
-      if(this.postDetails.user_id == this._token.userId){
-        this.postEditAuthorisation = true;
-      }
 
-      this.getUser = this.auth.getProfile(this.userId).subscribe((data) =>{
+      // Sets the authorization for if a user can edit a post.
+      // this.postEditAuthorisation = this.postDetails.user_id == this._token.userId;
+
+      // Get user details for each post
+      this.getUser = this.auth.getProfile(this.userId).subscribe((data) => {
         this.userInfo = data;
-        console.log(this.postDetails)       
-      })
+      });
 
-      this.getComment = this.auth.getComment().subscribe(data =>{
+      // Get all comments for the post
+      this.getComment = this.auth.getCommentByPostId(this.postDetails.post_id).subscribe((data) => {
         this.commentList = data.rows;
-//        console.log(this.commentList);
-        var i =0;
-        this.commentList.forEach(element => {
-          if(element.post_id == this.postDetails.post_id){
-            this.postComment.push(element);
-            this._token = this.auth.readToken();
-            if(element.user_id == this._token.userId){
-              this.commentEditAuthorisation[element.user_id] = true;
-         //     console.log(this.commentEditAuthorisation[element.user_id])
-            }
-         //   console.log(this.postComment)
-          }
-          this.getCommentedUser = this.auth.getProfile(element.user_id).subscribe(data =>{
-            this.commentedUser[element.user_id] = data.profile_name;
-            this.commentedUserImage[element.user_id] = data.img;
-          })
-          //console.log(this.postComment);
+
+        // Sorts the comments by their dates.
+        this.commentList.sort((a, b) => {
+          return a.date.localeCompare(b.date);
         });
-      })
 
-      
-    })
-
-    
-
-    
-    
+        // Get user name and user image for the comment section
+        for (let comment of this.commentList) {
+          this.getCommentedUser = this.auth.getProfile(comment.user_id).subscribe((profile) => {
+            comment.profile_name = profile.profile_name;
+            comment.image = profile.img;
+          });
+        }
+      });
+    });
   }
 
-  onSubmit(f): void {
-    if(f == "create"){
-      this._token = this.auth.readToken();
-    this.commentedUser = this._token.user_id;
+  // will get the index from the list by the use of comment_id
+  getCommentIndex(id: number) {
+    return this.commentList.findIndex((comment) => comment.comment_id == id);
+  }
+
+  // Takes the comment from the input field using viewchild, and then sends the request to the API
+  updateComment(id: any) {
+    const commentIndex = this.getCommentIndex(id);
+    this.commentList[commentIndex].comment = this.editCommentValue.nativeElement.value;
+
+    this.getEdit = this.auth.updateComment(this.commentList[commentIndex]).subscribe(
+      (success) => {
+        this.openDialogue('Comment Updated!');
+        this.commentList[commentIndex].editMode = false;
+      },
+      (err) => {
+        console.log(err);
+        this.openDialogue('There was an error.' + err);
+      }
+    );
+  }
+
+  onSubmit(): void {
     this.newComment.user_id = this._token.userId;
-    this.newComment.post_id = this.postDetails.post_id;
-   // console.log(this.newComment);
+    this.newComment.post_id = this.id;
 
-     this.submitNewComment = this.auth.newComment(this.newComment).subscribe(
-       (success) => {
-         this.success = true;
-         this.warning = null;
-         location.reload();
-       },
-       (err) => {
-         console.log(err);
-         this.success = false;
-         this.warning = err.error.message;
-         
-       }
-     );
-    }
-    if(f == "edit"){
-      console.log(this.editComment)
-      this.getEdit = this.auth.updateComment(this.editComment).subscribe(
-        (success) => {
-          this.openDialogue('Comment Updated!');
-          location.reload();
-        },
-        (err) => {
-          console.log(err);
-          this.openDialogue('There was an error.' + err);
-        }
-      );
-    }
-
-    
+    this.submitNewComment = this.auth.createComment(this.newComment).subscribe(
+      (success) => {
+        this.success = true;
+        this.warning = null;
+        // Need to reload and get back to place where we were
+        location.reload();
+      },
+      (err) => {
+        console.log(err);
+        this.success = false;
+        this.warning = err.error.message;
+      }
+    );
   }
 
   openDialogue(message: string) {
     this._snackBar.open(message, 'x');
   }
 
-  enableEditor(id: any){
+  // Takes a value, and returns boolean if the user is authorized
+  showEditDelete(id: number): boolean {
+    return this._token.userId == id;
+  }
+
+  enableEditor(id: any) {
+    // Mark all comments as not edit mode
+    this.commentList.forEach((comment) => (comment.editMode = false));
+
+    // mark the one id as editmode to show input field
+    const editComment = this.getCommentIndex(id);
+    this.commentList[editComment].editMode = true;
     this.editClicked = true;
-    
-    this.editableComment = this.auth.getCommentbyId(id).subscribe(data =>{
-      this.editComment = data;
-      console.log("clicked", this.editComment)
-    })
   }
 
-  enableDelete(id: any){
-    this.deleteComment = this.auth.deleteComment(id).subscribe();
+  deletePost(id?: any) {}
+
+  deleteComment(id: any) {
+    this.deleteCommentSubscription = this.auth.deleteComment(id).subscribe();
+    this.commentList.splice(this.getCommentIndex(id));
   }
 
+  enableDelete(id: any) {
+    this.deleteCommentSubscription = this.auth.deleteComment(id).subscribe();
+  }
 }

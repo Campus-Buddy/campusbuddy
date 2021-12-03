@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post-card.component.css'],
 })
 export class PostCardComponent implements OnInit {
-  @Input() id = '1';
+  @Input() id = '';
   @Input() image: '';
   @Input() details: '';
   @Input() title: '';
