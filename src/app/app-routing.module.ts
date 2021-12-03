@@ -16,10 +16,12 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
+import { ViewPostComponent } from './view-post/view-post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
-  { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [GuardAuthService] },
   { path: 'about', component: AboutComponent },
   { path: 'contactus', component: ContactusComponent },
@@ -35,8 +37,12 @@ const routes: Routes = [
   { path: 'all-convos', component: AllConvosComponent },
   { path: 'all-posts', component: AllPostsComponent, canActivate: [GuardAuthService] },
   { path: 'all-posts/:category', component: AllPostsComponent, canActivate: [GuardAuthService] },
-  { path: 'post', component: PostComponent },
-  { path: 'post/:id', component: PostComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: 'post/create', component: PostComponent },
+  { path: 'post/edit/:id', component: PostComponent },
+  { path: 'post/:id', component: ViewPostComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

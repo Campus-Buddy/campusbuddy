@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -8,6 +8,9 @@ import { User, Profile } from '../models/User';
 import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
 import { UserProfile } from '../user-profile';
+import { Comment } from '../models/comment';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -15,7 +18,7 @@ const helper = new JwtHelperService();
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private router: Router) {}
 
   // Grabs the current token and sets it into the header for the API Requests
   private headers = new HttpHeaders().set('x-access-token', this.getToken()?.toString());
@@ -36,12 +39,20 @@ export class AuthService {
     const token = this.getToken();
 
     if (token) {
-      console.log('token exists');
       return true;
     } else {
-      console.log('no token');
       return false;
     }
+  }
+
+  // checks to see if the user is allowed to do an action
+  isAuthorized(id: any): boolean {
+    const token = this.readToken();
+
+    if (token.userId == id) {
+      return true;
+    }
+    return false;
   }
 
   // Sends a request to the API to authenticate the user, and receives back a token
@@ -65,7 +76,13 @@ export class AuthService {
   }
 
   getProfile(id: any): Observable<any> {
-    return this.http.get<Profile>(`${environment.userAPIBase}api/profiles/${id}`, { headers: this.headers });
+    // will redirect if the user profile does not exist
+    return this.http.get<Profile>(`${environment.userAPIBase}api/profiles/${id}`, { headers: this.headers }).pipe(
+      catchError((error) => {
+        this.router.navigate(['/not-found']);
+        return throwError(error);
+      })
+    );
   }
 
   updateProfile(newInformation: UserProfile): Observable<any> {
@@ -97,18 +114,28 @@ export class AuthService {
     return this.http.put<any>(`${environment.userAPIBase}api/posts/${post.post_id}`, post, { headers: this.headers });
   }
 
+  deletePost(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.userAPIBase}api/posts/${id}`, { headers: this.headers });
+  }
+
   getAllPosts() {
-    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
     return this.http.get<any>(`${environment.userAPIBase}api/posts`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 
   getPost(id: any): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', this.getToken().toString());
-    return this.http.get<any>(`${environment.userAPIBase}api/posts/${id}`, {
-      headers: headers,
-    });
+    // Will redirect if the post does not exist
+    return this.http
+      .get<any>(`${environment.userAPIBase}api/posts/${id}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        catchError((error) => {
+          this.router.navigate(['/not-found']);
+          return throwError(error);
+        })
+      );
   }
 
   getPostCategories(): Observable<any> {
@@ -117,5 +144,32 @@ export class AuthService {
 
   getPostCategory(id: any): Observable<any> {
     return this.http.get<any>(`${environment.userAPIBase}api/categories/${id}`, { headers: this.headers });
+  }
+
+  // API request for Comment
+  getComments(): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}api/comments`, { headers: this.headers }).pipe();
+  }
+
+  getCommentbyId(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}api/comments/${id}`, { headers: this.headers });
+  }
+
+  updateComment(comment: Comment): Observable<any> {
+    return this.http.put<any>(`${environment.userAPIBase}api/comments/${comment.comment_id}`, comment, {
+      headers: this.headers,
+    });
+  }
+
+  getCommentByPostId(postId: number): Observable<any> {
+    return this.http.get<any>(`${environment.userAPIBase}api/comments/post/${postId}`);
+  }
+
+  deleteComment(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.userAPIBase}api/comments/${id}`, { headers: this.headers });
+  }
+
+  createComment(comment: any): Observable<any> {
+    return this.http.post<any>(`${environment.userAPIBase}api/comments`, comment);
   }
 }

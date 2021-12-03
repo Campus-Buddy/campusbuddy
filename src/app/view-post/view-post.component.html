@@ -1,0 +1,100 @@
+<div class="container pb50">
+  <div class="row">
+    <div class="col-md-9 mb40">
+      <article>
+        <img [src]="this.postDetails.picture || './assets/cover.png'" alt="" class="img-fluid mb30" />
+        <div class="post-content">
+          <h3>{{ this.postDetails.title }}</h3>
+          <ul class="post-meta list-inline">
+            <li class="list-inline-item">
+              <i class="fa fa-user-circle-o"></i>
+              <a [routerLink]="['/profile', this.postDetails.user_id]">{{ this.userInfo.profile_name }}</a>
+            </li>
+            <li class="list-inline-item"><i class="fa fa-calendar-o"></i>&nbsp; {{ this.postDay }}</li>
+          </ul>
+          <p>{{ this.postDetails.details }}</p>
+          <hr class="mb40" />
+          <h4 class="mb40 text-uppercase font500">Comments</h4>
+          <div class="media mb40" *ngFor="let comment of commentList">
+            <div class="row">
+              <div class="col-md-2">
+                <img [src]="comment.image || './assets/default_avatar.png'" class="user-image" />
+              </div>
+              <div class="media-body col-md-8">
+                <h5 class="mt-0 font400 clearfix">
+                  <b>
+                    <a [routerLink]="['/profile/', this.comment.user_id]">
+                      {{ comment.profile_name }}
+                    </a></b
+                  >
+                </h5>
+                <span *ngIf="!comment.editMode; else editMode"> {{ comment.comment }}</span>
+                <ng-template #editMode>
+                  <input #editCommentValue [value]="comment.comment" />
+                </ng-template>
+              </div>
+              <div *ngIf="showEditDelete(comment.user_id)" class="col-md-2">
+                <div *ngIf="!comment.editMode; else editModeBtn">
+                  <button mat-button (click)="enableEditor(comment.comment_id)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <br />
+                  <button mat-button color="warn" (click)="deleteComment(comment.comment_id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <ng-template #editModeBtn>
+                  <button mat-button color="primary" (click)="updateComment(comment.comment_id)">
+                    <mat-icon>subdirectory_arrow_left</mat-icon>
+                  </button>
+                  <br />
+                  <button mat-button color="warn" (click)="comment.editMode = false">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <hr class="mb40" />
+          <form #f="ngForm">
+            <h4 class="mb40 text-uppercase font500">Post a comment</h4>
+            <div class="form-group">
+              <input
+                type="text"
+                [(ngModel)]="this.newComment.comment"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control"
+                rows="5"
+                placeholder="Comment"
+              /><br />
+            </div>
+            <div class="clearfix float-right">
+              <button type="button" (click)="onSubmit()" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+          </form>
+        </div>
+      </article>
+      <!-- post article-->
+    </div>
+    <div class="col-md-3 mb40">
+      <div class="mb40" *ngIf="this.postEditAuthorisation">
+        <button mat-button [routerLink]="['/post/edit', this.postDetails.post_id]">
+          <mat-icon>edit</mat-icon>
+          <span> Edit Post </span>
+        </button>
+        <br />
+        <button mat-button color="warn" (click)="confirmDeletePost()">
+          <mat-icon>delete</mat-icon>
+          <span> Delete Post </span>
+        </button>
+      </div>
+      <!--/col-->
+      <div class="mb40">
+        <h4 class="sidebar-title">Category</h4>
+        <ul class="list-unstyled categories">
+          <li>{{ this.postDetails.category_name }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

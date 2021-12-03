@@ -20,3 +20,27 @@
 app-user-card {
   height: 60vh;
 }
+  img {
+    border-radius: 50%;
+  }
+
+  #bioTextArea{
+    background-color: #FFFFFF99;
+    border:solid 15px lightseagreen;
+    border-radius: 25px;
+    
+  }
+  .rounded-pill{
+    align-self: center;
+  }
+
+  .col-sm-4{
+    margin-top: 6%;
+  }
+  .col-sm-8{
+    margin-top: 1%;
+  }
+
+  .col-6{
+    margin-top: 8%;
+  }
