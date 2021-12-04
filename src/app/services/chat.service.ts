@@ -20,8 +20,8 @@ export class ChatService {
     this.getMessages3 = new Subject();
 
     //this.socket = io(this.url); // we can also use io.connect() to connect to the current host
-    this.socket = io.connect(environment.socketServer);
-    this.socket2 = io.connect(environment.socketServer2);
+    this.socket = io.connect(`${environment.socketServer}`);
+    this.socket2 = io.connect(`${environment.socketServer2}`);
     this.socket3 = io.connect(environment.socketServer3);
 
     this.socket.on('send-username', (username) => {
