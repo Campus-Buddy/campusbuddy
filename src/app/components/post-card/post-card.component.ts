@@ -5,10 +5,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
-  styleUrls: ['./post-card.component.css']
+  styleUrls: ['./post-card.component.css'],
 })
 export class PostCardComponent implements OnInit {
-  @Input() id = '1';
+  @Input() id = '';
   @Input() image: '';
   @Input() details: '';
   @Input() title: '';
@@ -19,11 +19,9 @@ export class PostCardComponent implements OnInit {
 
   private sub: Subscription = new Subscription();
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-   
-
     this.sub = this.auth.getProfile(this.user_id).subscribe((data) => {
       this.username = data.profile_name;
     });

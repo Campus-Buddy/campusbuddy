@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Chat Room</title>
-</head>
-<body>
-  <mat-card class="full_card">
-    <h1>Chat Room</h1>
-    <mat-card>
-      <div class="well" style="height: 300px; overflow-y: scroll; margin-top:5px">
-        <div *ngFor="let message of messages">{{message}}</div>
-      </div>
-      <form (ngSubmit)="sendMessage()">
-        <div class="input_div">
-          <input type="text" name="currentMessage" class="form-control" [(ngModel)]="currentMessage" />
-          <button mat-raised-button type="submit" class="btn btn-primary">Send</button>
-        </div>
-      </form>
-    </mat-card>
-  </mat-card>
-
-</body>
+  <div class="full">
+    <img class="background_img" src="../../assets/landingpage.jpg" />
+    <body>
+      <mat-card class="full_card">
+        <h1><i>The General</i></h1>
+        <mat-card>
+          <div class="well" style="height: 300px; overflow-y: scroll; margin-top: 5px">
+            <div *ngFor="let message of messages">{{ message }}</div>
+          </div>
+          <form (ngSubmit)="sendMessage()">
+            <div class="input_div">
+              <input type="text" name="currentMessage" class="form-control" [(ngModel)]="currentMessage" />
+              <button mat-raised-button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </form>
+        </mat-card>
+      </mat-card>
+    </body>
+  </div>
 </html>

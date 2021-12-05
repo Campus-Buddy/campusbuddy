@@ -1,17 +1,17 @@
 .content {
-    overflow-y:auto;
-    overflow-x: hidden;
-    text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
 }
 .myposts {
-    background-color:mediumseagreen;
-    color: white;
+  background-color: mediumseagreen;
+  color: white;
 }
 .card-box {
-    min-width: 18rem
+  min-width: 18rem;
 }
 .mat-raised-button {
-    margin: 5px;
+  margin: 5px;
 }
 .mat-raised-button:hover {
     opacity: 80%;
@@ -24,5 +24,5 @@
     background-color: #6ebfe2;
 }
 .row {
-    justify-content: center;
+  justify-content: center;
 }

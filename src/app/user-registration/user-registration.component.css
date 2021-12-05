@@ -1,20 +1,17 @@
 mat-card {
-    max-width: 400px;
-    margin: 8em auto;
-    text-align: center;
-  }
-  
-  mat-form-field {
-    display: block;
-  }
-  
-  .success{
-    text-align: center;
-    padding-top:10px;
-  }
-  mat-error {
-    color: red;
-  }
-  
-  
-  
+  max-width: 400px;
+  margin: 8em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.success {
+  text-align: center;
+  padding-top: 10px;
+}
+mat-error {
+  color: red;
+}

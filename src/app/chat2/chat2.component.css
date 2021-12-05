@@ -1,0 +1,64 @@
+:host {
+  width: 100%;
+}
+.full {
+  overflow: hidden;
+  position: relative;
+  margin-left: -2%;
+  margin-right: -2%;
+  margin-bottom: 3%;
+}
+.background_img {
+  position: absolute;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+body {
+  position: relative;
+  background-color: #184e774b;
+  padding: 2%;
+  align-items: center;
+  /* background-image: url('https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg?cs=srgb&dl=pexels-pixabay-159775.jpg&fm=jpg');
+    background-size:cover; */
+}
+.full_card {
+  margin: auto;
+  margin-top: 2%;
+  width: 50%;
+  display: grid;
+  border-style: outset;
+  border-color: #73d0d3;
+  align-items: center;
+}
+h1 {
+  font-size: 170%;
+  color: #184e77;
+  padding: 0.3%;
+  letter-spacing: 0.1em;
+}
+.input_div {
+  display: flex;
+  background-color: #73d0d3;
+  padding: 2%;
+}
+.input_bar div {
+  display: flex;
+}
+button {
+  background-color: #184e77;
+  display: inline-block;
+  margin: auto;
+}
+button:hover {
+  background-color: #2399ac;
+}
+.form-control {
+  width: 80%;
+  margin: auto;
+  display: inline-block;
+  border-style: inset;
+  border-width: 0.1em;
+}

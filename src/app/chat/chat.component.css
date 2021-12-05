@@ -1,19 +1,41 @@
+:host {
+  width: 100%;
+}
 body {
-    padding-bottom: 5%;
+  position: relative;
+  background-color: #184e774b;
+  padding: 2%;
+  align-items: center;
+}
+.full {
+  overflow: hidden;
+  position: relative;
+  margin-left: -2%;
+  margin-right: -2%;
+  margin-bottom: 3%;
+}
+.background_img {
+  position: absolute;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
 }
 .full_card {
-  background-color: white;
-  width: 150%;
-  margin-left: -25%;
+  margin: auto;
+  margin-top: 2%;
+  width: 50%;
   display: grid;
   border-style: outset;
-  border-color: #73D0D3;
+  border-color: #73d0d3;
+  align-items: center;
 }
 h1 {
   font-size: 170%;
   color: #184e77;
   padding: 0.3%;
-  font-family: Courier New, Courier, monospace;
+  letter-spacing: 0.09em;
 }
 .input_div {
   display: flex;
@@ -21,7 +43,7 @@ h1 {
   padding: 2%;
 }
 .input_bar div {
-    display: flex;
+  display: flex;
 }
 button {
   background-color: #184e77;
@@ -38,4 +60,3 @@ button:hover {
   border-style: inset;
   border-width: 0.1em;
 }
-

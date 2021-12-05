@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AboutComponent } from './about/about.component';
@@ -48,6 +48,11 @@ import { ChatService } from './services/chat.service';
 import { AllConvosComponent } from './all-convos/all-convos.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostComponent } from './post/post.component';
+import { ViewPostComponent } from './view-post/view-post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DeletePostComponent } from './components/delete-post/delete-post.component';
+import { Chat2Component } from './chat2/chat2.component';
+import { Chat3Component } from './chat3/chat3.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +76,13 @@ import { PostComponent } from './post/post.component';
     AllConvosComponent,
     PostCardComponent,
     AllPostsComponent,
-    PostComponent
+    PostComponent,
+    PostCardComponent,
+    ViewPostComponent,
+    NotFoundComponent,
+    DeletePostComponent,
+    Chat2Component,
+    Chat3Component,
   ],
   imports: [
     BrowserModule,
@@ -96,15 +107,16 @@ import { PostComponent } from './post/post.component';
     MatSelectModule,
     ReactiveFormsModule,
     // NgbModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     {
       provide: JWT_OPTIONS,
-      useValue: JWT_OPTIONS
+      useValue: JWT_OPTIONS,
     },
     JwtHelperService,
-    ChatService],
-  bootstrap: [AppComponent]
+    ChatService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

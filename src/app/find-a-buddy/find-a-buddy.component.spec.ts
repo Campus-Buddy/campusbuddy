@@ -8,9 +8,8 @@ describe('FindABuddyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FindABuddyComponent ]
-    })
-    .compileComponents();
+      declarations: [FindABuddyComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

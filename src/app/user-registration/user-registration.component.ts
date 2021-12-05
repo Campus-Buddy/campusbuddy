@@ -44,10 +44,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onSubmit(f: NgForm): void {
-    if (
-      this.registeredUser.email != '' &&
-      this.registeredUser.password == this.password2
-    ) {
+    if (this.registeredUser.email != '' && this.registeredUser.password == this.password2) {
       this.loading = true;
 
       // Open subscription to register the user:
