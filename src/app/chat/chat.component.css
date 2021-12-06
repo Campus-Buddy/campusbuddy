@@ -39,7 +39,7 @@ h1 {
 }
 .input_div {
   display: flex;
-  background-color: #73d0d3;
+  background-color: #31a4d5;
   padding: 2%;
 }
 .input_bar div {
@@ -51,7 +51,7 @@ button {
   margin: auto;
 }
 button:hover {
-  background-color: #2399ac;
+  opacity: 80%;
 }
 .form-control {
   width: 80%;

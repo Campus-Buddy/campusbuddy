@@ -1,16 +1,22 @@
+:host {
+  padding-top: 2em;
+}
 .card {
   border-block-color: #74b3e3;
   border-style: outset;
 }
 .mat-chip-list-stacked {
-  background-color: #d7f1f2;
+  background-color: #31a4d5;
 }
 .mat-chip-list-stacked:hover {
-  background-color: #abe3e4;
+  background-color: #6ebfe2;
 }
 .high_Card {
-  background-color: #73d0d3;
+  background-color: #184e77;
+  color: white;
+  letter-spacing: 0.09em;
 }
 .high_Card:hover {
-  background-color: lightseagreen;
+  background-color: #1e7194;
+  border-radius: 2%;
 }

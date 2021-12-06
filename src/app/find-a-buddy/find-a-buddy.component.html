@@ -2,14 +2,17 @@
   <!-- Add query by tags here -->
   <section>
     <div class="example-button-row">
-      <button id="0" mat-raised-button color="primary" [routerLink]="['/findbuddy']" routerLinkActive="active">
-        All
+      <button
+        id="0"
+        mat-raised-button
+        [routerLink]="['/findbuddy']"
+        routerLinkActive="active"
+      > All
       </button>
       <button
         *ngFor="let tag of tagList"
         id="tag.tag_id"
         mat-raised-button
-        color="primary"
         [routerLink]="['/findbuddy', tag.tag_id]"
         routerLinkActive="active"
       >

@@ -47,7 +47,7 @@
   }
 
   .toolbar img {
-    margin: 0 16px;
+    margin: 0 5px 0px;
   }
 
   .toolbar #twitter-logo {
@@ -57,12 +57,25 @@
 
   .content {
     display: flex;
-    margin: 40px auto 32px;
-    padding: 0 16px;
+    margin: 0px;
     max-width: 1400px;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    background-image: url("../assets/landingpage.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+  }
+  .content2 {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 30px;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;
+    width: 90%;
   }
 
   a,
@@ -78,7 +91,7 @@
 
   footer {
     margin-top: 8px;
-    display: flex;
+    display: fixed;
     align-items: center;
     line-height: 20px;
   }
@@ -101,7 +114,7 @@
     }
 
     .card.highlight-card span {
-      margin-left: 72px;
+      margin-left: 2px;
     }
   }
 </style>
@@ -139,8 +152,14 @@
         <span fxShow fxHide.xs> {{ username }} </span>
       </button>
     </div>
-    <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
-      <a mat-menu-item routerLink="/home">
+    <mat-menu
+      class="content2"
+      #userMenu="matMenu"
+      xPosition="before"
+      yPosition="above"
+      [overlapTrigger]="false"
+    >
+      <a mat-menu-item routerLink="/home" >
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
@@ -150,7 +169,8 @@
       </a>
     </mat-menu>
   </mat-toolbar>
-  <div class="content"><router-outlet></router-outlet></div>
+  <div class="content" *ngIf="!_token"><router-outlet></router-outlet></div>
+  <div class="content2" *ngIf="_token"><router-outlet></router-outlet></div>
 </div>
 
-<!-- <app-footer class="footer"></app-footer> -->
+<app-footer *ngIf="!_token" class="footer"></app-footer>
