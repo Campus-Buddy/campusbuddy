@@ -62,7 +62,7 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    background-image: url("../assets/landingpage.jpg");
+    background-image: url('../assets/landingpage.jpg');
     background-size: cover;
     height: 100vh;
     width: 100%;
@@ -131,7 +131,7 @@
 
     <span class="navbar-spacer"></span>
     <div>
-      <button mat-button routerLink="/about">
+      <button *ngIf="!_token" mat-button routerLink="/about">
         <span fxShow fxHide.xs> About </span>
       </button>
 
@@ -143,6 +143,10 @@
         <span fxShow fxHide.xs> Login </span>
       </button>
 
+      <button *ngIf="_token" mat-button routerLink="/home">
+        <mat-icon>home</mat-icon>
+      </button>
+
       <button *ngIf="!_token" mat-button routerLink="/register">
         <span fxShow fxHide.xs>Register </span>
       </button>
@@ -152,14 +156,8 @@
         <span fxShow fxHide.xs> {{ username }} </span>
       </button>
     </div>
-    <mat-menu
-      class="content2"
-      #userMenu="matMenu"
-      xPosition="before"
-      yPosition="above"
-      [overlapTrigger]="false"
-    >
-      <a mat-menu-item routerLink="/home" >
+    <mat-menu class="content2" #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+      <a mat-menu-item routerLink="/home">
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>

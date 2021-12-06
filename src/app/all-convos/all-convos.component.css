@@ -20,3 +20,15 @@
   background-color: #1e7194;
   border-radius: 2%;
 }
+.titles {
+  font-family: 'Courier New', Courier, monospace;
+  size: 1em;
+}
+.subtitles {
+  color: rgba(255, 255, 255, 0.616);
+  font-weight: 30;
+}
+button {
+  color: white;
+  font-weight: 400;
+}

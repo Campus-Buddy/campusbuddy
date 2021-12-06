@@ -1,14 +1,11 @@
-.landing_button {
+button {
   text-align: center;
-  border-radius: 10%;
   margin: 10px 10px;
   font-size: 20px;
-  font-weight: 500;
-  border: solid;
-  border-width: medium;
-  padding: 10px;
 }
-
+h1 {
+  font-size: 3.5em;
+}
 .landing_page {
   text-align: center;
 }

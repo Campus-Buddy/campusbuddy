@@ -1,5 +1,5 @@
 :host {
-  background-image: url("../../../assets/landingpage.jpg");
+  background-image: url('../../../assets/landingpage.jpg');
   background-size: cover;
 }
 .central {
@@ -11,8 +11,8 @@
   width: 100%;
   top: 25%;
   bottom: 25%;
-  background-color: #184e77;
-  opacity: 70%;
+  background-color: #18486bbe;
+  opacity: 95%;
   color: white;
   overflow: hidden;
 }
@@ -25,7 +25,7 @@ img {
 body {
   overflow: hidden;
   width: 100%;
-  background-image: url("../../../assets/landingpage.jpg");
-  height: 87vh; 
+  background-image: url('../../../assets/landingpage.jpg');
+  height: 87vh;
   background-size: cover;
 }
