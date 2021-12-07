@@ -3,6 +3,9 @@
   overflow-x: hidden;
   text-align: center;
 }
+h2 {
+  font-family: 'Courier New', Courier, monospace;
+}
 .myposts {
   background-color: mediumseagreen;
   color: white;
@@ -14,14 +17,14 @@
   margin: 5px;
 }
 .mat-raised-button:hover {
-    opacity: 80%;
+  opacity: 80%;
 }
-.allbuttons{
-    background-color: #31a4d5;
-    color: white;
+.allbuttons {
+  background-color: #31a4d5;
+  color: white;
 }
-.allbuttons:hover{
-    background-color: #6ebfe2;
+.allbuttons:hover {
+  background-color: #6ebfe2;
 }
 .row {
   justify-content: center;

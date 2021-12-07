@@ -11,6 +11,9 @@
   width: 50%;
   border: 2px grey solid;
   padding: 3px;
+  border-style: outset;
+  border-color: lightseagreen;
+  margin-bottom: 2%;
 }
 
 textarea {
