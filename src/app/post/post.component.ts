@@ -88,7 +88,9 @@ export class PostComponent implements OnInit {
   createNewPost(): void {
     this.submitPageSub = this.auth.createPost(this.currentPost).subscribe(
       (success) => {
-        this.openDialogue('Changes were saved!');
+        this.router.navigate(['/all-posts']).then(() => {
+          this.openDialogue('Changes were saved!');
+        });
       },
       (err) => {
         this.openDialogue('There was an error.');
