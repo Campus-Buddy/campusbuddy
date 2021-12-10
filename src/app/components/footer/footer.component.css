@@ -1,6 +1,6 @@
 .footer {
   background-color: #184e77;
-  position: fixed;
+
   align-items: center;
   line-height: 20px;
   width: 100%;
@@ -9,4 +9,3 @@
 :host {
   height: 10%;
 }
-

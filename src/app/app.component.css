@@ -13,7 +13,7 @@
 }
 
 .footer {
-  position: absolute;
+  display: block;
   bottom: 0;
   background-color: #184e77;
 }
@@ -22,4 +22,3 @@
   top: 0;
   width: 100%;
 }
-
