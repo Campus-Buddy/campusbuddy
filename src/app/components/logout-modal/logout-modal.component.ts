@@ -20,6 +20,8 @@ export class LogoutModalComponent implements OnInit {
   confirmLogout() {
     this.auth.logout();
     this.dismissModal();
-    this.router.navigate(['landing-page']);
+    this.router.navigate(['landing-page']).then(() => {
+      window.location.reload();
+    });
   }
 }
