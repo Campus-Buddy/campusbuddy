@@ -88,7 +88,9 @@ export class PostComponent implements OnInit {
   createNewPost(): void {
     this.submitPageSub = this.auth.createPost(this.currentPost).subscribe(
       (success) => {
-        this.openDialogue('Changes were saved!');
+        this.router.navigate(['/all-posts']).then(() => {
+          this.openDialogue('Changes were saved!');
+        });
       },
       (err) => {
         this.openDialogue('There was an error.');
@@ -100,7 +102,9 @@ export class PostComponent implements OnInit {
   updatePost(): void {
     this.submitPageSub = this.auth.updatePost(this.currentPost).subscribe(
       (success) => {
-        this.openDialogue('Changes were saved!');
+        this.router.navigate(['/post/' + this.id]).then(() => {
+          this.openDialogue('Changes were saved!');
+        });
       },
       (err) => {
         this.openDialogue('There was an error.');
@@ -119,6 +123,7 @@ export class PostComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
+      console.log('getting picture');
       this.currentPost.picture = reader.result?.toString() || '../../assets/default_avatar.png';
     };
   }

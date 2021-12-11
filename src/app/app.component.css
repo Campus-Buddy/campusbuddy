@@ -13,12 +13,12 @@
 }
 
 .footer {
-  position: absolute;
+  display: block;
   bottom: 0;
   background-color: #184e77;
 }
 
 .header {
   top: 0;
-  width: 100vw;
+  width: 100%;
 }

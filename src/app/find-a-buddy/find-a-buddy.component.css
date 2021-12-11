@@ -9,7 +9,12 @@
 }
 
 .mat-raised-button {
-  margin: 5px;
+    margin: 5px;
+    background-color: #31a4d5;
+    color: white;
+}
+.mat-raised-button:hover {
+    background-color: #6ebfe2;
 }
 
 .row {

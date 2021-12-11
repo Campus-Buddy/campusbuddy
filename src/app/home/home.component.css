@@ -3,25 +3,38 @@
   background-color: #dff4cd;
   height: 100%;
 }
+.wrapper {
+  display: flex;
+}
+.col1 {
+  float: left;
+  width: 40%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+.container {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+h5 {
+  font-size: 2.5em;
+  font-family: 'Courier New', Courier, monospace;
+}
+p {
+  font-weight: 100;
+}
 
 .link-box {
-  /* padding: 2rem; */
+  padding: 1rem;
   cursor: pointer;
   height: auto;
 }
 
-.box-container {
-  /* height: 100%; */
-}
-
-.row {
-  --bs-gutter-x: 0;
-  margin: 0rem 3rem 1rem 3rem;
-}
-
 .card {
-  margin: 0.5rem;
-  height: auto;
+  margin: 0.7rem;
+  min-height: 40vh;
   border-radius: 2%;
   background-color: #184e77;
   letter-spacing: 0.09em;
@@ -36,8 +49,8 @@
 .profile-img {
   border: 3px black solid;
   border-radius: 50%;
-  height: 15rem;
-  width: 15rem;
+  height: 25rem;
+  width: 25rem;
 }
 
 .bio-box {
@@ -50,7 +63,7 @@
 }
 
 .card-body {
-  min-height: 200px;
+  display: inline-block;
 }
 
 .card-title {

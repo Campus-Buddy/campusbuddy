@@ -11,6 +11,9 @@
   width: 50%;
   border: 2px grey solid;
   padding: 3px;
+  border-style: outset;
+  border-color: lightseagreen;
+  margin-bottom: 2%;
 }
 
 textarea {
@@ -20,6 +23,7 @@ textarea {
 .saveButton {
   text-align: right;
 }
+
 /* CSS Styling for the button on hover of image container */
 /* STARTS HERE: */
 .imageContainer {

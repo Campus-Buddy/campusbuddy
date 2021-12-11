@@ -1,3 +1,7 @@
+:host {
+  background-image: url('../../../assets/landingpage.jpg');
+  background-size: cover;
+}
 .central {
   position: fixed;
   display: flex;
@@ -7,8 +11,8 @@
   width: 100%;
   top: 25%;
   bottom: 25%;
-  background-color: #184e77;
-  opacity: 50%;
+  background-color: #18486bbe;
+  opacity: 95%;
   color: white;
   overflow: hidden;
 }
@@ -23,7 +27,5 @@ body {
   width: 100%;
   background-image: url('../../../assets/landingpage.jpg');
   height: 87vh;
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
 }
