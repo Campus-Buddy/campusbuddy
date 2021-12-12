@@ -84,7 +84,7 @@ import { VerifyComponent } from './verify/verify.component';
     DeletePostComponent,
     Chat2Component,
     Chat3Component,
-    VerifyComponent
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,

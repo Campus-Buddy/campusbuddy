@@ -28,9 +28,11 @@ export class AppComponent {
       if (event instanceof NavigationStart) {
         this._token = this.auth.readToken();
         // get the user information and store it
-        this.sub = this.auth.getProfile(this._token.userId).subscribe((data) => {
-          this.username = data.profile_name;
-        });
+        if (!!this._token) {
+          this.sub = this.auth.getProfile(this._token.userId).subscribe((data) => {
+            this.username = data.profile_name;
+          });
+        }
       }
     });
   }
