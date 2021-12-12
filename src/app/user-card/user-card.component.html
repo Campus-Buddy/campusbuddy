@@ -1,5 +1,5 @@
 <!-- On click take the userId and open to profile -->
-<div class="card">
+<div class="card" [routerLink]="['/profile', id]" routerLinkActive="active">
   <img
     [src]="image || '../../assets/default_avatar.png'"
     class="card-img-top profile-img"
@@ -22,17 +22,5 @@
     <ng-template #noTags>
       <p>This user has no tags.</p>
     </ng-template>
-  </div>
-  <div class="row">
-    <button
-      *ngIf="buttons"
-      mat-stroked-button
-      [routerLink]="['/profile', id]"
-      routerLinkActive="active"
-      class="button-option"
-    >
-      Profile
-    </button>
-    <button *ngIf="buttons" mat-stroked-button class="button-option" [routerLink]="['/all-convos']">Message</button>
   </div>
 </div>
