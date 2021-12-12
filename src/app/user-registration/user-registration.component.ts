@@ -24,7 +24,7 @@ export class UserRegistrationComponent implements OnInit {
   public registeredUser: RegisteredUser;
   public profile: Profile;
 
-  public warnings : Array<any> = [];
+  public warnings: Array<any> = [];
   public success = false;
   public success2 = false;
   public loading = false;
@@ -32,11 +32,7 @@ export class UserRegistrationComponent implements OnInit {
 
   selectedValue = null;
 
-  constructor(
-    private auth: AuthService,
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.registeredUser = {
@@ -59,7 +55,6 @@ export class UserRegistrationComponent implements OnInit {
 
     // Initialize subscription for institutions
     this.sub = this.auth.getInstitutions().subscribe((data) => {
-      console.log('DATA INSTITUTE: ', data.rows);
       this.institutions = data.rows;
       this.institutions.push({
         institution_id: 0,
@@ -113,14 +108,12 @@ export class UserRegistrationComponent implements OnInit {
         }
       );
     } else {
-      this.warnings.length = 0;  // reset warnings
+      this.warnings.length = 0; // reset warnings
       this.success = false;
       this.success2 = false;
 
-      if (this.registeredUser.password !== this.password2)
-        this.warnings.push('Please Check your password');
-      if (this.registeredUser.institution_id == 0)
-        this.warnings.push('Please select an institution');
+      if (this.registeredUser.password !== this.password2) this.warnings.push('Please Check your password');
+      if (this.registeredUser.institution_id == 0) this.warnings.push('Please select an institution');
       this.loading = false;
     }
   }

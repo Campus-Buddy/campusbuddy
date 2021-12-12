@@ -42,7 +42,6 @@ export class AllPostsComponent implements OnInit {
         this.posts = newPosts;
       }
       this.posts = this.posts.sort((val1, val2) => {
-        console.log('sorting ' + val2.date_created);
         return <any>new Date(val2.date_created) - <any>new Date(val1.date_created);
       });
     });

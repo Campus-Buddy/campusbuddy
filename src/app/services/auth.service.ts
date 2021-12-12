@@ -122,7 +122,6 @@ export class AuthService {
 
   getProfile(id: any): Observable<any> {
     // will redirect if the user profile does not exist
-    console.log('header', this.getToken()?.toString());
     return this.http.get<Profile>(`${environment.userAPIBase}api/profiles/${id}`, { headers: this.headers }).pipe(
       catchError((error) => {
         this.router.navigate(['/not-found']);
