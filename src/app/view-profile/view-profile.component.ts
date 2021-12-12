@@ -44,7 +44,7 @@ export class ViewProfileComponent implements OnInit {
       this.currentProfile = data;
       for (let tag of this.currentProfile.tags) {
         this.sub3 = this.auth.getTagById(tag).subscribe((tagfound) => {
-          this.tagList.push(tagfound.title);
+          this.tagList.push({ title: tagfound.title, id: tag });
         });
       }
     });
