@@ -84,7 +84,7 @@ export class UserRegistrationComponent implements OnInit {
 
           // Open subscription to create profile for user:
           this.profile.user_id = this._token.userId;
-          this.profile.age = new Date().getFullYear() - this.profile.age;
+          this.profile.age = new Date().getFullYear() - this.registeredUser.age;
 
           this.subProfile = this.auth.profile(this.profile).subscribe(
             (success) => {
