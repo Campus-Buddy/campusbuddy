@@ -72,6 +72,7 @@ export class UserRegistrationComponent implements OnInit {
       this.registeredUser.institution_id != 0
     ) {
       this.loading = true;
+      this.registeredUser.age = new Date().getFullYear() - this.registeredUser.age;
 
       // Open subscription to register the user:
       this.subRegister = this.auth.register(this.registeredUser).subscribe(
