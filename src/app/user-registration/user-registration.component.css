@@ -9,24 +9,27 @@
   text-align: center;
 } */
 mat-card {
-  text-align: center;
   font-family: Courier New, Courier, monospace;
+  margin: auto;
+  text-align: center;
   border-radius: 25px;
   border-style: outset;
   border-color: lightseagreen;
+  width: 30em;
 }
-form {
-  padding-left: 1em;
-  padding-right: 1em;
-}
-mat-form-field {
-  display: block;
-}
-
-.success {
-  text-align: center;
-  padding-top: 10px;
-}
-mat-error {
-  color: red;
-}
+  
+  mat-form-field {
+    display: block;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+  .success{
+    text-align: center;
+    padding-top:10px;
+  }
+  mat-error {
+    color: red;
+  }
+  
+  

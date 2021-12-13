@@ -19,8 +19,14 @@
             <br />
             <b>{{ currentProfile.profile_name }},&nbsp;{{ currentProfile.age }}</b>
             <div class="col">
-              <button *ngFor="let tag of tagList" mat-raised-button type="button" class="btn">
-                {{ tag }}
+              <button
+                *ngFor="let tag of tagList"
+                mat-raised-button
+                type="button"
+                class="btn"
+                [routerLink]="['/findbuddy', tag.id]"
+              >
+                {{ tag.title }}
               </button>
               &nbsp;
             </div>
@@ -34,9 +40,9 @@
         <div class="col"></div>
         <div class="col-6">
           <div class="rounded-pill">
-            <button type="button" class="btn2" color="accent" mat-raised-button [routerLink]="['/all-convos']">
+            <!-- <button type="button" class="btn2" color="accent" mat-raised-button [routerLink]="['/all-convos']">
               Message
-            </button>
+            </button> -->
             &nbsp; &nbsp;
             <button type="button" class="btn2" color="accent" mat-raised-button [routerLink]="['/contactus']">
               Report

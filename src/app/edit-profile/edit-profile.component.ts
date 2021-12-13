@@ -42,7 +42,6 @@ export class EditProfileComponent implements OnInit {
     this._token = this.auth.readToken();
     // Read the information for the profile:
     this.sub2 = this.auth.getProfile(this._token.userId).subscribe((data) => {
-      console.log('user: ', data);
       this.userProfile = data;
       // For each tag of the user profile, get the name.
       for (let tag of this.userProfile.tags) {
@@ -60,7 +59,6 @@ export class EditProfileComponent implements OnInit {
         this.openDialogue('Changes were saved!');
       },
       (err) => {
-        console.log(err);
         this.openDialogue('There was an error.');
       }
     );

@@ -9,7 +9,7 @@ import { RegisterUser } from '../models/RegisterUser';
 import { RegisteredUser } from '../registered-user';
 import { UserProfile } from '../user-profile';
 import { Comment } from '../models/comment';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
@@ -18,6 +18,7 @@ const helper = new JwtHelperService();
   providedIn: 'root',
 })
 export class AuthService {
+  private userId;
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private router: Router) {}
 
   // Grabs the current token and sets it into the header for the API Requests
@@ -25,7 +26,8 @@ export class AuthService {
 
   //Returns the token
   public getToken(): string {
-    return localStorage.getItem('access_token')!;
+    const token = localStorage.getItem('access_token') || '';
+    return token;
   }
 
   // Reads the token to get the various key/pairs from the object
@@ -34,11 +36,15 @@ export class AuthService {
     return helper.decodeToken(token?.toString());
   }
 
+  public getuserId(): number {
+    return this.userId;
+  }
+
   // Checks that the token exists
   isAuthenticated(): boolean {
     const token = this.getToken();
 
-    if (token) {
+    if (!this.jwtHelper.isTokenExpired(token)) {
       return true;
     } else {
       return false;
@@ -55,9 +61,48 @@ export class AuthService {
     return false;
   }
 
+  // Route used to verify your email in the DB
+  verify(token: string): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.userAPIBase}api/v1/users/authenticate`,
+        { verifyToken: token },
+        { headers: this.headers }
+      )
+      .pipe(
+        catchError((error) => {
+          this.router.navigate(['/verify']);
+          return throwError(error);
+        })
+      );
+  }
+
+  isVerified(): Observable<any> {
+    const id = this.readToken().userId;
+
+    return this.http.get<any>(`${environment.userAPIBase}api/v1/users/isVerified/${id}`, { headers: this.headers });
+  }
+
+  getEmailAddress(): Observable<any> {
+    const id = this.readToken().userId;
+    return this.http.get<any>(`${environment.userAPIBase}api/v1/users/email/${id}`, { headers: this.headers });
+  }
+
+  resendVerificationCode(email: string): Observable<any> {
+    const id = this.readToken().userId;
+    return this.http.post<any>(`${environment.userAPIBase}api/v1/users/authenticate/resend/${id}`, { email: email });
+  }
+
   // Sends a request to the API to authenticate the user, and receives back a token
   login(user: User): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}api/v1/users/login`, user);
+    return this.http.post<any>(`${environment.userAPIBase}api/v1/users/login`, user).pipe(
+      map((result) => {
+        this.userId = result.token.userId;
+        localStorage.setItem('access_token', result.token);
+        this.headers = new HttpHeaders().set('x-access-token', this.getToken()?.toString());
+        return true;
+      })
+    );
   }
 
   // Destroys the token inside the localstorate
@@ -171,5 +216,9 @@ export class AuthService {
 
   createComment(comment: any): Observable<any> {
     return this.http.post<any>(`${environment.userAPIBase}api/comments`, comment);
+  }
+
+  profile(profile: Profile): Observable<any> {
+    return this.http.post<any>(`${environment.userAPIBase}/api/profiles`, profile);
   }
 }

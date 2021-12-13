@@ -123,7 +123,6 @@ export class PostComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
-      console.log('getting picture');
       this.currentPost.picture = reader.result?.toString() || '../../assets/default_avatar.png';
     };
   }

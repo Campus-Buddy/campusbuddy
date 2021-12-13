@@ -53,6 +53,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
 import { Chat2Component } from './chat2/chat2.component';
 import { Chat3Component } from './chat3/chat3.component';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { Chat3Component } from './chat3/chat3.component';
     DeletePostComponent,
     Chat2Component,
     Chat3Component,
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,

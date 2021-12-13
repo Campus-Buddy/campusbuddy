@@ -1,7 +1,10 @@
-export class RegisteredUser {
-  'email': string;
-  'password': string;
-  'role_id': number;
-  'profile_id': number;
-  'institution_id': number;
-}
+export class RegisteredUser{
+    "email": string;
+    "password": string;  
+    "role_id" : number;
+    "profile_id" : number;
+    "institution_id" : number;
+    "age": number;
+    "fullName": string;
+  }
+  

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/User';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -29,19 +30,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit(f: NgForm): void {
     if (this.user.email != '' && this.user.password != '') {
-      this.auth.login(this.user).subscribe(
-        (success) => {
-          this.warning = '';
-
-          localStorage.setItem('access_token', success.token);
-          this.router.navigate(['/home']).then(() => {
-            window.location.reload();
-          });
-        },
-        (err) => {
-          this.warning = err.error.message;
-        }
-      );
+      this.auth
+        .login(this.user)
+        .pipe(first())
+        .subscribe(
+          (success) => {
+            this.warning = '';
+            this.router.navigate(['/home']);
+          },
+          (err) => {
+            this.warning = err.error.message;
+          }
+        );
     }
   }
 }

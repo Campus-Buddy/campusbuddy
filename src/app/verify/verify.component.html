@@ -1,0 +1,18 @@
+<mat-card class="form_card">
+  <mat-card-content>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-error>Please verify your email to gain access to your account.</mat-error><br />
+      <mat-form-field class="full-width-input">
+        <input matInput [value]="email" id="email" name="email" required autofocus />
+        <mat-error>Please provide a valid registered email</mat-error> </mat-form-field
+      ><br />
+
+      <br />
+      <button mat-raised-button color="accent" type="submit">
+        <span ng-message when="false">&nbsp;&nbsp;&nbsp;Resend Email</span>
+      </button>
+      <br />
+      <br />
+    </form>
+  </mat-card-content>
+</mat-card>
