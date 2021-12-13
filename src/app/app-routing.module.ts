@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'post/edit/:id', component: PostComponent },
   { path: 'post/:id', component: ViewPostComponent },
   { path: 'not-found', component: NotFoundComponent },
-  { path: 'verify/:id', component: VerifyComponent, canActivate: [GuardAuthService] },
+  { path: 'verify/:id', component: VerifyComponent },
   { path: 'verify', component: VerifyComponent },
 
   { path: '**', component: NotFoundComponent },
