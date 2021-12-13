@@ -147,7 +147,7 @@ export class AuthService {
 
   // Gets institutions list for registration - no auth required.
   getInstitutions(): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}api/institutions`);
+    return this.http.get<any>(`${environment.userAPIBase}api/institutions`, { headers: this.headers });
   }
 
   // API Requests for Posts
@@ -207,7 +207,7 @@ export class AuthService {
   }
 
   getCommentByPostId(postId: number): Observable<any> {
-    return this.http.get<any>(`${environment.userAPIBase}api/comments/post/${postId}`);
+    return this.http.get<any>(`${environment.userAPIBase}api/comments/post/${postId}`, { headers: this.headers });
   }
 
   deleteComment(id: any): Observable<any> {
@@ -215,10 +215,10 @@ export class AuthService {
   }
 
   createComment(comment: any): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}api/comments`, comment);
+    return this.http.post<any>(`${environment.userAPIBase}api/comments`, comment, { headers: this.headers });
   }
 
   profile(profile: Profile): Observable<any> {
-    return this.http.post<any>(`${environment.userAPIBase}/api/profiles`, profile);
+    return this.http.post<any>(`${environment.userAPIBase}/api/profiles`, profile, { headers: this.headers });
   }
 }
