@@ -30,15 +30,14 @@ export class FindABuddyComponent implements OnInit {
       let newUsers = <any>[];
       if (this.id) {
         for (let user of this.users) {
-          if (user.tags) {
-            for (let tag of user.tags) {
-              if (tag == this.id) {
-                newUsers.push(user);
+          if (user.user_id !== this._token.userId) {
+            if (user.tags) {
+              for (let tag of user.tags) {
+                if (tag.toString() === this.id) {
+                  newUsers.push(user);
+                }
               }
             }
-          }
-          if (user.user_id === this._token.userId) {
-            newUsers.splice(user);
           }
         }
       } else {
