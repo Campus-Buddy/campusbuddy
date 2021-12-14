@@ -49,6 +49,9 @@ export class EditProfileComponent implements OnInit {
           this.tags.push(tagfound.title);
         });
       }
+      if (!this.userProfile.img) {
+        this.userProfile.img = '../../assets/default_avatar.png';
+      }
     });
   }
 
